@@ -7,11 +7,13 @@
 using namespace std;
 
 class Board : public Subject {
-    vector<vector<Tile>> board;
+    int boardSize = 8;
+    vector<vector<Tile*>> board;
     Piece lastMovedPiece;
 public:
     Board();
     void movePiece();
+    ~Board();
 };
 
 #endif
