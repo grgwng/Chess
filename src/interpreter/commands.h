@@ -11,6 +11,7 @@ class Command {
     public:
         Command(CommandType);
         virtual ~Command() = 0;
+        CommandType getType();
 };
 
 class StartGame : Command {
