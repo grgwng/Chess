@@ -12,6 +12,8 @@ public:
     Piece* getPiece();
     void setPiece(Piece* p);
     ~Tile() {}
+
+    bool isEmpty();
 };
 
 #endif

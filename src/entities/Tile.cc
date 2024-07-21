@@ -13,3 +13,12 @@ Piece* Tile::getPiece() {
 void Tile::setPiece(Piece *piece) {
     p = piece;
 } 
+
+Colour Tile::getColour() const {
+    return colour;
+}
+
+bool Tile::isEmpty() {
+    return p == nullptr;
+}
+
