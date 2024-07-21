@@ -2,7 +2,7 @@
 #define SUBJECT_H
 
 #include <vector>
-#include "Tile.h"
+#include "../entities/Tile.h"
 class Observer;
 
 using namespace std;

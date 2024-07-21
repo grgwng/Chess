@@ -1,13 +1,16 @@
 #include "Board.h"
-#include "types.h"
-#include "Pawn.h"
-#include "Rook.h"
-#include "Knight.h"
-#include "Bishop.h"
-#include "Queen.h"
-#include "King.h"
+#include "../types/types.h"
+#include "pieces/Pawn.h"
+#include "pieces/Rook.h"
+#include "pieces/Knight.h"
+#include "pieces/Bishop.h"
+#include "pieces/Queen.h"
+#include "pieces/King.h"
 
 Board::Board() {
+
+    board.resize(boardSize, vector<Tile*>(boardSize, nullptr));
+
     for(int row = 0; row < boardSize; row++) {
         for(int col = 0; col < boardSize; col++) {
             Colour curColour = WHITE;

@@ -1,5 +1,5 @@
 #include "Bishop.h"
-#include "Board.h"
+#include "../Board.h"
 
 bool Bishop::isValidMove(const Board& board, int startX, int startY, int endX, int endY) const {
 
