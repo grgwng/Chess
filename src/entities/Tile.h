@@ -2,6 +2,8 @@
 #define TILE_H
 #include "Piece.h"
 
+class Piece;
+
 class Tile {
     int row, col;
     Colour colour;

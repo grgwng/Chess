@@ -1,7 +1,7 @@
 #include "King.h"
 #include "Rook.h"
-#include "Board.h"
-#include <Piece.h>
+#include "../Board.h"
+#include "../Piece.h"
 
 bool King::isValidMove(const Board& board, int startX, int startY, int endX, int endY) const {
     if (abs(startX - endX) <= 1 && abs(startY - endY) <= 1) {

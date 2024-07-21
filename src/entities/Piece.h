@@ -1,7 +1,10 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "types.h"
+#include "../types/types.h"
+
+class Board;
+class Tile;
 
 class Piece {
     Colour colour;

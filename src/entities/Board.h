@@ -1,9 +1,11 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "Subject.h"
-#include "Tile.h"
+#include "../display/Subject.h"
 #include <vector>
+#include <iostream>
+class Tile;
+class Piece;
 using namespace std;
 
 class Board : public Subject {
@@ -14,7 +16,7 @@ public:
     Board();
     void movePiece();
     void render();
-    Tile* getTile(int row, int col) const override;
+    Tile* getTile(int row, int col) const;
     int getBoardSize();
     ~Board();
 };
