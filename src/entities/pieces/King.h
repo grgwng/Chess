@@ -10,6 +10,8 @@ public:
 
     const char getType() const override { return 'k'; }
     bool isValidMove(const Board& board, int startX, int startY, int endX, int endY) const override;
+
+    bool canCastle() const { return !hasMoved(); }
 };
 
 #endif
