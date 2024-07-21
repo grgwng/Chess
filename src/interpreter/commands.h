@@ -14,29 +14,31 @@ class Command {
         CommandType getType();
 };
 
-class StartGame : Command {
-    PlayerType player1;
-    PlayerType player2;
+class StartGame : public Command {
+    PlayerType whitePlayer;
+    PlayerType blackPlayer;
 
     public:
         StartGame(PlayerType, PlayerType);
-        PlayerType getPlayer1();
-        PlayerType getPlayer2();
+        PlayerType getWhitePlayer();
+        PlayerType getBlackPlayer();
 };
  
-class Resign: Command {
+class Resign: public Command {
     public:
         Resign();
 };
 
-class Move: Command {
+class Move: public Command {
     int startRow, startCol, endRow, endCol;
+    char convertToPiece;
     bool isComputer;
 
     public:
-        Move(int startRow, int startCol, int endRow, int endCol, bool isComputer);
+        Move(int startRow, int startCol, int endRow, int endCol, bool isComputer, char convertToPiece);
         vector<int> getStartPos();
         vector<int> getEndPos();
+        char getConvertToPiece();
         bool getIsComputer();
 };
 
@@ -64,10 +66,10 @@ class RemovePiece: public Command {
 };
 
 class SetColour: public Command {
-    int colour;
+    Colour colour;
     public:
-        SetColour(int colour);
-        int getColour();
+        SetColour(Colour Colour);
+        Colour getColour();
 };
 
 class DoneSetup: public Command {

@@ -8,20 +8,20 @@ CommandType Command::getType(){
     return type;
 }
 
-StartGame::StartGame(PlayerType p1, PlayerType p2): Command(STARTGAME), player1{p1}, player2{p2}{}
+StartGame::StartGame(PlayerType wp, PlayerType bp): Command(STARTGAME), whitePlayer{wp}, blackPlayer{bp}{}
 
-PlayerType StartGame::getPlayer1(){
-    return player1;
+PlayerType StartGame::getWhitePlayer(){
+    return whitePlayer;
 }
-PlayerType StartGame::getPlayer2(){
-    return player2;
+PlayerType StartGame::getBlackPlayer(){
+    return blackPlayer;
 }
 
 Resign::Resign(): Command(RESIGN) {}
 
 
-Move::Move(int startRow, int startCol, int endRow, int endCol, bool isComputer): Command(MOVE),
-    startRow{startRow}, startCol{startCol}, endRow{endRow}, endCol{endCol}, isComputer{isComputer} {}
+Move::Move(int startRow, int startCol, int endRow, int endCol, bool isComputer, char convertToPiece): Command(MOVE),
+    startRow{startRow}, startCol{startCol}, endRow{endRow}, endCol{endCol}, isComputer{isComputer}, convertToPiece{convertToPiece} {}
 
 vector<int> Move::getStartPos(){
     return {startRow, startCol};
@@ -29,6 +29,10 @@ vector<int> Move::getStartPos(){
 
 vector<int> Move::getEndPos(){
     return {endRow, endCol};
+}
+
+char Move::getConvertToPiece(){
+    return convertToPiece;
 }
 
 bool Move::getIsComputer(){
@@ -55,9 +59,9 @@ vector<int> RemovePiece::getPos(){
     return {row, col};
 }
 
-SetColour::SetColour(int colour): Command(SETCOLOUR), colour{colour} {}
+SetColour::SetColour(Colour colour): Command(SETCOLOUR), colour{colour} {}
 
-int SetColour::getColour(){
+Colour SetColour::getColour(){
     return colour;
 }
 
