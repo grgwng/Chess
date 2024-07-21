@@ -1,5 +1,11 @@
 #include "Board.h"
 #include "Colour.h"
+#include "pieces/Pawn.h"
+#include "pieces/Rook.h"
+#include "pieces/Knight.h"
+#include "pieces/Bishop.h"
+#include "pieces/Queen.h"
+#include "pieces/King.h"
 
 Board::Board() {
     for(int row = 0; row < boardSize; row++) {
@@ -28,7 +34,6 @@ Board::Board() {
             board[row][col] = newTile;
         }
     }
-
 
     // Set up default pieces
     

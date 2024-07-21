@@ -3,9 +3,12 @@
 
 #include "Colour.h"
 
-
 class Piece {
-
+    Colour colour;
+public:
+    Piece(Colour colour);
+    virtual const char getType() const = 0;
+    virtual bool isValidMove(const Board& board, int startX, int startY, int endX, int endY) const = 0;
 };
 
 #endif

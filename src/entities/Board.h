@@ -9,7 +9,7 @@ using namespace std;
 class Board : public Subject {
     int boardSize = 8;
     vector<vector<Tile*>> board;
-    Piece lastMovedPiece;
+    Piece* lastMovedPiece;
 public:
     Board();
     void movePiece();

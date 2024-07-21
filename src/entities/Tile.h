@@ -6,11 +6,11 @@
 class Tile {
     int row, col;
     Colour colour;
-    Piece p;
+    Piece* p;
 public:
     Tile(Colour colour);
     Piece getPiece();
-    void setPiece();
+    void setPiece(Piece* p);
 };
 
 #endif
