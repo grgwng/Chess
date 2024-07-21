@@ -8,7 +8,7 @@ class Queen : public Piece {
 public:
     Queen(Colour colour) : Piece(colour) {}
 
-    const char* getType() const override { return "Queen"; }
+    const char getType() const override { return 'q'; }
     bool isValidMove(const Board& board, int startX, int startY, int endX, int endY) const override;
 };
 

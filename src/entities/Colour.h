@@ -1,6 +1,5 @@
-// Color.h
 #ifndef COLOUR_H
-#define COLOU_H
+#define COLOUR_H
 
 enum class Colour {
     WHITE,
