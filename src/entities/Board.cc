@@ -8,8 +8,8 @@
 #include "pieces/King.h"
 
 Board::Board() {
-
     board.resize(boardSize, vector<Tile*>(boardSize, nullptr));
+    gameStatus = NOSTATUS;
 
     for(int row = 0; row < boardSize; row++) {
         for(int col = 0; col < boardSize; col++) {
@@ -77,6 +77,10 @@ void Board::movePiece() {
     // TO DO!!!!
 }
 
+void Board::setGameStatus(GameStatus status) {
+    gameStatus = status;
+}
+
 void Board::render() {
     notifyObservers();
 }
@@ -85,12 +89,20 @@ Tile* Board::getTile(int row, int col) const {
     return board[row][col];
 }
 
+GameStatus Board::getStatus() const {
+    return gameStatus;
+}
+
 int Board::getBoardSize() {
     return boardSize;
 }
 
 Board::~Board() {
-    // TO DO!!!!
+    for (int row = 0; row < boardSize; row++) {
+        for (int col = 0; col < boardSize; col++) {
+            delete board[row][col];
+        }
+    }
 }
 
 
