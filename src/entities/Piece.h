@@ -17,6 +17,7 @@ public:
 
     bool hasMoved() const;
     void setHasMoved(bool moved);
+    // dtor??
 };
 
 #endif
