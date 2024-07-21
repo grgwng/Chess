@@ -1,7 +1,7 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-#include "types/types.h"
+#include "../types/types.h"
 #include <vector>
 using namespace std;
 

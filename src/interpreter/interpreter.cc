@@ -24,7 +24,7 @@ Interpreter::Interpreter(): pieceTable{{'p', 'P', 'r', 'R', 'n', 'N', 'b', 'B', 
 
 Interpreter::~Interpreter(){}
 
-vector<int> parsePos(string s){
+vector<int> Interpreter::parsePos(string s){
     if(s.length() != 2){
         return {-1,  -1};
     }
@@ -32,7 +32,7 @@ vector<int> parsePos(string s){
     char colChar = s[0];
     char rowChar = s[1];
 
-    if('a' <= colChar <= 'h' && '1' <= rowChar <= '8'){
+    if('a' <= colChar && colChar <= 'h' && '1' <= rowChar && rowChar <= '8'){
         //valid
         return {'8'-rowChar, colChar-'a'};
     }else{
@@ -63,6 +63,7 @@ Command* Interpreter::readCommand(){
             return new StartGame{playerTypeParseTable[whitePlayer], playerTypeParseTable[blackPlayer]};
         }else{
             cout << "Invalid arguments. Please try again" << endl;
+            return nullptr;
         }
 
         
