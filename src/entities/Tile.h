@@ -9,7 +9,8 @@ class Tile {
     Piece* p;
 public:
     Tile(Colour colour);
-    Piece getPiece();
+    Colour getColour();
+    Piece* getPiece();
     void setPiece(Piece* p);
 };
 

@@ -1,11 +1,11 @@
 #include "Board.h"
 #include "Colour.h"
-#include "pieces/Pawn.h"
-#include "pieces/Rook.h"
-#include "pieces/Knight.h"
-#include "pieces/Bishop.h"
-#include "pieces/Queen.h"
-#include "pieces/King.h"
+#include "Pawn.h"
+#include "Rook.h"
+#include "Knight.h"
+#include "Bishop.h"
+#include "Queen.h"
+#include "King.h"
 
 Board::Board() {
     for(int row = 0; row < boardSize; row++) {
@@ -69,3 +69,25 @@ Board::Board() {
     board[0][4]->setPiece(new King(Colour::BLACK));
     board[7][4]->setPiece(new King(Colour::WHITE));
 }
+
+void Board::movePiece() {
+    // TO DO!!!!
+}
+
+void Board::render() {
+    notifyObservers();
+}
+
+Tile* Board::getTile(int row, int col) const {
+    return board[row][col];
+}
+
+int Board::getBoardSize() {
+    return boardSize;
+}
+
+Board::~Board() {
+    // TO DO!!!!
+}
+
+
