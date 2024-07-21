@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "Colour.h"
+#include "types.h"
 
 class Piece {
     Colour colour;

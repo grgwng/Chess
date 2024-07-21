@@ -1,9 +1,15 @@
 #include "Tile.h"
 
-Tile::Tile(Colour colour) {
+Tile::Tile(int row, int col, Colour colour): row{row}, col{col}, colour{colour}, p{nullptr} {}
 
-}
-
-Colour Tile::getColour() {
+Colour Tile::getColour() const {
     return colour;
 }
+
+Piece* Tile::getPiece() {
+    return p;
+}
+
+void Tile::setPiece(Piece *piece) {
+    p = piece;
+} 

@@ -1,5 +1,5 @@
 #include "TextDisplay.h"
-#include "Colour.h"
+#include "types.h"
 #include <iostream>
 
 TextDisplay::TextDisplay(Board* s): iWatch{s} {
@@ -20,17 +20,26 @@ void TextDisplay::notify() {
             Piece* curPiece = curTile->getPiece();
 
             if(curPiece == nullptr) {
-                char tile = curTile->getColour() == Colour::WHITE ? ' ' : '_'; 
-                cout << tile;
+                char tileChar = curTile->getColour() == WHITE ? ' ' : '_'; 
+                out << tileChar;
             }
             else {
-                
+                char pieceChar = curPiece->getType();
+                Colour pieceColour = curPiece->getColour();
+
+                if(pieceColour == BLACK) {
+                    out << pieceChar;
+                }
+                else if(pieceColour == WHITE) {
+                    out << toupper(pieceChar);
+                }
             }
         }
-        cout << endl;
+        out << endl;
     }
 
     out << endl;
+    out << "  ";
     
     for(int i = 0; i < size; i++) {
         out << i + 'a';
