@@ -4,6 +4,10 @@
 Command::Command(CommandType t): type{t}{}
 Command::~Command(){}
 
+CommandType Command::getType(){
+    return type;
+}
+
 StartGame::StartGame(PlayerType p1, PlayerType p2): Command(STARTGAME), player1{p1}, player2{p2}{}
 
 PlayerType StartGame::getPlayer1(){
@@ -58,7 +62,7 @@ int SetColour::getColour(){
 }
 
 DoneSetup::DoneSetup(): Command(DONESETUP){
-    
+
 }
 
 
