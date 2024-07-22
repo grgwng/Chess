@@ -48,4 +48,38 @@ void TextDisplay::notify() {
     }
 
     out << endl;
+
+    GameStatus status = iWatch->getStatus();
+
+    if(status != NOSTATUS) {
+        out << endl;
+
+        switch(status) {
+            case WHITECHECK:
+                out << "White is in check.";
+                break;
+            case BLACKCHECK:
+                out << "Black is in check.";
+                break;
+            case CHECKMATEWHITE: 
+                out << "Checkmate! White wins!";
+                break;
+            case CHECKMATEBLACK:
+                out << "Checkmate! Black wins!";
+                break;
+            case WHITEWINS:
+                out << "White wins!";
+                break;
+            case BLACKWINS:
+                out << "Black wins!";
+                break;
+            case STALEMATE:
+                out << "Stalemate!";
+                break;
+            default:
+                break;
+        }
+
+        out << endl;
+    }
 }

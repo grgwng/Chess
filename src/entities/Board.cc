@@ -10,6 +10,7 @@
 Board::Board() {
 
     board.resize(boardSize, vector<std::shared_ptr<Tile>>(boardSize, nullptr));
+    gameStatus = NOSTATUS;
 
     for(int row = 0; row < boardSize; row++) {
         for(int col = 0; col < boardSize; col++) {
@@ -114,6 +115,10 @@ void Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
     }
 }
 
+void Board::setGameStatus(GameStatus status) {
+    gameStatus = status;
+}
+
 void Board::render() {
     notifyObservers();
 }
@@ -122,12 +127,14 @@ std::shared_ptr<Tile> Board::getTile(int row, int col) const {
     return board[row][col];
 }
 
+GameStatus Board::getStatus() const {
+    return gameStatus;
+}
+
 int Board::getBoardSize() {
     return boardSize;
 }
 
 Board::~Board() {
-    // TO DO!!!!
+    // do we need to delete anything if using smart pointer?
 }
-
-

@@ -12,11 +12,14 @@ class Board : public Subject {
     const int boardSize = 8;
     vector<vector<std::shared_ptr<Tile>>> board;
     std::shared_ptr<Piece> lastMovedPiece;
+    GameStatus gameStatus;
 public:
     Board();
     void movePiece(int startRow, int startCol, int endRow, int endCol);
+    void setGameStatus(GameStatus status);
     void render();
     std::shared_ptr<Tile> getTile(int row, int col) const;
+    GameStatus getStatus() const;
     int getBoardSize();
     ~Board();
 };
