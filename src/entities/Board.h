@@ -9,14 +9,14 @@ class Piece;
 using namespace std;
 
 class Board : public Subject {
-    int boardSize = 8;
-    vector<vector<Tile*>> board;
-    Piece* lastMovedPiece;
+    const int boardSize = 8;
+    vector<vector<std::shared_ptr<Tile>>> board;
+    std::shared_ptr<Piece> lastMovedPiece;
 public:
     Board();
-    void movePiece();
+    void movePiece(int startRow, int startCol, int endRow, int endCol);
     void render();
-    Tile* getTile(int row, int col) const;
+    std::shared_ptr<Tile> getTile(int row, int col) const;
     int getBoardSize();
     ~Board();
 };

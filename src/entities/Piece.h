@@ -13,10 +13,12 @@ public:
     Piece(Colour colour);
     Colour getColour() const;
     virtual const char getType() const = 0;
-    virtual bool isValidMove(const Board& board, int startX, int startY, int endX, int endY) const = 0;
+    virtual bool isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const = 0;
 
     bool hasMoved() const;
     void setHasMoved(bool moved);
+
+    virtual ~Piece() {}
 };
 
 #endif

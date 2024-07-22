@@ -16,8 +16,8 @@ void TextDisplay::notify() {
     for(int row = 0; row < size; row++) {
         out << size - row << " ";
         for(int col = 0; col < size; col++) {
-            Tile* curTile = iWatch->getTile(row, col);
-            Piece* curPiece = curTile->getPiece();
+            std::shared_ptr<Tile> curTile = iWatch->getTile(row, col);
+            std::shared_ptr<Piece> curPiece = curTile->getPiece();
 
             if(curPiece == nullptr) {
                 char tileChar = curTile->getColour() == WHITE ? ' ' : '_'; 

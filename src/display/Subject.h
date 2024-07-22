@@ -12,7 +12,7 @@ public:
     void attach(Observer* o);
     void detach(Observer* o);
     void notifyObservers();
-    virtual Tile* getTile(int row, int col) const = 0;
+    virtual std::shared_ptr<Tile> getTile(int row, int col) const = 0;
     virtual ~Subject() = default;
 };
 

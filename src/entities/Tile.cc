@@ -1,16 +1,17 @@
 #include "Tile.h"
+#include <memory>
 
-Tile::Tile(int row, int col, Colour colour): row{row}, col{col}, colour{colour}, p{nullptr} {}
+Tile::Tile(int row, int col, Colour colour): colour{colour}, p{nullptr} {}
 
 Colour Tile::getColour() const {
     return colour;
 }
 
-Piece* Tile::getPiece() {
+std::shared_ptr<Piece> Tile::getPiece() const {
     return p;
 }
 
-void Tile::setPiece(Piece *piece) {
+void Tile::setPiece(std::shared_ptr<Piece> piece) {
     p = piece;
 } 
 
