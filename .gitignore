@@ -1,4 +1,5 @@
 .DS_Store
 .vscode
-.d
-.o
+*.d
+*.o
+chess

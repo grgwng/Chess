@@ -6,7 +6,7 @@
 #include "pieces/Bishop.h"
 #include "pieces/Queen.h"
 #include "pieces/King.h"
-
+#include <iostream>
 Board::Board() {
 
     board.resize(boardSize, vector<std::shared_ptr<Tile>>(boardSize, nullptr));
@@ -80,8 +80,26 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
         std::shared_ptr<Piece> targetPiece = getTile(endRow, endCol)->getPiece();
         // if theres a piece on tile you're moving to then it must be an enemy piece and delete it
         if (targetPiece) { // already do the check to make sure its not same colour in isvalidmove
-            targetPiece.reset(); // Capture the opponent's piece
+            getTile(endRow, endCol)->setPiece(nullptr); // Capture the opponent's piece
+            std::cout << "CAPTURE!\n";
             // HANDLE REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
+        }
+
+        // Check for en passant capture
+        if (auto pawn = dynamic_pointer_cast<Pawn>(piece)) {
+            int direction = (pawn->getColour() == Colour::WHITE) ? -1 : 1;
+
+            // If moving diagonally and target square is empty
+            if (abs(startCol - endCol) == 1 && endRow == startRow + direction && !targetPiece) {
+                // The en passant captured pawn is directly beside the end position
+                std::shared_ptr<Piece> enPassantPawn = getTile(startRow, endCol)->getPiece();
+                if (enPassantPawn && enPassantPawn->getType() == 'p' && enPassantPawn->getColour() != pawn->getColour() &&
+                    dynamic_pointer_cast<Pawn>(enPassantPawn)->isEnPassantEligible()) {
+                    getTile(startRow, endCol)->setPiece(nullptr);
+                    std::cout << "EN PASSANT CAPTURE!\n";
+                    // HANDLE EN PASSANT REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
+                }
+            }
         }
 
         // Castling logic (move rook if king moved two spaces)
