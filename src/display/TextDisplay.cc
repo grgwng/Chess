@@ -16,8 +16,8 @@ void TextDisplay::notify() {
     for(int row = 0; row < size; row++) {
         out << size - row << " ";
         for(int col = 0; col < size; col++) {
-            Tile* curTile = iWatch->getTile(row, col);
-            Piece* curPiece = curTile->getPiece();
+            std::shared_ptr<Tile> curTile = iWatch->getTile(row, col);
+            std::shared_ptr<Piece> curPiece = curTile->getPiece();
 
             if(curPiece == nullptr) {
                 char tileChar = curTile->getColour() == WHITE ? ' ' : '_'; 
@@ -48,4 +48,38 @@ void TextDisplay::notify() {
     }
 
     out << endl;
+
+    GameStatus status = iWatch->getStatus();
+
+    if(status != NOSTATUS) {
+        out << endl;
+
+        switch(status) {
+            case WHITECHECK:
+                out << "White is in check.";
+                break;
+            case BLACKCHECK:
+                out << "Black is in check.";
+                break;
+            case CHECKMATEWHITE: 
+                out << "Checkmate! White wins!";
+                break;
+            case CHECKMATEBLACK:
+                out << "Checkmate! Black wins!";
+                break;
+            case WHITEWINS:
+                out << "White wins!";
+                break;
+            case BLACKWINS:
+                out << "Black wins!";
+                break;
+            case STALEMATE:
+                out << "Stalemate!";
+                break;
+            default:
+                break;
+        }
+
+        out << endl;
+    }
 }

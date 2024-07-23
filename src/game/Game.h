@@ -6,7 +6,7 @@
 using namespace std;
 
 class Game {
-    Board *board;
+    std::shared_ptr<Board> board;
 public:
     Game();
     void makeMove();

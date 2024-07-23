@@ -1,18 +1,18 @@
 #ifndef TILE_H
 #define TILE_H
 #include "Piece.h"
+#include <memory>
 
 class Piece;
 
 class Tile {
-    int row, col;
     Colour colour;
-    Piece* p;
+    std::shared_ptr<Piece> p;
 public:
     Tile(int row, int col, Colour colour);
     Colour getColour() const;
-    Piece* getPiece();
-    void setPiece(Piece* p);
+    std::shared_ptr<Piece> getPiece() const;
+    void setPiece(std::shared_ptr<Piece> piece);
     ~Tile() {}
 
     bool isEmpty();

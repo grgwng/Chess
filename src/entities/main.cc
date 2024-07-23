@@ -3,6 +3,7 @@
 
 int main() {
     Board newBoard{};
-    TextDisplay* textDisplay = new TextDisplay(&newBoard);
+    std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(&newBoard);
+    newBoard.setGameStatus(STALEMATE);
     newBoard.render();
 }
