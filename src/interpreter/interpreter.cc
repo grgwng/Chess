@@ -45,8 +45,6 @@ Command* Interpreter::readCommand(){
     string input;
     string command;
 
-    unordered_map<string, PlayerType> playerTypeParseTable;
-
     getline(cin, input);
 
     istringstream iss(input);
@@ -99,7 +97,13 @@ Command* Interpreter::readCommand(){
                 return new Move{startPos[0], startPos[1], endPos[0], endPos[1], false, 0};
             }
         }else{
-            return new Move(0, 0, 0, 0, true, 0);
+
+            if(start.length() == 0 && end.length() ==0){
+                return new Move(0, 0, 0, 0, true, 0);
+            }else{
+                cout << "Invalid argument. Please try again" << endl;
+                return nullptr;
+            }
 
         }
 

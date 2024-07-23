@@ -10,7 +10,7 @@ all: testprogram
 
 # Rule for building the program
 testprogram: $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^	
 
 # Rule for building object files
 %.o: %.cc $(DEPS)

@@ -4,6 +4,7 @@
 #include "commands.h"
 #include <unordered_map>
 #include <unordered_set>
+#include <string>
 
 
 class Interpreter{
