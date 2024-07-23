@@ -15,7 +15,7 @@ class Board : public Subject {
     GameStatus gameStatus;
 public:
     Board();
-    void movePiece(int startRow, int startCol, int endRow, int endCol);
+    bool movePiece(int startRow, int startCol, int endRow, int endCol);
     void setGameStatus(GameStatus status);
     void render();
     std::shared_ptr<Tile> getTile(int row, int col) const;

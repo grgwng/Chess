@@ -74,10 +74,11 @@ Board::Board() {
     board[7][4]->setPiece(std::make_shared<King>(WHITE));
 }
 
-void Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
+bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
     auto piece = getTile(startRow, startCol)->getPiece();
     if (piece && piece->isValidMove(*this, startRow, startCol, endRow, endCol)) {
         std::shared_ptr<Piece> targetPiece = getTile(endRow, endCol)->getPiece();
+        // if theres a piece on tile you're moving to then it must be an enemy piece and delete it
         if (targetPiece) { // already do the check to make sure its not same colour in isvalidmove
             targetPiece.reset(); // Capture the opponent's piece
             // HANDLE REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
@@ -112,7 +113,9 @@ void Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
                 pawn->setEnPassantEligible(true);
             }
         }
+        return true;
     }
+    return false;
 }
 
 void Board::setGameStatus(GameStatus status) {
