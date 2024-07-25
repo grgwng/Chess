@@ -1,6 +1,8 @@
 #include "Bishop.h"
 #include "../Board.h"
 
+Bishop::Bishop(Colour colour) : Piece{colour} {}
+
 const char Bishop::getType() const { 
     return 'b'; 
 }

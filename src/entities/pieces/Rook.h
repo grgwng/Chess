@@ -6,7 +6,7 @@
 
 class Rook : public Piece {
 public:
-    Rook(Colour colour) : Piece(colour) {}
+    Rook(Colour colour);
 
     const char getType() const override;
     bool isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const override;

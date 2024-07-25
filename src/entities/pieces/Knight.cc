@@ -1,6 +1,8 @@
 #include "Knight.h"
 #include "../Board.h"
 
+Knight::Knight(Colour colour) : Piece{colour} {}
+
 const char Knight::getType() const { 
     return 'n'; 
 }

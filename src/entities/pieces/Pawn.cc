@@ -2,6 +2,8 @@
 #include "../Board.h"
 #include "../../types/types.h"
 
+Pawn::Pawn(Colour colour) : Piece{colour}, enPassantEligible{false} {}
+
 const char Pawn::getType() const { 
     return 'p'; 
 }

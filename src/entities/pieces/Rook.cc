@@ -1,6 +1,8 @@
 #include "Rook.h"
 #include "../Board.h"
 
+Rook::Rook(Colour colour) : Piece{colour} {}
+
 const char Rook::getType() const { 
     return 'r'; 
 }

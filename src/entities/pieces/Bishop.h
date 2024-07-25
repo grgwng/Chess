@@ -6,7 +6,7 @@
 
 class Bishop : public Piece {
 public:
-    Bishop(Colour colour) : Piece(colour) {}
+    Bishop(Colour colour);
 
     const char getType() const override;
     bool isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const override;

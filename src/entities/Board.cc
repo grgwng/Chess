@@ -130,6 +130,9 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
             if (abs(startRow - endRow) == 2) { // will only be true after a pawn moves twice, otherwise always false
                 pawn->setEnPassantEligible(true);
             }
+            if (endRow == 0 || endRow == 7) { // the pawn is ready to be promoted
+                // HANDLE PROMOTION LOGIC
+            }
         }
         return true;
     }

@@ -8,7 +8,7 @@ class Pawn : public Piece {
 private:
     bool enPassantEligible;
 public:
-    Pawn(Colour colour) : Piece(colour) {}
+    Pawn(Colour colour);
 
     const char getType() const override;
     bool isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const override;

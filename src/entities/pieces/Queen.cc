@@ -3,6 +3,8 @@
 #include "Rook.h"
 #include "Bishop.h"
 
+Queen::Queen(Colour colour) : Piece{colour} {}
+
 const char Queen::getType() const { 
     return 'q'; 
 }

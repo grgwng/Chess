@@ -3,6 +3,8 @@
 #include "../Board.h"
 #include "../Piece.h"
 
+King::King(Colour colour) : Piece{colour} {}
+
 const char King::getType() const { 
     return 'k'; 
 }
