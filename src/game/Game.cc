@@ -14,8 +14,8 @@ Game::~Game(){
 
 }
 
-bool Game::checkCheck(Colour colour) {
-    Colour opponentColour = (colour == Colour::WHITE) ? Colour::BLACK : Colour::WHITE;
+bool Game::checkCheck(Colour colour, const shared_ptr<Board>& board) {
+    // Colour opponentColour = (colour == Colour::WHITE) ? Colour::BLACK : Colour::WHITE;
     std::shared_ptr<Tile> kingTile = (colour == Colour::WHITE) ? board->getWhiteKingTile() : board->getBlackKingTile();
     auto king = std::dynamic_pointer_cast<King>(kingTile->getPiece());
     return king->isInCheck(*board, kingTile->getRow(), kingTile->getCol());
@@ -96,9 +96,8 @@ bool Game::checkStalemate(Colour colour) {
     return true; // No valid moves found
 }
 
-bool Game::checkPromotion(Colour colour) {
-
-    // once promoted need to check check & checkmate conditions again
+bool Game::checkPromotion(const shared_ptr<Board>& board, Move move) {
+    return false;
 }
 
 bool Game::checkDraw() {
@@ -110,35 +109,159 @@ void Game::resign() {
 }
 
 
-void Game::gameLoop(){
+void Game::gameLoop(){ 
+
+    cout << "New game has started! White goes first" << endl;
+
+    int activePlayer = 1;
+    GameStatus status = NOSTATUS;
 
     //our loop in game mode
 
     while(true){
 
-        //call makeMove for player1 (returns a Move class)
-        Move player1Move = player1->makeMove(interpreter, board);
+        //PLAYER1 input loop
+        board->render();
 
-        //check if the move is a valid move
-        board->getTile(/* starting position */)->getPiece()->isValidMove(/*move*/);
+        while(activePlayer == 1){
+            //call makeMove for player1 (returns a Move class)
+            Move player1Move = player1->makeMove(interpreter, board);
 
+            if(player1Move.startCol < 0){ //invalid move
+                cout << "Invalid move" << endl;
+                continue; //retry
+            }
 
+            //check if the move is a valid move
+            if(!board->getTile(player1Move.startRow, player1Move.startCol)
+                ->getPiece()
+                ->isValidMove(*board, player1Move.startRow, player1Move.startCol, player1Move.endRow, player1Move.endCol)){
+            
+                //not valid move
+                cout << "Not valid move." << endl;
+                continue;
+            }
 
-        
-        //make tempboard
-        //check if player1 in check, if yes reject
+            //make tempboard
+            //check if player1 in check, if yes reject
+            shared_ptr<Board> tempboard = make_shared<Board>(*board);
+            tempboard->movePiece(player1Move.startRow, player1Move.startCol, player1Move.endRow, player1Move.endCol);
 
-        //make move on real board
-        board->movePiece(/* positions*/)
-        //update piece (if promotion)
+            if(checkCheck(WHITE, tempboard)){
+                cout << "White put itself in check. Invalid move." << endl;
+                continue;
+            }
 
-        //check checkCheckmate, checkStalemate, checkCheck for player2
+            //check if we have everything for a promotion if relevant
+            if(checkPromotion(tempboard, player1Move) && player1Move.promotionType == 0){
+                cout << "Need a promotion type." << endl;
+                continue;
+            }
+            
+            //make move on real board
+            board->movePiece(player1Move.startRow, player1Move.startCol, player1Move.endRow, player1Move.endCol);
 
+            //update piece (if promotion)
+            if(checkPromotion(board, player1Move)){
+                board->addPiece(player1Move.endRow, player1Move.endCol, player1Move.promotionType, WHITE);
+            }
 
+            activePlayer = 2;
 
+            //check checkCheckmate, checkStalemate, checkCheck for player2
+            if(checkCheckmate(BLACK)){
+                status = CHECKMATEBLACK;
+            }else if(checkCheck(BLACK, board)){
+                status = BLACKCHECK;
+            }else if(checkStalemate(BLACK)){
+                status = STALEMATE;
+            }
+        }
 
+        if(status == CHECKMATEBLACK){
+            cout << "White wins!" << endl;
+            p1score +=1;
+            break;
+        }else if(status == STALEMATE){
+            cout << "Stalemate" << endl;
+            p1score += 0.5;
+            p2score += 0.5;
+            break;
+        }else if(status == BLACKCHECK){
+            cout << "Black is in check!" << endl;
+        }
 
-        player2->makeMove(*interpreter);
+        board->render();
+        //PLAYER2 input loop
+
+        while(activePlayer == 2){
+            //call makeMove for player2 (returns a Move class)
+            Move player2Move = player2->makeMove(interpreter, board);
+
+            if(player2Move.startCol < 0){ //invalid move
+                cout << "Invalid move" << endl;
+                continue; //retry
+            }
+
+            //check if the move is a valid move
+            if(!board->getTile(player2Move.startRow, player2Move.startCol)
+                ->getPiece()
+                ->isValidMove(*board, player2Move.startRow, player2Move.startCol, player2Move.endRow, player2Move.endCol)){
+            
+                //not valid move
+                cout << "Not valid move." << endl;
+                continue;
+            }
+
+            //make tempboard
+            //check if player2 in check, if yes reject
+            shared_ptr<Board> tempboard = make_shared<Board>(*board);
+            tempboard->movePiece(player2Move.startRow, player2Move.startCol, player2Move.endRow, player2Move.endCol);
+
+            if(checkCheck(BLACK, tempboard)){
+                cout << "Black put itself in check. Invalid move." << endl;
+                continue;
+            }
+
+            //check if we have everything for a promotion if relevant
+            if(checkPromotion(tempboard, player2Move) && player2Move.promotionType == 0){
+                cout << "Need a promotion type." << endl;
+                continue;
+            }
+            
+            //make move on real board
+            board->movePiece(player2Move.startRow, player2Move.startCol, player2Move.endRow, player2Move.endCol);
+
+            //update piece (if promotion)
+            if(checkPromotion(board, player2Move)){
+                board->addPiece(player2Move.endRow, player2Move.endCol, player2Move.promotionType, BLACK);
+            }
+
+            activePlayer = 1;
+
+            //check checkCheckmate, checkStalemate, checkCheck for player1
+            if(checkCheckmate(WHITE)){
+                status = CHECKMATEWHITE;
+            }else if(checkCheck(WHITE, board)){
+                status = WHITECHECK;
+            }else if(checkStalemate(WHITE)){
+                status = STALEMATE;
+            }
+        }
+
+        if(status == CHECKMATEWHITE){
+            cout << "Black wins!" << endl;
+            p2score +=1;
+            break;
+        }else if(status == STALEMATE){
+            cout << "Stalemate" << endl;
+            p1score += 0.5;
+            p2score += 0.5;
+            break;
+        }else if(status == WHITECHECK){
+            cout << "WHITE is in check!" << endl;
+        }
+
 
     }
 }

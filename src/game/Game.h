@@ -6,7 +6,7 @@
 #include "../interpreter/interpreter.h"
 #include "player/Player.h"
 #include "Move.h"
-#include "Board.h"
+#include "../entities/Board.h"
 #include "../entities/pieces/King.h"
 
 using namespace std;
@@ -23,6 +23,9 @@ class Game {
     GameState state = GameState::DEFAULT;
 
     vector<Move> moveHistory;
+
+    double p1score = 0;
+    double p2score = 0;
 public:
     Game();
 
@@ -32,10 +35,10 @@ public:
 
     void makeMove();
 
-    bool checkCheck(Colour colour); //checks if colour is in check
+    bool checkCheck(Colour colour, const shared_ptr<Board>&); //checks if colour is in check
     bool checkCheckmate(Colour colour); 
     bool checkStalemate(Colour colour);
-    bool checkPromotion(Colour colour);
+    bool checkPromotion(const shared_ptr<Board>& board, Move move);
 
     bool checkDraw();
 

@@ -1,5 +1,5 @@
 #include "Noob.h"
 
-Move computeMove(const shared_ptr<Board>& board){
+Move Noob::computeMove(const shared_ptr<Board>& board){
     //compute and return best move
 }
