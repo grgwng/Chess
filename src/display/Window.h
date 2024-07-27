@@ -8,7 +8,7 @@
 using namespace std;
 
 class Xwindow {
-    Display *d;
+    shared_ptr<Display> d;
     Window w;
     int s;
     GC gc;
@@ -17,8 +17,8 @@ class Xwindow {
 public:
     Xwindow(int width=500, int height=500);  
     ~Xwindow();                             
-    Xwindow(const Xwindow&) = delete;
-    Xwindow &operator=(const Xwindow&) = delete;
+    // Xwindow(const Xwindow&) = delete;
+    // Xwindow &operator=(const Xwindow&) = delete;
 
     enum {White=0, Black, Grey, TileLight, TileDark};
 
