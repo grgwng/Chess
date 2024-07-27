@@ -1,5 +1,6 @@
 CXX = g++
-CXXFLAGS = -std=c++14 -Wall -g -MMD
+CXXFLAGS = -std=c++14 -Wall -g -MMD -I/opt/X11/include
+LDFLAGS = -L/opt/X11/lib -lX11
 EXEC = chess
 
 # Source directories
@@ -14,7 +15,7 @@ DEPENDS = $(CCFILES:.cc=.d)
 
 # Default target
 ${EXEC}: ${OBJECTS}
-	${CXX} ${OBJECTS} -o ${EXEC}
+	${CXX} ${OBJECTS} -o ${EXEC} ${LDFLAGS}
 
 # Include dependency files
 -include ${DEPENDS}

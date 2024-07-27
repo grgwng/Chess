@@ -1,5 +1,6 @@
 #include "Board.h"
 #include "../display/TextDisplay.h"
+#include "../display/GraphicDisplay.h"
 
 #include <iostream>
 #include <map>
@@ -7,10 +8,9 @@
 int main() {
     Board newBoard{};
     std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(&newBoard);
+    std::shared_ptr<GraphicDisplay> graphicDisplay = make_shared<GraphicDisplay>(&newBoard);
     newBoard.setGameStatus(STALEMATE);
     newBoard.render();
-    
-
 
     std::map<char, int> rowMapping = {
         {'8', 0},
