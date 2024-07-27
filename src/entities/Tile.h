@@ -6,9 +6,9 @@
 class Piece;
 
 class Tile {
+    int row, col;
     Colour colour;
     std::shared_ptr<Piece> p;
-    int row, col;
 public:
     Tile(int row, int col, Colour colour);
     Colour getColour() const;
