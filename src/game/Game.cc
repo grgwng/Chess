@@ -111,7 +111,7 @@ void Game::resign() {
 
 void Game::gameLoop(){ 
 
-    cout << "New game has started! White goes first" << endl;
+    cout << "New game has started!" << endl;
 
     int activePlayer = 1;
     GameStatus status = NOSTATUS;
@@ -124,32 +124,34 @@ void Game::gameLoop(){
 
         //PLAYER1 input loop
         board->render();
-
+        cout << "White's turn:" << endl;
         while(activePlayer == 1){
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
     
             
             if(player1Move.startCol < 0){ //invalid move
-                cout << "Invalid move" << endl;
                 continue; //retry
             }
 
             //check if the move is a valid move
-            if(!board->getTile(player1Move.startRow, player1Move.startCol)
-                ->getPiece()
+            if(!board->getTile(player1Move.startRow, player1Move.startCol)->getPiece() ||
+                board->getTile(player1Move.startRow, player1Move.startCol)->getPiece()->getColour() != WHITE ||
+                !board->getTile(player1Move.startRow, player1Move.startCol)->getPiece()
                 ->isValidMove(*board, player1Move.startRow, player1Move.startCol, player1Move.endRow, player1Move.endCol)){
             
                 //not valid move
-                cout << "Not valid move." << endl;
+                cout << "Invalid piece move. Please try again." << endl;
                 continue;
             }
+
 
             //make tempboard
             //check if player1 in check, if yes reject
             shared_ptr<Board> tempboard = make_shared<Board>(*board);
             tempboard->movePiece(player1Move.startRow, player1Move.startCol, player1Move.endRow, player1Move.endCol);
 
+            
             if(checkCheck(WHITE, tempboard)){
                 cout << "White put itself in check. Invalid move." << endl;
                 continue;
@@ -172,13 +174,14 @@ void Game::gameLoop(){
             activePlayer = 2;
 
             //check checkCheckmate, checkStalemate, checkCheck for player2
-            if(checkCheckmate(BLACK)){
-                status = CHECKMATEBLACK;
-            }else if(checkCheck(BLACK, board)){
-                status = BLACKCHECK;
-            }else if(checkStalemate(BLACK)){
-                status = STALEMATE;
-            }
+            // if(checkCheckmate(BLACK)){
+            //     status = CHECKMATEBLACK;
+            // }else if(checkCheck(BLACK, board)){
+            //     status = BLACKCHECK;
+            // }else if(checkStalemate(BLACK)){
+            //     status = STALEMATE;
+            // }
+            // cout << "passing here" << endl;
         }
 
         if(status == CHECKMATEBLACK){
@@ -195,6 +198,7 @@ void Game::gameLoop(){
         }
 
         board->render();
+        cout << "Black's turn:" << endl;
         //PLAYER2 input loop
 
         while(activePlayer == 2){
@@ -207,8 +211,9 @@ void Game::gameLoop(){
             }
 
             //check if the move is a valid move
-            if(!board->getTile(player2Move.startRow, player2Move.startCol)
-                ->getPiece()
+            if(!board->getTile(player2Move.startRow, player2Move.startCol)->getPiece() ||
+                board->getTile(player2Move.startRow, player2Move.startCol)->getPiece()->getColour() != BLACK ||
+                !board->getTile(player2Move.startRow, player2Move.startCol)->getPiece()
                 ->isValidMove(*board, player2Move.startRow, player2Move.startCol, player2Move.endRow, player2Move.endCol)){
             
                 //not valid move
@@ -243,13 +248,13 @@ void Game::gameLoop(){
             activePlayer = 1;
 
             //check checkCheckmate, checkStalemate, checkCheck for player1
-            if(checkCheckmate(WHITE)){
-                status = CHECKMATEWHITE;
-            }else if(checkCheck(WHITE, board)){
-                status = WHITECHECK;
-            }else if(checkStalemate(WHITE)){
-                status = STALEMATE;
-            }
+            // if(checkCheckmate(WHITE)){
+            //     status = CHECKMATEWHITE;
+            // }else if(checkCheck(WHITE, board)){
+            //     status = WHITECHECK;
+            // }else if(checkStalemate(WHITE)){
+            //     status = STALEMATE;
+            // }
         }
 
         if(status == CHECKMATEWHITE){
