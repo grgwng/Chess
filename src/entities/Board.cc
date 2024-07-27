@@ -40,40 +40,61 @@ Board::Board() {
     }
 }
 
+Board::Board(const Board& other) {
+    board.resize(boardSize, vector<std::shared_ptr<Tile>>(boardSize));
+
+    for (int row = 0; row < boardSize; ++row) {
+        for (int col = 0; col < boardSize; ++col) {
+            board[row][col] = std::make_shared<Tile>(*other.board[row][col]);
+        }
+    }
+
+    if (other.whiteKingTile) {
+        whiteKingTile = board[other.whiteKingTile->getRow()][other.whiteKingTile->getCol()];
+    }
+    if (other.blackKingTile) {
+        blackKingTile = board[other.blackKingTile->getRow()][other.blackKingTile->getCol()];
+    }
+
+    gameStatus = other.gameStatus;
+}
+
 void Board::initializeStandardBoard() {
     // Pawns
     for(int col = 0; col < boardSize; col++) {
-        board[1][col]->setPiece(std::make_shared<Pawn>(BLACK));
-        board[6][col]->setPiece(std::make_shared<Pawn>(WHITE));
+        setTile(1, col, std::make_shared<Pawn>(BLACK));
+        setTile(6, col, std::make_shared<Pawn>(WHITE));
     }
 
     // Rooks
-    board[0][0]->setPiece(std::make_shared<Rook>(BLACK));
-    board[0][7]->setPiece(std::make_shared<Rook>(BLACK));
-    board[7][0]->setPiece(std::make_shared<Rook>(WHITE));
-    board[7][7]->setPiece(std::make_shared<Rook>(WHITE));
+
+    setTile(0, 0, std::make_shared<Rook>(BLACK));
+    setTile(0, 7, std::make_shared<Rook>(BLACK));
+    setTile(7, 0, std::make_shared<Rook>(WHITE));
+    setTile(7, 7, std::make_shared<Rook>(WHITE));
 
     // Knights
-    board[0][1]->setPiece(std::make_shared<Knight>(BLACK));
-    board[0][6]->setPiece(std::make_shared<Knight>(BLACK));
-    board[7][1]->setPiece(std::make_shared<Knight>(WHITE));
-    board[7][6]->setPiece(std::make_shared<Knight>(WHITE));
+    setTile(0, 1, std::make_shared<Knight>(BLACK));
+    setTile(0, 6, std::make_shared<Knight>(BLACK));
+    setTile(7, 1, std::make_shared<Knight>(WHITE));
+    setTile(7, 6, std::make_shared<Knight>(WHITE));
 
     // Bishops
-    board[0][2]->setPiece(std::make_shared<Bishop>(BLACK));
-    board[0][5]->setPiece(std::make_shared<Bishop>(BLACK));
-    board[7][2]->setPiece(std::make_shared<Bishop>(WHITE));
-    board[7][5]->setPiece(std::make_shared<Bishop>(WHITE));
+    setTile(0, 2, std::make_shared<Bishop>(BLACK));
+    setTile(0, 5, std::make_shared<Bishop>(BLACK));
+    setTile(7, 2, std::make_shared<Bishop>(WHITE));
+    setTile(7, 5, std::make_shared<Bishop>(WHITE));
 
     // Queens
-    board[0][3]->setPiece(std::make_shared<Queen>(BLACK));
-    board[7][3]->setPiece(std::make_shared<Queen>(WHITE));
+    setTile(0, 3, std::make_shared<Queen>(BLACK));
+    setTile(7, 3, std::make_shared<Queen>(WHITE));
 
     // Kings
-    board[0][4]->setPiece(std::make_shared<King>(BLACK));
-    board[7][4]->setPiece(std::make_shared<King>(WHITE));
-    whiteKingTile = board[7][4];
+    setTile(0, 4, std::make_shared<King>(BLACK));
+    setTile(7, 4, std::make_shared<King>(WHITE));
+
     blackKingTile = board[0][4];
+    whiteKingTile = board[7][4];
 }
 
 void Board::addPiece(int row, int col, char piece, Colour colour) {
@@ -113,9 +134,9 @@ void Board::addPiece(int row, int col, char piece, Colour colour) {
     newPiece->setHasMoved(true);
 
     if(board[row][col]->getPiece()) {
-        board[row][col]->setPiece(nullptr);
+        setTile(row, col, nullptr);
     }
-    board[row][col]->setPiece(newPiece);
+    setTile(row, col, newPiece);
 }
 
 bool Board::removePiece(int row, int col) {
@@ -126,7 +147,7 @@ bool Board::removePiece(int row, int col) {
         return false;
     }
 
-    tile->setPiece(nullptr);
+    setTile(row, col, nullptr);
     return true;
 }
 
@@ -193,18 +214,18 @@ std::shared_ptr<Tile> Board::getBlackKingTile() const {
 }
 
 bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
-    auto piece = getTile(startRow, startCol)->getPiece();
+    auto piece = board[startRow][startCol]->getPiece();
     if (piece && piece->isValidMove(*this, startRow, startCol, endRow, endCol)) {
-        std::shared_ptr<Piece> targetPiece = getTile(endRow, endCol)->getPiece();
+        std::shared_ptr<Piece> targetPiece = board[endRow][endCol]->getPiece();
         // if theres a piece on tile you're moving to then it must be an enemy piece and delete it
         if (targetPiece) { // already do the check to make sure its not same colour in isvalidmove
-            getTile(endRow, endCol)->setPiece(nullptr); // Capture the opponent's piece
+            setTile(endRow, endCol, nullptr); // Capture the opponent's piece
             // TODO: HANDLE REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
         }
 
         // move the piece and set start tile to empty piece
-        getTile(endRow, endCol)->setPiece(piece);
-        getTile(startRow, startCol)->setPiece(nullptr);
+        setTile(endRow, endCol, piece);
+        setTile(startRow, startCol, nullptr);
         piece->setHasMoved(true);
 
         // Check for en passant capture
@@ -221,10 +242,10 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
             // If moving diagonally and target square is empty
             if (abs(startCol - endCol) == 1 && endRow == startRow + direction && !targetPiece) {
                 // The en passant captured pawn is directly beside the end position
-                std::shared_ptr<Piece> enPassantPawn = getTile(startRow, endCol)->getPiece();
+                std::shared_ptr<Piece> enPassantPawn = board[startRow][endCol]->getPiece();
                 if (enPassantPawn && enPassantPawn->getType() == 'p' && enPassantPawn->getColour() != pawn->getColour() &&
                     dynamic_pointer_cast<Pawn>(enPassantPawn)->isEnPassantEligible()) {
-                    getTile(startRow, endCol)->setPiece(nullptr);
+                    setTile(startRow, endCol, nullptr); // capture the en passant pawn
                     std::cout << "EN PASSANT CAPTURE!\n";
                     // TODO: HANDLE EN PASSANT REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
                 }
@@ -240,22 +261,22 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
         // King logic 
         if (auto king = std::dynamic_pointer_cast<King>(piece)) {
             if (king->getColour() == Colour::WHITE) {
-                whiteKingTile = getTile(endRow, endCol);
+                whiteKingTile = board[endRow][endCol];
             } else {
-                blackKingTile = getTile(endRow, endCol);
+                blackKingTile = board[endRow][endCol];
             }
             // castling: (move rook if king moved two spaces)
             if (abs(startCol - endCol) == 2) {
                 if (endCol == startCol + 2) {
                     // Kingside castling
-                    auto rook = getTile(startRow, 7)->getPiece();
-                    getTile(startRow, 5)->setPiece(rook);
-                    getTile(startRow, 7)->setPiece(nullptr);
+                    auto rook = board[startRow][7]->getPiece();
+                    setTile(startRow, 5, rook);
+                    setTile(startRow, 7, nullptr);
                 } else if (endCol == startCol - 2) {
                     // Queenside castling
-                    auto rook = getTile(startRow, 0)->getPiece();
-                    getTile(startRow, 3)->setPiece(rook);
-                    getTile(startRow, 0)->setPiece(nullptr);
+                    auto rook = board[startRow][0]->getPiece();
+                    setTile(startRow, 3, rook);
+                    setTile(startRow, 0, nullptr);
                 }
             }
         }
@@ -266,19 +287,19 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
 }
 
 void Board::promotePawn(int row, int col, char newPieceType) {
-    Colour c = getTile(row, col)->getColour();
+    Colour c = board[row][col]->getColour();
     // pawn promotion 
     if (newPieceType == 'q') {
-        getTile(row, col)->setPiece(std::make_shared<Queen>(c));
+        setTile(row, col, std::make_shared<Queen>(c));
     }
     else if (newPieceType == 'r') {
-        getTile(row, col)->setPiece(std::make_shared<Rook>(c));
+        setTile(row, col, std::make_shared<Rook>(c));
     }
     else if (newPieceType == 'n') {
-        getTile(row, col)->setPiece(std::make_shared<Knight>(c));
+        setTile(row, col, std::make_shared<Knight>(c));
     }
     else if (newPieceType == 'b') {
-        getTile(row, col)->setPiece(std::make_shared<Bishop>(c));
+        setTile(row, col, std::make_shared<Bishop>(c));
     }
     else {
         cout << "invalid input";
@@ -295,6 +316,10 @@ void Board::render() {
 
 std::shared_ptr<Tile> Board::getTile(int row, int col) const {
     return board[row][col];
+}
+
+void Board::setTile(int row, int col, shared_ptr<Piece> p) {
+    board[row][col]->setPiece(p);
 }
 
 GameStatus Board::getStatus() const {
