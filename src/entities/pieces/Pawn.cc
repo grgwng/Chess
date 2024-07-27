@@ -9,6 +9,10 @@ const char Pawn::getType() const {
 }
 
 bool Pawn::isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const {
+    if (startRow == endRow && startCol == endCol) {
+        return false;
+    }
+
     // White pawns move up, black pawns move down
     int direction = (getColour() == Colour::WHITE) ? -1 : 1; // white moving up, black moving down
 

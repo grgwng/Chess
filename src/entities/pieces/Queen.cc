@@ -10,6 +10,10 @@ const char Queen::getType() const {
 }
 
 bool Queen::isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const {
+    if (startRow == endRow && startCol == endCol) {
+        return false;
+    }
+
     // queen is a combination of rook and bishop rules
     if (startRow == endRow || startCol == endCol) {
         return Rook(getColour()).isValidMove(board, startRow, startCol, endRow, endCol);

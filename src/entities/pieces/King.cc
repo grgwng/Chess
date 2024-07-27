@@ -10,6 +10,10 @@ const char King::getType() const {
 }
 
 bool King::isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const {
+    if (startRow == endRow && startCol == endCol) {
+        return false;
+    }
+
     if (abs(endCol - startCol) <= 1 && abs(endRow - startRow) <= 1) {
         // check there is not a piece of same colour at the end position
         const std::shared_ptr<Piece> targetPiece = board.getTile(endRow, endCol)->getPiece();
