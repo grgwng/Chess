@@ -181,14 +181,13 @@ void Game::gameLoop(){
             activePlayer = 2;
 
             //check checkCheckmate, checkStalemate, checkCheck for player2
-            // if(checkCheckmate(BLACK)){
-            //     status = CHECKMATEBLACK;
-            // }else if(checkCheck(BLACK, board)){
-            //     status = BLACKCHECK;
-            // }else if(checkStalemate(BLACK)){
-            //     status = STALEMATE;
-            // }
-            // cout << "passing here" << endl;
+            if(checkCheckmate(BLACK)){
+                status = CHECKMATEBLACK;
+            }else if(checkCheck(BLACK, board)){
+                status = BLACKCHECK;
+            }else if(checkStalemate(BLACK)){
+                status = STALEMATE;
+            }
         }
 
         if(status == CHECKMATEBLACK){
@@ -267,14 +266,14 @@ void Game::gameLoop(){
 
             activePlayer = 1;
 
-            //check checkCheckmate, checkStalemate, checkCheck for player1
-            // if(checkCheckmate(WHITE)){
-            //     status = CHECKMATEWHITE;
-            // }else if(checkCheck(WHITE, board)){
-            //     status = WHITECHECK;
-            // }else if(checkStalemate(WHITE)){
-            //     status = STALEMATE;
-            // }
+            // check checkCheckmate, checkStalemate, checkCheck for player1
+            if(checkCheckmate(WHITE)){
+                status = CHECKMATEWHITE;
+            }else if(checkCheck(WHITE, board)){
+                status = WHITECHECK;
+            }else if(checkStalemate(WHITE)){
+                status = STALEMATE;
+            }
         }
 
         if(status == CHECKMATEWHITE){
