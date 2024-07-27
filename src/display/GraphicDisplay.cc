@@ -19,21 +19,17 @@ void GraphicDisplay::notify() {
         for(int col = 0; col < iWatch->getBoardSize(); col++) {
             std::shared_ptr<Piece> curPiece = iWatch->getTile(row, col)->getPiece();;
             char pieceChar = curPiece ? curPiece->getType() : ' ';
+
+            if(curPiece && curPiece->getColour() == WHITE) {
+                pieceChar = toupper(pieceChar);
+            }
             
             if(buffer[row][col] != pieceChar) {
                 buffer[row][col] = pieceChar;
+                drawTile(row, col);
 
-                if(curPiece == nullptr) {
-                    drawTile(row, col);
-                }
-                else {
-                    Colour pieceColour = curPiece->getColour();
-
-                    if(pieceColour == WHITE) {
-                        pieceChar = toupper(pieceChar);
-                    }
-
-                    xw.drawString(69 + col * 50, 80 + row * 50, string{pieceChar}, pieceColour == WHITE ? Xwindow::White : Xwindow::Black, 20);
+                if(curPiece) {
+                    xw.drawString(69 + col * 50, 80 + row * 50, string{pieceChar}, curPiece->getColour() == WHITE ? Xwindow::White : Xwindow::Black, 20);
                 }
             }
         }
