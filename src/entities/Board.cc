@@ -134,9 +134,9 @@ void Board::addPiece(int row, int col, char piece, Colour colour) {
     newPiece->setHasMoved(true);
 
     if(board[row][col]->getPiece()) {
-        board[row][col]->setPiece(nullptr);
+        setTile(row, col, nullptr);
     }
-    board[row][col]->setPiece(newPiece);
+    setTile(row, col, newPiece);
 }
 
 bool Board::removePiece(int row, int col) {
