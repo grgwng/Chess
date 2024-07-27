@@ -28,6 +28,8 @@ class Game {
     double p1score = 0;
     double p2score = 0;
 
+    int nextPlayer = 1;
+
     std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(board.get());
 public:
     Game();
