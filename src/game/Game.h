@@ -1,12 +1,14 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <Board.h>
 #include <vector>
 
 #include "Move.h"
+#include "Board.h"
+#include "../entities/pieces/King.h"
 
 using namespace std;
+
 
 class Game {
     std::shared_ptr<Board> board;

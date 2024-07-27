@@ -72,6 +72,16 @@ Board::Board() {
     // Kings
     board[0][4]->setPiece(std::make_shared<King>(BLACK));
     board[7][4]->setPiece(std::make_shared<King>(WHITE));
+    whiteKingTile = board[7][4];
+    blackKingTile = board[0][4];
+}
+
+std::shared_ptr<Tile> Board::getWhiteKingTile() const { 
+    return whiteKingTile; 
+}
+    
+std::shared_ptr<Tile> Board::getBlackKingTile() const { 
+    return blackKingTile; 
 }
 
 bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
@@ -81,14 +91,25 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
         // if theres a piece on tile you're moving to then it must be an enemy piece and delete it
         if (targetPiece) { // already do the check to make sure its not same colour in isvalidmove
             getTile(endRow, endCol)->setPiece(nullptr); // Capture the opponent's piece
-            std::cout << "CAPTURE!\n";
-            // HANDLE REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
+            // TODO: HANDLE REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
         }
+
+        // move the piece and set start tile to empty piece
+        getTile(endRow, endCol)->setPiece(piece);
+        getTile(startRow, startCol)->setPiece(nullptr);
+        piece->setHasMoved(true);
 
         // Check for en passant capture
         if (auto pawn = dynamic_pointer_cast<Pawn>(piece)) {
-            int direction = (pawn->getColour() == Colour::WHITE) ? -1 : 1;
 
+            // turn en passant flag on if it's the first time moving the pawn
+            pawn->setEnPassantEligible(false);
+            if (abs(startRow - endRow) == 2) { // will only be true after a pawn moves twice, otherwise always false
+                pawn->setEnPassantEligible(true);
+            }
+
+            // En Passant capture logic
+            int direction = (pawn->getColour() == Colour::WHITE) ? -1 : 1;
             // If moving diagonally and target square is empty
             if (abs(startCol - endCol) == 1 && endRow == startRow + direction && !targetPiece) {
                 // The en passant captured pawn is directly beside the end position
@@ -97,13 +118,25 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
                     dynamic_pointer_cast<Pawn>(enPassantPawn)->isEnPassantEligible()) {
                     getTile(startRow, endCol)->setPiece(nullptr);
                     std::cout << "EN PASSANT CAPTURE!\n";
-                    // HANDLE EN PASSANT REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
+                    // TODO: HANDLE EN PASSANT REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
                 }
+            }
+
+            // promotion logic
+            if (endRow == 0 || endRow == 7) { // the pawn is ready to be promoted
+                // TODO: HANDLE PROMOTION LOGIC need to call game to get the user input for which piece and then call promotePawn
+
             }
         }
 
-        // Castling logic (move rook if king moved two spaces)
+        // King logic 
         if (auto king = std::dynamic_pointer_cast<King>(piece)) {
+            if (king->getColour() == Colour::WHITE) {
+                whiteKingTile = getTile(endRow, endCol);
+            } else {
+                blackKingTile = getTile(endRow, endCol);
+            }
+            // castling: (move rook if king moved two spaces)
             if (abs(startCol - endCol) == 2) {
                 if (endCol == startCol + 2) {
                     // Kingside castling
@@ -119,24 +152,29 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
             }
         }
 
-        // move the piece and set start tile to empty piece
-        getTile(endRow, endCol)->setPiece(piece);
-        getTile(startRow, startCol)->setPiece(nullptr);
-        piece->setHasMoved(true);
-
-        // Handle en passant flag for pawns
-        if (auto pawn = std::dynamic_pointer_cast<Pawn>(piece)) {
-            pawn->setEnPassantEligible(false);
-            if (abs(startRow - endRow) == 2) { // will only be true after a pawn moves twice, otherwise always false
-                pawn->setEnPassantEligible(true);
-            }
-            if (endRow == 0 || endRow == 7) { // the pawn is ready to be promoted
-                // HANDLE PROMOTION LOGIC
-            }
-        }
         return true;
     }
     return false;
+}
+
+void Board::promotePawn(int row, int col, char newPieceType) {
+    Colour c = getTile(row, col)->getColour();
+    // pawn promotion 
+    if (newPieceType == 'q') {
+        getTile(row, col)->setPiece(std::make_shared<Queen>(c));
+    }
+    else if (newPieceType == 'r') {
+        getTile(row, col)->setPiece(std::make_shared<Rook>(c));
+    }
+    else if (newPieceType == 'n') {
+        getTile(row, col)->setPiece(std::make_shared<Knight>(c));
+    }
+    else if (newPieceType == 'b') {
+        getTile(row, col)->setPiece(std::make_shared<Bishop>(c));
+    }
+    else {
+        cout << "invalid input";
+    }
 }
 
 void Board::setGameStatus(GameStatus status) {
