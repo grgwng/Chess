@@ -8,6 +8,10 @@ const char Bishop::getType() const {
 }
 
 bool Bishop::isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const {
+    if (startRow == endRow && startCol == endCol) {
+        return false;
+    }
+
     // must be a diagonal move
     if (abs(startRow - endRow) != abs(startCol - endCol)) {
         return false;

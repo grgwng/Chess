@@ -8,6 +8,10 @@ const char Rook::getType() const {
 }
 
 bool Rook::isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const {
+    if (startRow == endRow && startCol == endCol) {
+        return false;
+    }
+
     if (startRow != endRow && startCol != endCol) { // if not moving horizontally or vertically then invalid
         return false;
     }

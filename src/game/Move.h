@@ -13,7 +13,7 @@ struct Move {
     bool isResign;
 
     Move(Colour p, int sr, int sc, int er, int ec, char promotionType, bool isResign)
-        : player{p}, promotionType{promotionType}, startRow{sr}, startCol{sc}, endRow{er}, endCol{ec} {}
+        : player{p}, startRow{sr}, startCol{sc}, endRow{er}, endCol{ec}, promotionType{promotionType} {}
 
 };
 

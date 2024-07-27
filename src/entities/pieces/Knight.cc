@@ -8,6 +8,10 @@ const char Knight::getType() const {
 }
 
 bool Knight::isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const {
+    if (startRow == endRow && startCol == endCol) {
+        return false;
+    }
+
     int rowDiff = abs(startRow - endRow);
     int colDiff = abs(startCol - endCol);
     // knight can hop over any piece, only need to check the correct move sequence and that it does not land on a piece of same colour
