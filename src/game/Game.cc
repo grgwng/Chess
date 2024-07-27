@@ -116,6 +116,8 @@ void Game::gameLoop(){
     int activePlayer = 1;
     GameStatus status = NOSTATUS;
 
+    board->initializeStandardBoard();
+
     //our loop in game mode
 
     while(true){
@@ -126,7 +128,8 @@ void Game::gameLoop(){
         while(activePlayer == 1){
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
-
+    
+            
             if(player1Move.startCol < 0){ //invalid move
                 cout << "Invalid move" << endl;
                 continue; //retry
@@ -277,6 +280,8 @@ void Game::setupLoop() {
 }
 
 void Game::runProgram(){
+
+    cout << "Welcome to Chess! Enter a command:" << endl;
     
     Command* command;
 

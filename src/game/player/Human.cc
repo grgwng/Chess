@@ -4,9 +4,11 @@
 Human::Human(){}
 
 Move Human::convertMoveCommandToMove(MoveCommand* mc){
+    
     vector<int> startPos = mc->getStartPos();
     vector<int> endPos = mc->getEndPos();
     char promotionPiece = mc->getConvertToPiece();
+
     return Move{colour, startPos[0], startPos[1], endPos[0], endPos[1], promotionPiece, false};
 }
 

@@ -8,6 +8,7 @@
 #include "Move.h"
 #include "../entities/Board.h"
 #include "../entities/pieces/King.h"
+#include "../display/TextDisplay.h"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ class Game {
 
     double p1score = 0;
     double p2score = 0;
+
+    std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(board.get());
 public:
     Game();
 
