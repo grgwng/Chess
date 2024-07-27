@@ -7,8 +7,8 @@
 #include "pieces/Queen.h"
 #include "pieces/King.h"
 #include <iostream>
-Board::Board() {
 
+Board::Board() {
     board.resize(boardSize, vector<std::shared_ptr<Tile>>(boardSize, nullptr));
     gameStatus = NOSTATUS;
 
@@ -38,9 +38,9 @@ Board::Board() {
             board[row][col] = newTile;
         }
     }
+}
 
-    // Set up default pieces
-    
+void Board::initializeStandardBoard() {
     // Pawns
     for(int col = 0; col < boardSize; col++) {
         board[1][col]->setPiece(std::make_shared<Pawn>(BLACK));
@@ -74,6 +74,114 @@ Board::Board() {
     board[7][4]->setPiece(std::make_shared<King>(WHITE));
     whiteKingTile = board[7][4];
     blackKingTile = board[0][4];
+}
+
+void Board::addPiece(int row, int col, char piece, Colour colour) {
+    std::shared_ptr<Piece> newPiece;
+
+    switch (piece) {
+        case 'p':
+            newPiece = std::make_shared<Pawn>(colour);
+            break;
+        case 'r':
+            newPiece = std::make_shared<Rook>(colour);
+            break;
+        case 'n':
+            newPiece = std::make_shared<Knight>(colour);
+            break;
+        case 'b':
+            newPiece = std::make_shared<Bishop>(colour);
+            break;
+        case 'q':
+            newPiece = std::make_shared<Queen>(colour);
+            break;
+        case 'k':
+            newPiece = std::make_shared<King>(colour);
+
+            if(colour == WHITE) {
+                whiteKingTile = board[row][col];
+            }
+            else if(colour == BLACK) {
+                blackKingTile = board[row][col];
+            }
+
+            break;
+        default:
+            break;
+    }
+
+    newPiece->setHasMoved(true);
+
+    if(board[row][col]->getPiece()) {
+        board[row][col]->setPiece(nullptr);
+    }
+    board[row][col]->setPiece(newPiece);
+}
+
+bool Board::removePiece(int row, int col) {
+    auto tile = board[row][col];
+    auto piece = tile->getPiece();
+
+    if(!piece) {
+        return false;
+    }
+
+    tile->setPiece(nullptr);
+    return true;
+}
+
+bool Board::checkValidBoard() {
+    bool seenWhiteKing = false;
+    bool seenBlackKing = false;
+
+    // Check for exactly one black and white king, and that they're not in check
+    for(int row = 0; row < boardSize; row++) {
+        for(int col = 0; col < boardSize; col++) {
+            auto piece = board[row][col]->getPiece();
+            if(piece && piece->getType() == 'k') {
+                if(piece->getColour() == WHITE) {
+                    if(seenWhiteKing) {
+                        return false;
+                    }
+                    else {
+                        seenWhiteKing = true;
+                    }
+                }
+                else if(piece->getColour() == BLACK) {
+                    if(seenBlackKing) {
+                        return false;
+                    }
+                    else {
+                        seenBlackKing = true;
+                    }
+                }
+
+                auto king = std::dynamic_pointer_cast<King>(piece);
+                if(king->isInCheck(*this, row, col)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if(!seenWhiteKing || !seenBlackKing) {
+        return false;
+    }
+
+    // Check no pawns on first or last row of the board
+    for(int col = 0; col < boardSize; col++) {
+        // First row
+        if(board[0][col]->getPiece() && board[0][col]->getPiece()->getType() == 'p') {
+            return false;
+        }
+
+        // Last row
+        if(board[boardSize - 1][col]->getPiece() && board[0][col]->getPiece()->getType() == 'p') {
+            return false;
+        }
+    } 
+
+    return true;
 }
 
 std::shared_ptr<Tile> Board::getWhiteKingTile() const { 
@@ -195,8 +303,4 @@ GameStatus Board::getStatus() const {
 
 int Board::getBoardSize() {
     return boardSize;
-}
-
-Board::~Board() {
-    // do we need to delete anything if using smart pointer?
 }

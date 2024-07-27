@@ -16,6 +16,12 @@ class Board : public Subject {
     GameStatus gameStatus;
 public:
     Board();
+
+    void initializeStandardBoard();
+    void addPiece(int row, int col, char piece, Colour colour);
+    bool removePiece(int row, int col);
+    bool checkValidBoard();
+
     std::shared_ptr<Tile> getWhiteKingTile() const;
     std::shared_ptr<Tile> getBlackKingTile() const;
     bool movePiece(int startRow, int startCol, int endRow, int endCol);
@@ -25,7 +31,6 @@ public:
     std::shared_ptr<Tile> getTile(int row, int col) const;
     GameStatus getStatus() const;
     int getBoardSize();
-    ~Board();
 };
 
 #endif
