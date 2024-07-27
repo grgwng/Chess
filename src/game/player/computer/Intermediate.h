@@ -1,9 +1,9 @@
-#ifndef NOOB_H
-#define NOOB_H
+#ifndef INTERMEDIATE_H
+#define INTERMEDIATE_H
 
 #include "../Computer.h"
 
-class Noob : public Computer {
+class Intermediate : public Computer {
 public:
     Move computeMove(const shared_ptr<Board>& board) override;
 };

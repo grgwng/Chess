@@ -86,7 +86,7 @@ Command* Interpreter::readCommand(){
             if(iss >> promotion){ 
                 //it is a promotion
                 if(pieceTable.find(promotion) != pieceTable.end()){//check if promotion is valid
-                    return new Move{startPos[0], startPos[1], endPos[0], endPos[1], false, promotion};
+                    return new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, promotion};
                 }else{
                     cout << "Invalid argument. Please try again" << endl;
                     return nullptr;
@@ -94,12 +94,12 @@ Command* Interpreter::readCommand(){
                 
             }else{
                 //it is not a promotion
-                return new Move{startPos[0], startPos[1], endPos[0], endPos[1], false, 0};
+                return new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, 0};
             }
         }else{
 
             if(start.length() == 0 && end.length() ==0){
-                return new Move(0, 0, 0, 0, true, 0);
+                return new MoveCommand(0, 0, 0, 0, true, 0);
             }else{
                 cout << "Invalid argument. Please try again" << endl;
                 return nullptr;

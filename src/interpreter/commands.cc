@@ -20,22 +20,22 @@ PlayerType StartGame::getBlackPlayer(){
 Resign::Resign(): Command(RESIGN) {}
 
 
-Move::Move(int startRow, int startCol, int endRow, int endCol, bool isComputer, char convertToPiece): Command(MOVE),
+MoveCommand::MoveCommand(int startRow, int startCol, int endRow, int endCol, bool isComputer, char convertToPiece): Command(MOVE),
     startRow{startRow}, startCol{startCol}, endRow{endRow}, endCol{endCol}, isComputer{isComputer}, convertToPiece{convertToPiece} {}
 
-vector<int> Move::getStartPos(){
+vector<int> MoveCommand::getStartPos(){
     return {startRow, startCol};
 }
 
-vector<int> Move::getEndPos(){
+vector<int> MoveCommand::getEndPos(){
     return {endRow, endCol};
 }
 
-char Move::getConvertToPiece(){
+char MoveCommand::getConvertToPiece(){
     return convertToPiece;
 }
 
-bool Move::getIsComputer(){
+bool MoveCommand::getIsComputer(){
     return isComputer;
 }
 

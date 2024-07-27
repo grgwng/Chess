@@ -5,7 +5,8 @@
 
 class Human : public Player {
 public:
-    void makeMove() override;
+    Human();
+    virtual Move makeMove(const unique_ptr<Interpreter> interpreter, const shared_ptr<Board> board) override;
 };
 
 #endif

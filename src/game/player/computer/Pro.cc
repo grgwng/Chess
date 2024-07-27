@@ -1,4 +1,4 @@
-#include "Noob.h"
+#include "Pro.h"
 
 Move computeMove(const shared_ptr<Board>& board){
     //compute and return best move

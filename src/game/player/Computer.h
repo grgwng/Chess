@@ -5,7 +5,8 @@
 
 class Computer : public Player {
 public:
-    virtual void makeMove() = 0;
+    virtual Move computeMove(const shared_ptr<Board>& board) = 0;
+    Move makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board);
 };
 
 #endif

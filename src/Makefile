@@ -4,7 +4,7 @@ LDFLAGS = -L/opt/X11/lib -lX11
 EXEC = chess
 
 # Source directories
-SRC_DIRS = . display entities entities/pieces
+SRC_DIRS = . display entities entities/pieces game game/player game/player/computer interpreter
 
 # Find all .cc files in the source directories
 CCFILES = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cc))

@@ -29,13 +29,13 @@ class Resign: public Command {
         Resign();
 };
 
-class Move: public Command {
+class MoveCommand: public Command {
     int startRow, startCol, endRow, endCol;
     char convertToPiece;
     bool isComputer;
 
     public:
-        Move(int startRow, int startCol, int endRow, int endCol, bool isComputer, char convertToPiece);
+        MoveCommand(int startRow, int startCol, int endRow, int endCol, bool isComputer, char convertToPiece);
         vector<int> getStartPos();
         vector<int> getEndPos();
         char getConvertToPiece();

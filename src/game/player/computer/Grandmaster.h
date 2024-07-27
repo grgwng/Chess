@@ -1,9 +1,9 @@
-#ifndef NOOB_H
-#define NOOB_H
+#ifndef GRANDMASTER_H
+#define GRANDMASTER_H
 
 #include "../Computer.h"
 
-class Noob : public Computer {
+class Grandmaster : public Computer {
 public:
     Move computeMove(const shared_ptr<Board>& board) override;
 };

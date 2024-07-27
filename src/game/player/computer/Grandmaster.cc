@@ -1,4 +1,4 @@
-#include "Noob.h"
+#include "Grandmaster.h"
 
 Move computeMove(const shared_ptr<Board>& board){
     //compute and return best move

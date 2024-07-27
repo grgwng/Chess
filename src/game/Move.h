@@ -5,14 +5,23 @@
 
 struct Move {
     Colour player;
-    char pieceType;
     int startRow;
     int startCol;
     int endRow;
     int endCol;
+    char promotionType;
+    bool isResign;
 
-    Move(Colour p, char pieceType, int sr, int sc, int er, int ec)
-        : player{p}, pieceType{pieceType}, startRow{sr}, startCol{sc}, endRow{er}, endCol{ec} {}
+    Move(Colour p, int sr, int sc, int er, int ec, char promotionType, bool isResign)
+        : player{p}, promotionType{promotionType}, startRow{sr}, startCol{sc}, endRow{er}, endCol{ec} {}
 };
+
+Move invalidMove(){
+    return Move{WHITE, -1, -1, -1, -1, ' ', false};
+}
+
+Move resignMove(Colour c){
+    return Move{c, -1, -1, -1, -1, ' ', true};
+}
 
 #endif // MOVE_H
