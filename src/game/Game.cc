@@ -124,10 +124,17 @@ void Game::gameLoop(){
 
         //PLAYER1 input loop
         board->render();
-        cout << "White's turn:" << endl;
+        cout << "WHITE'S TURN" << endl;
+        cout << "Enter a game command:" << endl;
         while(activePlayer == 1){
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
+
+            if(player1Move.isResign){
+                cout << "White resigned!" << endl;
+                status = WHITERESIGN;
+                break;
+            }
     
             
             if(player1Move.startCol < 0){ //invalid move
@@ -188,6 +195,11 @@ void Game::gameLoop(){
             cout << "White wins!" << endl;
             p1score +=1;
             break;
+        }else if(status == WHITERESIGN){
+            cout << "Black wins!" << endl;
+            p2score +=1;
+            break;
+            
         }else if(status == STALEMATE){
             cout << "Stalemate" << endl;
             p1score += 0.5;
@@ -196,14 +208,22 @@ void Game::gameLoop(){
         }else if(status == BLACKCHECK){
             cout << "Black is in check!" << endl;
         }
+        
 
         board->render();
         cout << "Black's turn:" << endl;
+        cout << "Enter a game command:" << endl;
         //PLAYER2 input loop
 
         while(activePlayer == 2){
             //call makeMove for player2 (returns a Move class)
             Move player2Move = player2->makeMove(interpreter, board);
+
+            if(player2Move.isResign){
+                cout << "Black resigned!" << endl;
+                status = BLACKRESIGN;
+                break;
+            }
 
             if(player2Move.startCol < 0){ //invalid move
                 cout << "Invalid move" << endl;
@@ -217,7 +237,7 @@ void Game::gameLoop(){
                 ->isValidMove(*board, player2Move.startRow, player2Move.startCol, player2Move.endRow, player2Move.endCol)){
             
                 //not valid move
-                cout << "Not valid move." << endl;
+                cout << "Invalid piece move. Please try again." << endl;
                 continue;
             }
 
@@ -261,13 +281,17 @@ void Game::gameLoop(){
             cout << "Black wins!" << endl;
             p2score +=1;
             break;
+        }else if(status == BLACKRESIGN){
+            cout << "White wins!" << endl;
+            p1score +=1;
+            break;
         }else if(status == STALEMATE){
             cout << "Stalemate" << endl;
             p1score += 0.5;
             p2score += 0.5;
             break;
         }else if(status == WHITECHECK){
-            cout << "WHITE is in check!" << endl;
+            cout << "White is in check!" << endl;
         }
 
 
@@ -286,11 +310,12 @@ void Game::setupLoop() {
 
 void Game::runProgram(){
 
-    cout << "Welcome to Chess! Enter a command:" << endl;
+    cout << "Welcome to Chess!" << endl;
     
     Command* command;
 
     while(true){
+        cout << "Start a game or enter set up mode:" << endl;
         //read command
         command = interpreter->readCommand();
 

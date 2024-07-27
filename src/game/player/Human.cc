@@ -33,6 +33,7 @@ Move Human::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_pt
 
         }
         case RESIGN:
+            cout << "resigned" << endl;
             return resignMove(colour);
             break;
         default:
