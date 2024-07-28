@@ -388,10 +388,10 @@ void Game::runProgram(){
                         player1 = std::make_shared<Intermediate>(WHITE);
                         break;
                     case COMPUTER3:
-                        // player1 = new Pro{};
+                        player1 = std::make_shared<Pro>(WHITE);
                         break;
                     case COMPUTER4:
-                        // player1 = new Grandmaster{};
+                        player1 = std::make_shared<Grandmaster>(WHITE);
                         break;
                 }
                 
@@ -406,10 +406,10 @@ void Game::runProgram(){
                         player2 = std::make_shared<Intermediate>(BLACK);
                         break;
                     case COMPUTER3:
-                        // player2 = new Pro{};
+                        player2 = std::make_shared<Pro>(BLACK);
                         break;
                     case COMPUTER4:
-                        // player2 = new Grandmaster{};
+                        player2 = std::make_shared<Grandmaster>(BLACK);
                         break;
                 }
 

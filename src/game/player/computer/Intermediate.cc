@@ -1,50 +1,35 @@
-#include "../../../entities/pieces/King.h"
 #include "Intermediate.h"
 #include <random>
 
 Intermediate::Intermediate(Colour colour): Computer{colour} {}
 
-Move Intermediate::computeMove(const shared_ptr<Board>& board){
-    std::vector<Move> validMoves = board->getAllValidMoves(colour);
+Move Intermediate::computeMove(const shared_ptr<Board>& board){ 
+    std::vector<Move> moves;
+
+    std::vector<Move> validMoves = getComputerValidMoves(board, colour);
+    std::vector<Move> checkMoves = getCheckMoves(board, colour);
+    std::vector<Move> captureMoves = getCaptureMoves(board, colour);
+    
+    std::vector<Move> checkAndCaptureMoves;
+    std::set_intersection(checkMoves.begin(), checkMoves.end(),
+                          captureMoves.begin(), captureMoves.end(),
+                          std::back_inserter(checkAndCaptureMoves));
+
+    if(!checkAndCaptureMoves.empty()) {
+        moves = checkAndCaptureMoves;
+    }
+    else if(!checkMoves.empty()) {
+        moves = checkMoves;
+    }
+    else if(!captureMoves.empty()) {
+        moves = captureMoves;
+    }
+    else {
+        moves = validMoves;
+    }
 
     std::random_device rd;
     std::mt19937 gen(rd());
-
-    std::vector<Move> checkMoves;
-
-    for(auto move : validMoves) {
-        shared_ptr<Board> tempboard = make_shared<Board>(*board);
-        tempboard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
-        shared_ptr<Tile> otherKingTile = (colour == WHITE) ? tempboard->getBlackKingTile() : tempboard->getWhiteKingTile();
-        auto otherKing = dynamic_pointer_cast<King>(otherKingTile->getPiece());
-
-        if(otherKing->isInCheck(*tempboard, otherKingTile->getRow(), otherKingTile->getCol())) {
-            checkMoves.push_back(move);
-        }
-    }
-
-    if(!checkMoves.empty()) {
-        std::uniform_int_distribution<> distr(0, checkMoves.size() - 1);
-        int randomNum = distr(gen);
-        return checkMoves.at(randomNum);
-    }
-
-    std::vector<Move> captureMoves;
-
-    for(auto move : validMoves) {
-        auto endTilePiece = board->getTile(move.endRow, move.endCol)->getPiece();
-        if(endTilePiece && endTilePiece->getColour() != colour) {
-            captureMoves.push_back(move);
-        }
-    }
-
-    if(!captureMoves.empty()) {
-        std::uniform_int_distribution<> distr(0, captureMoves.size() - 1);
-        int randomNum = distr(gen);
-        return captureMoves.at(randomNum);
-    }
-
-    std::uniform_int_distribution<> distr(0, validMoves.size() - 1);
-    int randomNum = distr(gen);
-    return validMoves.at(randomNum);
+    std::uniform_int_distribution<> distr(0, moves.size() - 1);
+    return moves.at(distr(gen));
 }
