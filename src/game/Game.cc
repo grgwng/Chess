@@ -114,10 +114,10 @@ void Game::gameLoop(){
     while(true){
 
         //PLAYER1 input loop
-        board->render();
-        cout << "WHITE'S TURN" << endl;
-        cout << "Enter a game command:" << endl;
         while(nextPlayer == 1){
+            board->render();
+            cout << "WHITE'S TURN" << endl;
+            cout << "Enter a game command:" << endl;
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
 
@@ -200,12 +200,12 @@ void Game::gameLoop(){
         }
         
 
-        board->render();
-        std::cout << "Black's turn:" << endl;
-        std::cout << "Enter a game command:" << endl;
         //PLAYER2 input loop
 
         while(nextPlayer == 2){
+            board->render();
+            std::cout << "Black's turn:" << endl;
+            std::cout << "Enter a game command:" << endl;
             //call makeMove for player2 (returns a Move class)
             Move player2Move = player2->makeMove(interpreter, board);
 
@@ -286,6 +286,7 @@ void Game::gameLoop(){
 
 
     }
+    board->clearBoard();
     board->initializeStandardBoard();
     nextPlayer = 1;
 }
@@ -296,7 +297,7 @@ void Game::setupLoop() {
     cout << "You have entered set-up mode!" << endl;
 
     //clear board
-    // board->clearBoard();
+    board->clearBoard();
     board->render();
 
     while(true){
@@ -369,8 +370,6 @@ void Game::setupLoop() {
         }
     }
 
-    board = make_shared<Board>();
-    board->initializeStandardBoard();
 }
 
 void Game::runProgram(){
