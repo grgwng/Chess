@@ -169,7 +169,7 @@ void Game::gameLoop(){
 
             //check checkCheckmate, checkStalemate, checkCheck for player2
             if(checkCheckmate(BLACK)){
-                board->setGameStatus(CHECKMATEBLACK);
+                board->setGameStatus(CHECKMATEWHITE);
                 p1score += 1;
                 gameOver = true;
             }
@@ -252,7 +252,7 @@ void Game::gameLoop(){
 
             // check checkCheckmate, checkStalemate, checkCheck for player1
             if(checkCheckmate(WHITE)){
-                board->setGameStatus(CHECKMATEWHITE);
+                board->setGameStatus(CHECKMATEBLACK);
                 p2score += 1;
                 gameOver = true;
             }
