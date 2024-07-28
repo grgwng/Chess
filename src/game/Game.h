@@ -10,6 +10,7 @@
 #include "../entities/pieces/King.h"
 #include "../entities/pieces/Pawn.h"
 #include "../display/TextDisplay.h"
+#include "../display/GraphicDisplay.h"
 
 using namespace std;
 
@@ -32,6 +33,7 @@ class Game {
     int nextPlayer = 1;
 
     std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(board.get());
+    std::shared_ptr<GraphicDisplay> graphicalDisplay = make_shared<GraphicDisplay>(board.get());
 public:
     Game();
 

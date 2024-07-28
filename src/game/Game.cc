@@ -160,7 +160,7 @@ void Game::gameLoop(){
 
             //update piece (if promotion)
             if(checkPromotion(board, player1Move)){
-                board->addPiece(player1Move.endRow, player1Move.endCol, player1Move.promotionType, WHITE);
+                board->addPiece(player1Move.endRow, player1Move.endCol, tolower(player1Move.promotionType), WHITE);
             }
 
             nextPlayer = 2;
@@ -245,7 +245,7 @@ void Game::gameLoop(){
 
             //update piece (if promotion)
             if(checkPromotion(board, player2Move)){
-                board->addPiece(player2Move.endRow, player2Move.endCol, player2Move.promotionType, BLACK);
+                board->addPiece(player2Move.endRow, player2Move.endCol, tolower(player2Move.promotionType), BLACK);
             }
 
             nextPlayer = 1;
