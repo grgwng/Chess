@@ -140,14 +140,6 @@ void Board::addPiece(int row, int col, char piece, Colour colour) {
             break;
         case 'k':
             newPiece = std::make_shared<King>(colour);
-
-            if(colour == WHITE) {
-                whiteKingTile = board[row][col];
-            }
-            else if(colour == BLACK) {
-                blackKingTile = board[row][col];
-            }
-
             break;
         default:
             break;
@@ -188,6 +180,7 @@ bool Board::checkValidBoard() {
                     }
                     else {
                         seenWhiteKing = true;
+                        whiteKingTile = getTile(row, col);
                     }
                 }
                 else if(piece->getColour() == BLACK) {
@@ -196,6 +189,7 @@ bool Board::checkValidBoard() {
                     }
                     else {
                         seenBlackKing = true;
+                        blackKingTile = getTile(row, col);
                     }
                 }
 
