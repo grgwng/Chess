@@ -121,7 +121,7 @@ void Game::gameLoop(){
         //PLAYER1 input loop
         while(nextPlayer == 1){
             board->render();
-            cout << "WHITE'S TURN" << endl;
+            cout << "WHITE'S TURN" << endl << endl;
             cout << "Enter a game command:" << endl;
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
@@ -204,7 +204,7 @@ void Game::gameLoop(){
 
         while(nextPlayer == 2){
             board->render();
-            std::cout << "BLACK'S TURN" << endl;
+            std::cout << "BLACK'S TURN" << endl << endl;
             std::cout << "Enter a game command:" << endl;
             //call makeMove for player2 (returns a Move class)
             Move player2Move = player2->makeMove(interpreter, board);
@@ -325,7 +325,6 @@ void Game::setupLoop() {
                 cout << "You are leaving the board in an invalid condition. Please change the board before trying again." << endl;
                 continue;
             }
-
         }
 
         switch((*command)->getType()){
@@ -339,7 +338,6 @@ void Game::setupLoop() {
                 cout << "Successfully added piece." << endl;
                 board->render();
                 break;
-
             }
 
             case REMOVEPIECE:{
@@ -355,7 +353,6 @@ void Game::setupLoop() {
                 break;
             }
 
-
             case SETCOLOUR: {
                 SetColour* scc = static_cast<SetColour*>(*command);
 
@@ -363,9 +360,7 @@ void Game::setupLoop() {
 
                 cout << "The next player is now Player " << nextPlayer << endl;
                 break;
-
             }
-
 
             default:
                 cout << "Invalid command in this context. Please try again" << endl;
@@ -451,5 +446,4 @@ void Game::runProgram(){
             }
         }
     }
-
 }
