@@ -80,7 +80,7 @@ bool King::isInCheck(const Board& board, int kingRow, int kingCol) const {
         for (int col = 0; col < 8; ++col) {
             std::shared_ptr<Piece> piece = board.getTile(row, col)->getPiece();
             // Check if the piece is an opponent's piece (cannot be a the enemy king putting the king in check either)
-            if (piece && piece->getColour() == opponentColour && !(piece->getType() == 'k')) {
+            if (piece && piece->getColour() == opponentColour) {
                 // Check if this piece can move to the king's position
                 if (piece->isValidMove(board, row, col, kingRow, kingCol)) {
                     return true; 
