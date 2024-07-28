@@ -21,4 +21,4 @@ Move invalidMove();
 
 Move resignMove(Colour c);
 
-#endif // MOVE_H
+#endif

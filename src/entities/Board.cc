@@ -76,7 +76,6 @@ void Board::initializeStandardBoard() {
     }
 
     // Rooks
-
     setTile(0, 0, std::make_shared<Rook>(BLACK));
     setTile(0, 7, std::make_shared<Rook>(BLACK));
     setTile(7, 0, std::make_shared<Rook>(WHITE));
@@ -104,6 +103,20 @@ void Board::initializeStandardBoard() {
 
     blackKingTile = board[0][4];
     whiteKingTile = board[7][4];
+}
+
+std::vector<Move> Board::getAllValidMoves(Colour colour) {
+    std::vector<Move> validMoves;
+    for(int row = 0; row < boardSize; row++) {
+        for(int col = 0; col < boardSize; col++) {
+            auto curPiece = getTile(row, col)->getPiece();
+            if(curPiece && curPiece->getColour() == colour) {
+                std::vector<Move> pieceMoves = curPiece->getValidMoves(*this, row, col);
+                validMoves.insert(validMoves.end(), pieceMoves.begin(), pieceMoves.end());
+            }
+        }
+    }
+    return validMoves;
 }
 
 void Board::addPiece(int row, int col, char piece, Colour colour) {

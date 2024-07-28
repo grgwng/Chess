@@ -1,8 +1,8 @@
 #include "Piece.h"
+#include "./Board.h"
 #include <memory>
 
 Piece::Piece(Colour colour) : colour{colour}, hasMovedFlag{false} {}
-#include "./Board.h"
 
 Piece::Piece(const Piece& other) : colour{other.colour}, hasMovedFlag{other.hasMovedFlag} {}
 
@@ -18,8 +18,11 @@ std::vector<Move> Piece::getValidMoves(const Board& board, int startRow, int sta
     for(int row = 0; row < board.getBoardSize(); row++) {
         for(int col = 0; col < board.getBoardSize(); col++) {
             if(isValidMove(board, startRow, startCol, row, col)) {
-                
+                Move newMove{colour, startRow, startCol, row, col,'0', false};
+                result.push_back(newMove);
             }
         }
     }
+
+    return result;
 }

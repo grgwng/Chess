@@ -23,6 +23,7 @@ public:
     bool checkValidBoard();
     void clearBoard();
 
+    std::vector<Move> getAllValidMoves(Colour colour);
     std::shared_ptr<Tile> getWhiteKingTile() const;
     std::shared_ptr<Tile> getBlackKingTile() const;
     bool movePiece(int startRow, int startCol, int endRow, int endCol);
