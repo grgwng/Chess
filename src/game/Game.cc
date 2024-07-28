@@ -279,6 +279,7 @@ void Game::gameLoop(){
     board->clearBoard();
     board->initializeStandardBoard();
     nextPlayer = 1;
+    board->setGameStatus(NOSTATUS);
 }
 
 void Game::setupLoop() {
