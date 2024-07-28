@@ -8,7 +8,9 @@
 #include <iostream>
 using namespace std;
 
-Game::Game(): board{std::make_shared<Board>()}, interpreter{std::make_unique<Interpreter>()}{}
+Game::Game(): board{std::make_shared<Board>()}, interpreter{std::make_unique<Interpreter>()}{
+    board->initializeStandardBoard();
+}
 
 Game::~Game(){
 
@@ -105,10 +107,7 @@ void Game::gameLoop(){
 
     std::cout << "New game has started!" << endl;
 
-    int activePlayer = 1;
     GameStatus status = NOSTATUS;
-
-    board->initializeStandardBoard();
 
     //our loop in game mode
 
@@ -116,9 +115,9 @@ void Game::gameLoop(){
 
         //PLAYER1 input loop
         board->render();
-        std::cout << "WHITE'S TURN" << endl;
-        std::cout << "Enter a game command:" << endl;
-        while(activePlayer == 1){
+        cout << "WHITE'S TURN" << endl;
+        cout << "Enter a game command:" << endl;
+        while(nextPlayer == 1){
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
 
@@ -170,7 +169,7 @@ void Game::gameLoop(){
                 board->addPiece(player1Move.endRow, player1Move.endCol, player1Move.promotionType, WHITE);
             }
 
-            activePlayer = 2;
+            nextPlayer = 2;
 
             //check checkCheckmate, checkStalemate, checkCheck for player2
             if(checkCheckmate(BLACK)){
@@ -206,7 +205,7 @@ void Game::gameLoop(){
         std::cout << "Enter a game command:" << endl;
         //PLAYER2 input loop
 
-        while(activePlayer == 2){
+        while(nextPlayer == 2){
             //call makeMove for player2 (returns a Move class)
             Move player2Move = player2->makeMove(interpreter, board);
 
@@ -256,7 +255,7 @@ void Game::gameLoop(){
                 board->addPiece(player2Move.endRow, player2Move.endCol, player2Move.promotionType, BLACK);
             }
 
-            activePlayer = 1;
+            nextPlayer = 1;
 
             // check checkCheckmate, checkStalemate, checkCheck for player1
             if(checkCheckmate(WHITE)){
@@ -287,16 +286,91 @@ void Game::gameLoop(){
 
 
     }
+    board->initializeStandardBoard();
+    nextPlayer = 1;
 }
 
 void Game::setupLoop() {
     //our loop in set up mode
 
+    cout << "You have entered set-up mode!" << endl;
+
+    //clear board
+    // board->clearBoard();
+    board->render();
+
     while(true){
         //read in commands from interpreter
 
-        //adjust board as needed
+        cout << "Enter a set-up command:" << endl;
+
+        Command* command = interpreter->readCommand();
+
+        if(!command){
+            cout << "Invalid command. Please try again." << endl;
+            continue;
+        }
+
+        if(command->getType() == DONESETUP){
+
+            //TODO: NEED TO CHECK CONDITIONS ARE MET
+            if(board->checkValidBoard()){
+                cout << "Leaving setup mode" << endl;
+                break;
+            }else{
+                cout << "You are leaving the board in an invalid condition. Please change the board before trying again." << endl;
+                continue;
+            }
+
+        }
+
+        switch(command->getType()){
+            case ADDPIECE:{
+                AddPiece* apc = static_cast<AddPiece*>(command);
+                vector<int> pos = apc->getPos();
+                char piece = apc->getPiece();
+
+                Colour pieceColour = ('A' <= piece && piece <= 'Z' ? WHITE : BLACK);
+                board->addPiece(pos[0], pos[1], tolower(piece), pieceColour);
+                cout << "Successfully added piece." << endl;
+                board->render();
+                break;
+
+            }
+
+            case REMOVEPIECE:{
+                RemovePiece* rpc = static_cast<RemovePiece*>(command);
+                vector<int> pos = rpc->getPos();
+                bool rem_succ = board->removePiece(pos[0], pos[1]);
+                if(rem_succ){
+                    cout << "Successfully removed piece." << endl;
+                    board->render();
+                }else{
+                    cout << "Did not remove a piece." << endl;
+                }
+                break;
+            }
+
+
+            case SETCOLOUR: {
+                SetColour* scc = static_cast<SetColour*>(command);
+
+                nextPlayer = (scc->getColour() == WHITE ? 1 : 2);
+
+                cout << "Successfully set next player to " << nextPlayer << endl;
+                break;
+
+            }
+
+            default:
+                cout << "Invalid command in this context. Please try again" << endl;
+                break;
+
+        }
     }
+
+    board = make_shared<Board>();
+    board->initializeStandardBoard();
 }
 
 void Game::runProgram(){

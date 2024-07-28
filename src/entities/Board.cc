@@ -57,6 +57,18 @@ Board::Board(const Board& other) : gameStatus{other.gameStatus} {
     }
 }
 
+void Board::clearBoard(){
+    for(int row = 0; row < boardSize; row++){
+        for(int col = 0; col < boardSize; col++){
+            removePiece(row, col);
+        }
+    }
+
+    /*
+    reset black/white king tiles (idk how)
+    */
+}
+
 void Board::initializeStandardBoard() {
     // Pawns
     for(int col = 0; col < boardSize; col++) {

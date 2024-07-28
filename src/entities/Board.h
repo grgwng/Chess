@@ -21,6 +21,7 @@ public:
     void addPiece(int row, int col, char piece, Colour colour);
     bool removePiece(int row, int col);
     bool checkValidBoard();
+    void clearBoard();
 
     std::shared_ptr<Tile> getWhiteKingTile() const;
     std::shared_ptr<Tile> getBlackKingTile() const;
