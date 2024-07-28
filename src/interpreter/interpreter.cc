@@ -49,7 +49,10 @@ Command* Interpreter::readCommand(){
 
     istringstream iss(input);
 
-    iss >> command;
+    if(!(iss >> command)){
+        cout << "Finished program" << endl;
+        return new Quit{};
+    }
 
     if(command == "game"){
         string whitePlayer, blackPlayer;

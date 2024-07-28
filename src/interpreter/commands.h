@@ -78,4 +78,9 @@ class DoneSetup: public Command {
         DoneSetup();
 };
 
+class Quit: public Command {
+    public:
+        Quit();
+};
+
 #endif

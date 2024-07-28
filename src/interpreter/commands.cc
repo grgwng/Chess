@@ -69,6 +69,10 @@ DoneSetup::DoneSetup(): Command(DONESETUP){
 
 }
 
+Quit::Quit(): Command(QUIT){
+    
+}
+
 
 
 
