@@ -1,7 +1,16 @@
 #include "Tile.h"
 #include <memory>
+#include <iostream>
 
 Tile::Tile(int row, int col, Colour colour): row{row}, col{col}, colour{colour}, p{nullptr} {}
+
+Tile::Tile(const Tile& other) : row{other.row}, col{other.col}, colour{other.colour} {
+    if (other.p) {
+        p = other.p->clone();
+    } else {
+        p = nullptr;
+    }
+}
 
 Colour Tile::getColour() const {
     return colour;

@@ -11,13 +11,7 @@ class Tile {
 public:
     Tile(int row, int col, Colour colour);
 
-    Tile(const Tile& other) : row(other.row), col(other.col), colour(other.colour) {
-        if (other.p) {
-            p = other.p->clone();
-        } else {
-            p = nullptr;
-        }
-    }
+    Tile(const Tile& other);
 
     Colour getColour() const;
     std::shared_ptr<Piece> getPiece() const;
