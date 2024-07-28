@@ -134,7 +134,7 @@ void Game::gameLoop(){
             }
             
             if(player1Move.startCol < 0){ //invalid move
-                cout << "Invalid move. Please try again." << endl;
+                cout << "Invalid command in this context. Please try again." << endl;
                 continue; //retry
             }
 
@@ -217,7 +217,7 @@ void Game::gameLoop(){
             }
 
             if(player2Move.startCol < 0){ //invalid move
-                std::cout << "Invalid move" << endl;
+                std::cout << "Invalid command in this context. Please try again." << endl;
                 continue; //retry
             }
 
@@ -307,13 +307,13 @@ void Game::setupLoop() {
         shared_ptr<Command*> command = interpreter->readCommand();
 
         if(!command || !(*command)){
-            cout << "Invalid command. Please try again." << endl;
+            cout << "Invalid command in this context. Please try again." << endl;
             continue;
         }
 
 
         if((*command)->getType() == DONESETUP){
-            if(board->checkValidBoard()){
+            if(board->processValidBoard()){
 
                 if((checkStalemate(WHITE) && nextPlayer == 1) || (checkStalemate(BLACK) && nextPlayer == 2)){ //if the next player is in stalemate
                     cout << "The next turn will be a stalemate. Please change the board before trying again." << endl;
@@ -361,7 +361,7 @@ void Game::setupLoop() {
 
                 nextPlayer = (scc->getColour() == WHITE ? 1 : 2);
 
-                cout << "Successfully set next player to " << nextPlayer << endl;
+                cout << "The next player is now Player " << nextPlayer << endl;
                 break;
 
             }
@@ -385,7 +385,7 @@ void Game::runProgram(){
         command = interpreter->readCommand();
 
         if(!command || !(*command)){
-            std::cout << "Please try again." << endl;
+            std::cout << "Invalid command in this context. Please try again." << endl;
             continue;
         }
 
@@ -447,7 +447,7 @@ void Game::runProgram(){
             }
 
             default:{
-                std::cout << "Invalid command in this context. Please try again" << endl;
+                std::cout << "Invalid command in this context. Please try again." << endl;
             }
         }
     }

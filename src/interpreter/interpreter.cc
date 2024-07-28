@@ -50,7 +50,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
     istringstream iss(input);
 
     if(!(iss >> command)){
-        cout << "Finished program" << endl;
         return make_shared<Command*>(new Quit{});
     }
 
@@ -63,7 +62,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
                 
             return make_shared<Command*>(new StartGame{playerTypeParseTable[whitePlayer], playerTypeParseTable[blackPlayer]});
         }else{
-            cout << "Invalid arguments. Please try again" << endl;
             return make_shared<Command*>(nullptr);
         }
 
@@ -82,7 +80,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
             
             //check if invalid
             if(startPos[0] == -1 || endPos[0] == -1){
-                cout << "Invalid argument. Please try again" << endl;
                 return make_shared<Command*>(nullptr);
             }
             
@@ -91,7 +88,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
                 if(pieceTable.find(promotion) != pieceTable.end()){//check if promotion is valid
                     return make_shared<Command*>(new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, promotion});
                 }else{
-                    cout << "Invalid argument. Please try again" << endl;
                     return make_shared<Command*>(nullptr);
                 }
                 
@@ -104,7 +100,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
             if(start.length() == 0 && end.length() ==0){
                 return make_shared<Command*>(new MoveCommand(0, 0, 0, 0, true, 0));
             }else{
-                cout << "Invalid argument. Please try again" << endl;
                 return make_shared<Command*>(nullptr);
             }
 
@@ -125,7 +120,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
             //valid piece
             return make_shared<Command*>(new AddPiece{pos[0], pos[1], piece});
         }else{
-            cout << "Invalid arguments. Please try again" << endl;
             return make_shared<Command*>(nullptr);
         }
 
@@ -138,7 +132,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
         if(pos[0] != -1){
             return make_shared<Command*>(new RemovePiece{pos[0], pos[1]});
         }else{
-            cout << "Invalid argument. Please try again" << endl;
             return make_shared<Command*>(nullptr);
         }
 
@@ -149,7 +142,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
         if(colourParseTable.find(colour) != colourParseTable.end()){
             return make_shared<Command*>(new SetColour{colourParseTable[colour]});
         }else{
-            cout << "Invalid argument. Please try again" << endl;
             return make_shared<Command*>(nullptr);
         }
 
@@ -157,7 +149,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
         return make_shared<Command*>(new DoneSetup{});
 
     }else{
-        cout << "Invalid command. Please try again" << endl;
         return make_shared<Command*>(nullptr);
     }
 
