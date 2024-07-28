@@ -10,6 +10,7 @@
 #include "../entities/pieces/King.h"
 #include "../entities/pieces/Pawn.h"
 #include "../display/TextDisplay.h"
+#include "../display/GraphicDisplay.h"
 
 using namespace std;
 
@@ -19,8 +20,8 @@ class Game {
     std::shared_ptr<Board> board;
     std::unique_ptr<Interpreter> interpreter;
 
-    Player* player1;
-    Player* player2;
+    std::shared_ptr<Player> player1;
+    std::shared_ptr<Player> player2;
 
     GameState state = GameState::DEFAULT;
 
@@ -32,14 +33,13 @@ class Game {
     int nextPlayer = 1;
 
     std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(board.get());
+    std::shared_ptr<GraphicDisplay> graphicDisplay = make_shared<GraphicDisplay>(board.get());
 public:
     Game();
 
     void runProgram();
     void gameLoop();
     void setupLoop();
-
-    void makeMove();
 
     bool checkCheck(Colour colour, const shared_ptr<Board>&); //checks if colour is in check
     bool checkCheckmate(Colour colour); 

@@ -76,6 +76,9 @@ void GraphicDisplay::notify() {
 
         xw.drawString(250 - xOffset, 500, message, Xwindow::Black, 25);
     }
+    else {
+        xw.fillRectangle(0, 460, 500, 200, Xwindow::White);
+    }
 }
 
 void GraphicDisplay::drawBoard() {

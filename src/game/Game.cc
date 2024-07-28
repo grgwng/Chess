@@ -105,7 +105,8 @@ void Game::resign() {
 
 void Game::gameLoop(){ 
     std::cout << "New game has started!" << endl;
-    GameStatus status = NOSTATUS;
+    board->setGameStatus(NOSTATUS);
+    bool gameOver = false;
 
     //our loop in game mode
 
@@ -119,8 +120,9 @@ void Game::gameLoop(){
             Move player1Move = player1->makeMove(interpreter, board);
 
             if(player1Move.isResign){
-                std::cout << "White resigned!" << endl;
-                status = WHITERESIGN;
+                board->setGameStatus(BLACKWINS);
+                p2score += 1;
+                gameOver = true;
                 break;
             }
             
@@ -167,44 +169,42 @@ void Game::gameLoop(){
 
             //check checkCheckmate, checkStalemate, checkCheck for player2
             if(checkCheckmate(BLACK)){
-                status = CHECKMATEBLACK;
-            }else if(checkCheck(BLACK, board)){
-                status = BLACKCHECK;
-            }else if(checkStalemate(BLACK)){
-                status = STALEMATE;
+                board->setGameStatus(CHECKMATEBLACK);
+                p1score += 1;
+                gameOver = true;
+            }
+            else if(checkCheck(BLACK, board)){
+                board->setGameStatus(BLACKCHECK);
+            }
+            else if(checkStalemate(BLACK)){
+                board->setGameStatus(STALEMATE);
+                p1score += 0.5;
+                p2score += 0.5;
+                gameOver = true;
+            }
+            else {
+                board->setGameStatus(NOSTATUS);
             }
         }
 
-        if(status == CHECKMATEBLACK){
-            std::cout << "White wins!" << endl;
-            p1score +=1;
+        if(gameOver) {
+            board->render();
             break;
-        }else if(status == WHITERESIGN){
-            std::cout << "Black wins!" << endl;
-            p2score +=1;
-            break;
-            
-        }else if(status == STALEMATE){
-            std::cout << "Stalemate" << endl;
-            p1score += 0.5;
-            p2score += 0.5;
-            break;
-        }else if(status == BLACKCHECK){
-            std::cout << "Black is in check!" << endl;
         }
         
         //PLAYER2 input loop
 
         while(nextPlayer == 2){
             board->render();
-            std::cout << "Black's turn:" << endl;
+            std::cout << "BLACK'S TURN" << endl;
             std::cout << "Enter a game command:" << endl;
             //call makeMove for player2 (returns a Move class)
             Move player2Move = player2->makeMove(interpreter, board);
 
             if(player2Move.isResign){
-                std::cout << "Black resigned!" << endl;
-                status = BLACKRESIGN;
+                board->setGameStatus(WHITEWINS);
+                p1score += 1;
+                gameOver = true;
                 break;
             }
 
@@ -252,31 +252,30 @@ void Game::gameLoop(){
 
             // check checkCheckmate, checkStalemate, checkCheck for player1
             if(checkCheckmate(WHITE)){
-                status = CHECKMATEWHITE;
-            }else if(checkCheck(WHITE, board)){
-                status = WHITECHECK;
-            }else if(checkStalemate(WHITE)){
-                status = STALEMATE;
+                board->setGameStatus(CHECKMATEWHITE);
+                p2score += 1;
+                gameOver = true;
+            }
+            else if(checkCheck(WHITE, board)){
+                board->setGameStatus(WHITECHECK);
+            }
+            else if(checkStalemate(WHITE)){
+                board->setGameStatus(STALEMATE);
+                p1score += 0.5;
+                p2score += 0.5;
+                gameOver = true;
+            }
+            else {
+                board->setGameStatus(NOSTATUS);
             }
         }
 
-        if(status == CHECKMATEWHITE){
-            std::cout << "Black wins!" << endl;
-            p2score +=1;
+        if(gameOver) {
+            board->render();
             break;
-        }else if(status == BLACKRESIGN){
-            std::cout << "White wins!" << endl;
-            p1score +=1;
-            break;
-        }else if(status == STALEMATE){
-            std::cout << "Stalemate" << endl;
-            p1score += 0.5;
-            p2score += 0.5;
-            break;
-        }else if(status == WHITECHECK){
-            std::cout << "White is in check!" << endl;
         }
     }
+
     board->clearBoard();
     board->initializeStandardBoard();
     nextPlayer = 1;
@@ -355,10 +354,8 @@ void Game::setupLoop() {
             default:
                 cout << "Invalid command in this context. Please try again" << endl;
                 break;
-
         }
     }
-
 }
 
 void Game::runProgram(){
@@ -382,13 +379,13 @@ void Game::runProgram(){
 
                 switch(sg_command->getWhitePlayer()){
                     case HUMAN:
-                        player1 = new Human{WHITE};
+                        player1 = std::make_shared<Human>(WHITE);
                         break;
                     case COMPUTER1:
-                        player1 = new Noob{WHITE};
+                        player1 = std::make_shared<Noob>(WHITE);
                         break;
                     case COMPUTER2:
-                        // player1 = new Intermediate{};
+                        player1 = std::make_shared<Intermediate>(WHITE);
                         break;
                     case COMPUTER3:
                         // player1 = new Pro{};
@@ -400,13 +397,13 @@ void Game::runProgram(){
                 
                 switch(sg_command->getBlackPlayer()){
                     case HUMAN:
-                        player2 = new Human{BLACK};
+                        player2 = std::make_shared<Human>(BLACK);
                         break;
                     case COMPUTER1:
-                        player2 = new Noob{BLACK};
+                        player2 = std::make_shared<Noob>(BLACK);
                         break;
                     case COMPUTER2:
-                        // player2 = new Intermediate{};
+                        player2 = std::make_shared<Intermediate>(BLACK);
                         break;
                     case COMPUTER3:
                         // player2 = new Pro{};

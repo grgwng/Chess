@@ -26,14 +26,14 @@ Move Human::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_pt
 
             if(!mc->getIsComputer()){
                 return convertMoveCommandToMove(mc);
-            }else{
+            }
+            else{
                 return invalidMove();
             }
             break;
 
         }
         case RESIGN:
-            cout << "resigned" << endl;
             return resignMove(colour);
             break;
         default:

@@ -5,6 +5,7 @@
 
 class Intermediate : public Computer {
 public:
+    Intermediate(Colour colour);
     Move computeMove(const shared_ptr<Board>& board) override;
 };
 

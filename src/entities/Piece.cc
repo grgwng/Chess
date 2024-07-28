@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include "./pieces/King.h"
 #include "./Board.h"
 #include <memory>
 
@@ -18,7 +19,22 @@ std::vector<Move> Piece::getValidMoves(const Board& board, int startRow, int sta
     for(int row = 0; row < board.getBoardSize(); row++) {
         for(int col = 0; col < board.getBoardSize(); col++) {
             if(isValidMove(board, startRow, startCol, row, col)) {
-                Move newMove{colour, startRow, startCol, row, col,'0', false};
+                shared_ptr<Board> tempboard = std::make_shared<Board>(board);
+                tempboard->movePiece(startRow, startCol, row, col);
+                std::shared_ptr<Tile> tempKingTile = (colour == Colour::WHITE) ? tempboard->getWhiteKingTile() : tempboard->getBlackKingTile();
+                auto tempKing = std::dynamic_pointer_cast<King>(tempKingTile->getPiece());
+
+                if(tempKing->isInCheck(*tempboard, tempKingTile->getRow(), tempKingTile->getCol())) {
+                    continue;
+                }
+
+                char promotionStatus = '0';
+
+                if(getType() == 'p' && (row == 0 || row == 7)) {
+                    promotionStatus = 'q';
+                }
+
+                Move newMove{colour, startRow, startCol, row, col, promotionStatus, false};
                 result.push_back(newMove);
             }
         }

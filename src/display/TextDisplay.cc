@@ -11,6 +11,7 @@ TextDisplay::~TextDisplay() {
 }
 
 void TextDisplay::notify() {
+    out << endl;
     int size = iWatch->getBoardSize();
 
     for(int row = 0; row < size; row++) {
@@ -82,4 +83,6 @@ void TextDisplay::notify() {
 
         out << endl;
     }
+
+    out << endl;
 }
