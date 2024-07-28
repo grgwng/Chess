@@ -64,9 +64,8 @@ void Board::clearBoard(){
         }
     }
 
-    /*
-    reset black/white king tiles (idk how)
-    */
+    whiteKingTile = nullptr;
+    blackKingTile = nullptr;
 }
 
 void Board::initializeStandardBoard() {

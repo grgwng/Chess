@@ -9,7 +9,7 @@
 using namespace std;
 
 Game::Game(): board{std::make_shared<Board>()}, interpreter{std::make_unique<Interpreter>()}{
-    // board->initializeStandardBoard();
+    board->initializeStandardBoard();
 }
 
 Game::~Game(){
