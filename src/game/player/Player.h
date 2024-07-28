@@ -10,6 +10,7 @@ class Player {
     protected:
         Colour colour;
 public:
+    Player(Colour colour);
     virtual Move makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board) = 0;
     virtual ~Player() {};
 };

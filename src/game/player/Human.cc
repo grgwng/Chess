@@ -1,7 +1,7 @@
 #include "Human.h"
 #include <iostream>
 
-Human::Human(){}
+Human::Human(Colour colour): Player{colour} {}
 
 Move Human::convertMoveCommandToMove(MoveCommand* mc){
     

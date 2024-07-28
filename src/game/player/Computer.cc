@@ -2,6 +2,8 @@
 #include "Computer.h"
 #include <iostream>
 
+Computer::Computer(Colour colour): Player{colour} {}
+
 Move Computer::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board){
 
     Command* command = interpreter->readCommand();

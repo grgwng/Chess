@@ -382,10 +382,10 @@ void Game::runProgram(){
 
                 switch(sg_command->getWhitePlayer()){
                     case HUMAN:
-                        player1 = new Human{};
+                        player1 = new Human{WHITE};
                         break;
                     case COMPUTER1:
-                        // player1 = new Noob{};
+                        player1 = new Noob{WHITE};
                         break;
                     case COMPUTER2:
                         // player1 = new Intermediate{};
@@ -400,10 +400,10 @@ void Game::runProgram(){
                 
                 switch(sg_command->getBlackPlayer()){
                     case HUMAN:
-                        player2 = new Human{};
+                        player2 = new Human{BLACK};
                         break;
                     case COMPUTER1:
-                        // player2 = new Noob{};
+                        player2 = new Noob{BLACK};
                         break;
                     case COMPUTER2:
                         // player2 = new Intermediate{};

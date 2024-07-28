@@ -1,6 +1,8 @@
 #include "Noob.h"
 #include <random>
 
+Noob::Noob(Colour colour): Computer{colour} {}
+
 Move Noob::computeMove(const shared_ptr<Board>& board){
     std::vector<Move> validMoves = board->getAllValidMoves(colour);
 
