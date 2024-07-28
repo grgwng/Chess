@@ -360,6 +360,7 @@ void Game::setupLoop() {
 
             }
 
+
             default:
                 cout << "Invalid command in this context. Please try again" << endl;
                 break;
@@ -373,7 +374,7 @@ void Game::runProgram(){
     Command* command;
 
     while(true){
-        std::cout << "Start a game or enter set up mode:" << endl;
+        std::cout << "Start a game or enter set-up mode:" << endl;
         //read command
         command = interpreter->readCommand();
 
@@ -431,9 +432,18 @@ void Game::runProgram(){
                 break;
             }
 
+            case QUIT: {
+                cout << "Exiting program..." << endl;
+                cout << "Final score:" << endl;
+                cout << "White: " << p1score << endl;
+                cout << "Black: " << p2score << endl;
+                return;
+            }
+
             default:{
                 std::cout << "Invalid command in this context. Please try again" << endl;
             }
         }
     }
+
 }
