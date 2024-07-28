@@ -35,10 +35,9 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
         if (endCol == startCol + 2) {
             // Kingside castling
             std::shared_ptr<Tile> rookTile = board.getTile(startRow, 7);
-            if (rookTile->getPiece()->getType() == 'r') {
-                std::shared_ptr<Rook> rook = dynamic_pointer_cast<Rook>(rookTile->getPiece());
+            std::shared_ptr<Rook> rook = dynamic_pointer_cast<Rook>(rookTile->getPiece());
+            if (rook && rookTile->getPiece()->getType() == 'r') {
                 if (!rook->hasMoved() && board.getTile(startRow, 5)->isEmpty() && board.getTile(startRow, 6)->isEmpty()) {
-
                     // Simulate the king's intermediate move
                     shared_ptr<Board> tempboard = make_shared<Board>(board);
                     tempboard->movePiece(startRow, startCol, startRow, startCol + 1);
@@ -52,8 +51,8 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
         } else if (endCol == startCol - 2) {
             // Queenside castling
             std::shared_ptr<Tile> rookTile = board.getTile(startRow, 0);
-            if (rookTile->getPiece()->getType() == 'r') {
-                std::shared_ptr<Rook> rook = dynamic_pointer_cast<Rook>(rookTile->getPiece());
+            std::shared_ptr<Rook> rook = dynamic_pointer_cast<Rook>(rookTile->getPiece());
+            if (rook && rookTile->getPiece()->getType() == 'r') {
                 if (!rook->hasMoved() && board.getTile(startRow, 1)->isEmpty() && board.getTile(startRow, 2)->isEmpty() && board.getTile(startRow, 3)->isEmpty()) {
                     
                     // Simulate the king's intermediate move
