@@ -14,15 +14,16 @@ Move Human::convertMoveCommandToMove(MoveCommand* mc){
 
 Move Human::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board){
 
-    Command* command = interpreter->readCommand();
+    shared_ptr<Command*> command = interpreter->readCommand();
 
-    if(!command){
+    if(!command || !(*command)){
         return invalidMove();
     }
 
-    switch(command->getType()){
+
+    switch((*command)->getType()){
         case MOVE:{
-            MoveCommand* mc = static_cast<MoveCommand*>(command);
+            MoveCommand* mc = static_cast<MoveCommand*>(*command);
 
             if(!mc->getIsComputer()){
                 return convertMoveCommandToMove(mc);

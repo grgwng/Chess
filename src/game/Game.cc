@@ -304,17 +304,23 @@ void Game::setupLoop() {
 
         cout << "Enter a set-up command:" << endl;
 
-        Command* command = interpreter->readCommand();
+        shared_ptr<Command*> command = interpreter->readCommand();
 
-        if(!command){
+        if(!command || !(*command)){
             cout << "Invalid command. Please try again." << endl;
             continue;
         }
 
-        if(command->getType() == DONESETUP){
+
+        if((*command)->getType() == DONESETUP){
             if(board->checkValidBoard()){
-                cout << "Leaving setup mode" << endl;
-                break;
+
+                if((checkStalemate(WHITE) && nextPlayer == 1) || (checkStalemate(BLACK) && nextPlayer == 2)){ //if the next player is in stalemate
+                    cout << "The next turn will be a stalemate. Please change the board before trying again." << endl;
+                }else{
+                    cout << "Leaving setup mode." << endl;
+                    break;
+                }
             }else{
                 cout << "You are leaving the board in an invalid condition. Please change the board before trying again." << endl;
                 continue;
@@ -322,9 +328,9 @@ void Game::setupLoop() {
 
         }
 
-        switch(command->getType()){
+        switch((*command)->getType()){
             case ADDPIECE:{
-                AddPiece* apc = static_cast<AddPiece*>(command);
+                AddPiece* apc = static_cast<AddPiece*>(*command);
                 vector<int> pos = apc->getPos();
                 char piece = apc->getPiece();
 
@@ -337,7 +343,7 @@ void Game::setupLoop() {
             }
 
             case REMOVEPIECE:{
-                RemovePiece* rpc = static_cast<RemovePiece*>(command);
+                RemovePiece* rpc = static_cast<RemovePiece*>(*command);
                 vector<int> pos = rpc->getPos();
                 bool rem_succ = board->removePiece(pos[0], pos[1]);
                 if(rem_succ){
@@ -351,7 +357,7 @@ void Game::setupLoop() {
 
 
             case SETCOLOUR: {
-                SetColour* scc = static_cast<SetColour*>(command);
+                SetColour* scc = static_cast<SetColour*>(*command);
 
                 nextPlayer = (scc->getColour() == WHITE ? 1 : 2);
 
@@ -371,21 +377,21 @@ void Game::setupLoop() {
 void Game::runProgram(){
     std::cout << "Welcome to Chess!" << endl;
     
-    Command* command;
+    shared_ptr<Command*> command;
 
     while(true){
         std::cout << "Start a game or enter set-up mode:" << endl;
         //read command
         command = interpreter->readCommand();
 
-        if(!command){
+        if(!command || !(*command)){
             std::cout << "Please try again." << endl;
             continue;
         }
 
-        switch(command->getType()){
+        switch((*command)->getType()){
             case STARTGAME: {
-                StartGame* sg_command = static_cast<StartGame*>(command);
+                StartGame* sg_command = static_cast<StartGame*>(*command);
 
                 switch(sg_command->getWhitePlayer()){
                     case HUMAN:

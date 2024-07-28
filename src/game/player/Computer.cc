@@ -7,16 +7,23 @@ Computer::Computer(Colour colour): Player{colour} {}
 
 Move Computer::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board){
 
-    Command* command = interpreter->readCommand();
+    shared_ptr<Command*> command = interpreter->readCommand();
 
-    if(!command){
+    if(!command || !(*command)){
         return invalidMove();
     }
 
-    switch(command->getType()){
-        case MOVE:
-            return computeMove(board);
+    switch((*command)->getType()){
+        case MOVE: {
+            MoveCommand* mc = static_cast<MoveCommand*>(*command);
+            if(mc->getIsComputer()){
+                return computeMove(board);
+            }else{
+                return invalidMove();
+            }
             break;
+
+        }
         case RESIGN:
             return resignMove(colour);
             break;

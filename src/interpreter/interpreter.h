@@ -17,7 +17,7 @@ class Interpreter{
     public:
         Interpreter();
         ~Interpreter();
-        Command* readCommand();
+        std::shared_ptr<Command*> readCommand();
 
 
 };

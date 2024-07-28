@@ -41,7 +41,7 @@ vector<int> Interpreter::parsePos(string s){
     }
 }
 
-Command* Interpreter::readCommand(){
+shared_ptr<Command*> Interpreter::readCommand(){
     string input;
     string command;
 
@@ -51,7 +51,7 @@ Command* Interpreter::readCommand(){
 
     if(!(iss >> command)){
         cout << "Finished program" << endl;
-        return new Quit{};
+        return make_shared<Command*>(new Quit{});
     }
 
     if(command == "game"){
@@ -60,16 +60,16 @@ Command* Interpreter::readCommand(){
 
         if(playerTypeParseTable.find(whitePlayer) != playerTypeParseTable.end()
             && playerTypeParseTable.find(blackPlayer) != playerTypeParseTable.end()){
-
-            return new StartGame{playerTypeParseTable[whitePlayer], playerTypeParseTable[blackPlayer]};
+                
+            return make_shared<Command*>(new StartGame{playerTypeParseTable[whitePlayer], playerTypeParseTable[blackPlayer]});
         }else{
             cout << "Invalid arguments. Please try again" << endl;
-            return nullptr;
+            return make_shared<Command*>(nullptr);
         }
 
         
     }else if(command == "resign"){
-        return new Resign{};
+        return make_shared<Command*>(new Resign{});
 
     }else if(command == "move"){
         string start, end;
@@ -83,36 +83,36 @@ Command* Interpreter::readCommand(){
             //check if invalid
             if(startPos[0] == -1 || endPos[0] == -1){
                 cout << "Invalid argument. Please try again" << endl;
-                return nullptr;
+                return make_shared<Command*>(nullptr);
             }
             
             if(iss >> promotion){ 
                 //it is a promotion
                 if(pieceTable.find(promotion) != pieceTable.end()){//check if promotion is valid
-                    return new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, promotion};
+                    return make_shared<Command*>(new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, promotion});
                 }else{
                     cout << "Invalid argument. Please try again" << endl;
-                    return nullptr;
+                    return make_shared<Command*>(nullptr);
                 }
                 
             }else{
                 //it is not a promotion
-                return new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, 0};
+                return make_shared<Command*>(new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, 0});
             }
         }else{
 
             if(start.length() == 0 && end.length() ==0){
-                return new MoveCommand(0, 0, 0, 0, true, 0);
+                return make_shared<Command*>(new MoveCommand(0, 0, 0, 0, true, 0));
             }else{
                 cout << "Invalid argument. Please try again" << endl;
-                return nullptr;
+                return make_shared<Command*>(nullptr);
             }
 
         }
 
 
     }else if(command == "setup"){
-        return new Setup{};
+        return make_shared<Command*>(new Setup{});
  
     }else if(command == "+"){ //add piece
         char piece;
@@ -123,10 +123,10 @@ Command* Interpreter::readCommand(){
 
         if(pieceTable.find(piece) != pieceTable.end() && pos[0] != -1){
             //valid piece
-            return new AddPiece{pos[0], pos[1], piece};
+            return make_shared<Command*>(new AddPiece{pos[0], pos[1], piece});
         }else{
             cout << "Invalid arguments. Please try again" << endl;
-            return nullptr;
+            return make_shared<Command*>(nullptr);
         }
 
 
@@ -136,10 +136,10 @@ Command* Interpreter::readCommand(){
         vector<int> pos = parsePos(s);
 
         if(pos[0] != -1){
-            return new RemovePiece{pos[0], pos[1]};
+            return make_shared<Command*>(new RemovePiece{pos[0], pos[1]});
         }else{
             cout << "Invalid argument. Please try again" << endl;
-            return nullptr;
+            return make_shared<Command*>(nullptr);
         }
 
     }else if(command == "="){ //set colour
@@ -147,18 +147,18 @@ Command* Interpreter::readCommand(){
         iss >> colour;
 
         if(colourParseTable.find(colour) != colourParseTable.end()){
-            return new SetColour{colourParseTable[colour]};
+            return make_shared<Command*>(new SetColour{colourParseTable[colour]});
         }else{
             cout << "Invalid argument. Please try again" << endl;
-            return nullptr;
+            return make_shared<Command*>(nullptr);
         }
 
     }else if(command == "done"){
-        return new DoneSetup{};
+        return make_shared<Command*>(new DoneSetup{});
 
     }else{
         cout << "Invalid command. Please try again" << endl;
-        return nullptr;
+        return make_shared<Command*>(nullptr);
     }
 
 }
