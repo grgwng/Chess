@@ -40,12 +40,12 @@ bool Game::checkCheckmate(Colour colour) {
                 for (int endRow = 0; endRow < 8; ++endRow) {
                     for (int endCol = 0; endCol < 8; ++endCol) {
                         if (piece->isValidMove(*board, row, col, endRow, endCol)) {
-                            // Simulate the move
-                            Board tempBoard = *board; // Make a copy of the board
-                            tempBoard.movePiece(row, col, endRow, endCol);
-
+                            shared_ptr<Board> tempboard = make_shared<Board>(*board);
+                            tempboard->movePiece(row, col, endRow, endCol);
+                            std::shared_ptr<Tile> tempKingTile = (colour == Colour::WHITE) ? tempboard->getWhiteKingTile() : tempboard->getBlackKingTile();
+                            auto tempKing = std::dynamic_pointer_cast<King>(tempKingTile->getPiece());
                             // Check if the king is still in check after the move
-                            if (!king->isInCheck(tempBoard, kingTile->getRow(), kingTile->getCol())) {
+                            if (!tempKing->isInCheck(*tempboard, tempKingTile->getRow(), tempKingTile->getCol())) {
                                 return false;
                             }
                         }

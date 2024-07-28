@@ -27,14 +27,6 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
             return false; 
         }
 
-
-        // Simulate the king's intermediate move
-        Board tempBoard = board; // Make a copy of the board
-        tempBoard.movePiece(startRow, startCol, endRow, endCol);
-        if (isInCheck(tempBoard, endRow, endCol)) {
-            return false;
-        }
-
         return true;
     }
 
@@ -48,9 +40,9 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
                 if (!rook->hasMoved() && board.getTile(startRow, 5)->isEmpty() && board.getTile(startRow, 6)->isEmpty()) {
 
                     // Simulate the king's intermediate move
-                    Board tempBoard = board; // Make a copy of the board
-                    tempBoard.movePiece(startRow, startCol, startRow, startCol + 1);
-                    if (isInCheck(tempBoard, startRow, startCol + 1)) {
+                    shared_ptr<Board> tempboard = make_shared<Board>(board);
+                    tempboard->movePiece(startRow, startCol, startRow, startCol + 1);
+                    if (isInCheck(*tempboard, startRow, startCol + 1)) {
                         return false;
                     }
 
@@ -65,9 +57,9 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
                 if (!rook->hasMoved() && board.getTile(startRow, 1)->isEmpty() && board.getTile(startRow, 2)->isEmpty() && board.getTile(startRow, 3)->isEmpty()) {
                     
                     // Simulate the king's intermediate move
-                    Board tempBoard = board; // Make a copy of the board
-                    tempBoard.movePiece(startRow, startCol, startRow, startCol - 1);
-                    if (isInCheck(tempBoard, startRow, startCol - 1)) {
+                    shared_ptr<Board> tempboard = make_shared<Board>(board);
+                    tempboard->movePiece(startRow, startCol, startRow, startCol - 1);
+                    if (isInCheck(*tempboard, startRow, startCol - 1)) {
                         return false;
                     }
 
@@ -87,8 +79,8 @@ bool King::isInCheck(const Board& board, int kingRow, int kingCol) const {
     for (int row = 0; row < 8; ++row) {
         for (int col = 0; col < 8; ++col) {
             std::shared_ptr<Piece> piece = board.getTile(row, col)->getPiece();
-            // Check if the piece is an opponent's piece
-            if (piece && piece->getColour() == opponentColour) {
+            // Check if the piece is an opponent's piece (cannot be a the enemy king putting the king in check either)
+            if (piece && piece->getColour() == opponentColour && !(piece->getType() == 'k')) {
                 // Check if this piece can move to the king's position
                 if (piece->isValidMove(board, row, col, kingRow, kingCol)) {
                     return true; 

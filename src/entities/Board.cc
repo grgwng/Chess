@@ -42,7 +42,7 @@ Board::Board() {
 
 Board::Board(const Board& other) : gameStatus{other.gameStatus} {
     board.resize(boardSize, vector<std::shared_ptr<Tile>>(boardSize));
-
+    
     for (int row = 0; row < boardSize; ++row) {
         for (int col = 0; col < boardSize; ++col) {
             board[row][col] = std::make_shared<Tile>(*other.board[row][col]);
