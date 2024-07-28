@@ -24,7 +24,7 @@ std::vector<Move> Piece::getValidMoves(const Board& board, int startRow, int sta
                 std::shared_ptr<Tile> tempKingTile = (colour == WHITE) ? tempboard->getWhiteKingTile() : tempboard->getBlackKingTile();
                 auto tempKing = std::dynamic_pointer_cast<King>(tempKingTile->getPiece());
 
-                if(tempKing->isInCheck(*tempboard, tempKingTile->getRow(), tempKingTile->getCol())) {
+                if (tempKing && tempKing->isInCheck(*tempboard, tempKingTile->getRow(), tempKingTile->getCol())) {
                     continue;
                 }
 
