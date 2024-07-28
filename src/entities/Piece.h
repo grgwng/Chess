@@ -1,9 +1,10 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include <memory>
 
+#include <vector>
 #include "../types/types.h"
+#include "../game/Move.h"
 
 class Board;
 class Tile;
@@ -20,6 +21,7 @@ public:
 
     bool hasMoved() const;
     void setHasMoved(bool moved);
+    std::vector<Move> getValidMoves(const Board& board, int startRow, int startCol);
 
     virtual std::shared_ptr<Piece> clone() const = 0;
 

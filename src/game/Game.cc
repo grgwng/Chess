@@ -9,7 +9,7 @@
 using namespace std;
 
 Game::Game(): board{std::make_shared<Board>()}, interpreter{std::make_unique<Interpreter>()}{
-    board->initializeStandardBoard();
+    // board->initializeStandardBoard();
 }
 
 Game::~Game(){
@@ -104,15 +104,12 @@ void Game::resign() {
 
 
 void Game::gameLoop(){ 
-
     std::cout << "New game has started!" << endl;
-
     GameStatus status = NOSTATUS;
 
     //our loop in game mode
 
     while(true){
-
         //PLAYER1 input loop
         board->render();
         cout << "WHITE'S TURN" << endl;
@@ -126,7 +123,6 @@ void Game::gameLoop(){
                 status = WHITERESIGN;
                 break;
             }
-    
             
             if(player1Move.startCol < 0){ //invalid move
                 continue; //retry
@@ -143,12 +139,10 @@ void Game::gameLoop(){
                 continue;
             }
 
-
             //make tempboard
             //check if player1 in check, if yes reject
             shared_ptr<Board> tempboard = make_shared<Board>(*board);
             tempboard->movePiece(player1Move.startRow, player1Move.startCol, player1Move.endRow, player1Move.endCol);
-
             
             if(checkCheck(WHITE, tempboard)){
                 std::cout << "White put itself in check. Invalid move." << endl;
@@ -199,9 +193,8 @@ void Game::gameLoop(){
             std::cout << "Black is in check!" << endl;
         }
         
-
         board->render();
-        std::cout << "Black's turn:" << endl;
+        std::cout << "BLACK'S TURN:" << endl;
         std::cout << "Enter a game command:" << endl;
         //PLAYER2 input loop
 
@@ -283,9 +276,8 @@ void Game::gameLoop(){
         }else if(status == WHITECHECK){
             std::cout << "White is in check!" << endl;
         }
-
-
     }
+
     board->initializeStandardBoard();
     nextPlayer = 1;
 }
@@ -296,7 +288,7 @@ void Game::setupLoop() {
     cout << "You have entered set-up mode!" << endl;
 
     //clear board
-    // board->clearBoard();
+    board->clearBoard();
     board->render();
 
     while(true){
@@ -312,8 +304,7 @@ void Game::setupLoop() {
         }
 
         if(command->getType() == DONESETUP){
-
-            //TODO: NEED TO CHECK CONDITIONS ARE MET
+            break;
             if(board->checkValidBoard()){
                 cout << "Leaving setup mode" << endl;
                 break;
@@ -369,12 +360,11 @@ void Game::setupLoop() {
         }
     }
 
-    board = make_shared<Board>();
-    board->initializeStandardBoard();
+    // board = make_shared<Board>();
+    // board->initializeStandardBoard();
 }
 
 void Game::runProgram(){
-
     std::cout << "Welcome to Chess!" << endl;
     
     Command* command;
@@ -390,7 +380,6 @@ void Game::runProgram(){
         }
 
         switch(command->getType()){
-
             case STARTGAME: {
                 StartGame* sg_command = static_cast<StartGame*>(command);
 
@@ -435,7 +424,6 @@ void Game::runProgram(){
             }
 
             case SETUP: {
-
                 setupLoop();
                 break;
             }
@@ -443,12 +431,6 @@ void Game::runProgram(){
             default:{
                 std::cout << "Invalid command in this context. Please try again" << endl;
             }
-
-            
-            
         }
-
-
     }
-
 }

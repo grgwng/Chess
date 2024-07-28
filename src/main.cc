@@ -6,8 +6,6 @@
 #include <map>
 
 int main() {
-
-
     Game game;
 
     game.runProgram();
@@ -17,7 +15,6 @@ int main() {
     // std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(&newBoard);
     // newBoard.setGameStatus(STALEMATE);
     // newBoard.render();
-    
 
 
     // std::map<char, int> rowMapping = {
