@@ -20,7 +20,7 @@ public:
     void initializeStandardBoard();
     void addPiece(int row, int col, char piece, Colour colour);
     bool removePiece(int row, int col);
-    bool checkValidBoard();
+    bool processValidBoard();
     void clearBoard();
 
     std::vector<Move> getAllValidMoves(Colour colour);
