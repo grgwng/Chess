@@ -127,6 +127,7 @@ void Game::gameLoop(){
             }
             
             if(player1Move.startCol < 0){ //invalid move
+                cout << "Invalid move. Please try again." << endl;
                 continue; //retry
             }
 
