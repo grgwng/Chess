@@ -74,7 +74,14 @@ bool Game::checkStalemate(Colour colour) {
                 for (int endRow = 0; endRow < 8; ++endRow) {
                     for (int endCol = 0; endCol < 8; ++endCol) {
                         if (piece->isValidMove(*board, row, col, endRow, endCol)) {
-                            return false; // Found a valid move so not stalemate
+                            std::shared_ptr<Board> tempBoard = std::make_shared<Board>(*board);
+                            tempBoard->movePiece(row, col, endRow, endCol);
+                            std::shared_ptr<Tile> tempKingTile = (colour == Colour::WHITE) ? tempBoard->getWhiteKingTile() : tempBoard->getBlackKingTile();
+                            auto tempKing = std::dynamic_pointer_cast<King>(tempKingTile->getPiece());
+                            // Check if the king is still not in check after the move
+                            if (!tempKing->isInCheck(*tempBoard, tempKingTile->getRow(), tempKingTile->getCol())) {
+                                return false; // Found a valid move so not stalemate
+                            }
                         }
                     }
                 }
