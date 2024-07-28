@@ -25,7 +25,6 @@ public:
     std::shared_ptr<Tile> getWhiteKingTile() const;
     std::shared_ptr<Tile> getBlackKingTile() const;
     bool movePiece(int startRow, int startCol, int endRow, int endCol);
-    void promotePawn(int row, int col, char newPieceType);
     void setGameStatus(GameStatus status);
     void render();
     std::shared_ptr<Tile> getTile(int row, int col) const;

@@ -4,6 +4,12 @@
 
 Pawn::Pawn(Colour colour) : Piece{colour}, enPassantEligible{false} {}
 
+Pawn::Pawn(const Pawn& other) : Piece{other}, enPassantEligible{other.enPassantEligible} {}
+
+std::shared_ptr<Piece> Pawn::clone() const {
+    return std::make_shared<Pawn>(*this);
+}
+
 const char Pawn::getType() const { 
     return 'p'; 
 }

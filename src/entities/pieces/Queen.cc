@@ -5,6 +5,12 @@
 
 Queen::Queen(Colour colour) : Piece{colour} {}
 
+Queen::Queen(const Queen& other) : Piece{other} {}
+
+std::shared_ptr<Piece> Queen::clone() const {
+    return std::make_shared<Queen>(*this);
+}
+
 const char Queen::getType() const { 
     return 'q'; 
 }

@@ -3,6 +3,12 @@
 
 Knight::Knight(Colour colour) : Piece{colour} {}
 
+Knight::Knight(const Knight& other) : Piece{other} {}
+
+std::shared_ptr<Piece> Knight::clone() const {
+    return std::make_shared<Knight>(*this);
+}
+
 const char Knight::getType() const { 
     return 'n'; 
 }

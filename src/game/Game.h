@@ -8,6 +8,7 @@
 #include "Move.h"
 #include "../entities/Board.h"
 #include "../entities/pieces/King.h"
+#include "../entities/pieces/Pawn.h"
 #include "../display/TextDisplay.h"
 
 using namespace std;

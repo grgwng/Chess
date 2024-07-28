@@ -30,20 +30,7 @@ bool Game::checkCheckmate(Colour colour) {
     }
 
     // king must be in check now
-    // Check if there is any legal move for the king to escape check. Iterate through all possible moves for the king
-    for (int rowOffset = -1; rowOffset <= 1; ++rowOffset) {
-        for (int colOffset = -1; colOffset <= 1; ++colOffset) {
-            int newRow = kingTile->getRow() + rowOffset;
-            int newCol = kingTile->getCol() + colOffset;
-            if (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8) {
-                if (king->isValidMove(*board, kingTile->getRow(), kingTile->getCol(), newRow, newCol)) {
-                    return true; // king has a valid move so can escape check
-                }
-            }
-        }
-    }
-
-    // Check if there is any legal move for any piece of same colour to block the check or capture the attacking piece
+    // Check if there is any legal move for any piece of same colour that doesnt result in check for the king
     for (int row = 0; row < 8; ++row) {
         for (int col = 0; col < 8; ++col) {
             std::shared_ptr<Piece> piece = board->getTile(row, col)->getPiece();
@@ -97,11 +84,16 @@ bool Game::checkStalemate(Colour colour) {
 }
 
 bool Game::checkPromotion(const shared_ptr<Board>& board, Move move) {
+    if (auto pawn = dynamic_pointer_cast<Pawn>(board->getTile(move.endRow, move.endCol)->getPiece())) {
+        if (move.endRow == 0 || move.endRow == 7) {
+            return true;
+        }
+    }
     return false;
 }
 
 bool Game::checkDraw() {
-
+    return true;
 }
 
 void Game::resign() {
@@ -111,7 +103,7 @@ void Game::resign() {
 
 void Game::gameLoop(){ 
 
-    cout << "New game has started!" << endl;
+    std::cout << "New game has started!" << endl;
 
     int activePlayer = 1;
     GameStatus status = NOSTATUS;
@@ -124,14 +116,14 @@ void Game::gameLoop(){
 
         //PLAYER1 input loop
         board->render();
-        cout << "WHITE'S TURN" << endl;
-        cout << "Enter a game command:" << endl;
+        std::cout << "WHITE'S TURN" << endl;
+        std::cout << "Enter a game command:" << endl;
         while(activePlayer == 1){
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
 
             if(player1Move.isResign){
-                cout << "White resigned!" << endl;
+                std::cout << "White resigned!" << endl;
                 status = WHITERESIGN;
                 break;
             }
@@ -148,7 +140,7 @@ void Game::gameLoop(){
                 ->isValidMove(*board, player1Move.startRow, player1Move.startCol, player1Move.endRow, player1Move.endCol)){
             
                 //not valid move
-                cout << "Invalid piece move. Please try again." << endl;
+                std::cout << "Invalid piece move. Please try again." << endl;
                 continue;
             }
 
@@ -160,13 +152,13 @@ void Game::gameLoop(){
 
             
             if(checkCheck(WHITE, tempboard)){
-                cout << "White put itself in check. Invalid move." << endl;
+                std::cout << "White put itself in check. Invalid move." << endl;
                 continue;
             }
 
             //check if we have everything for a promotion if relevant
             if(checkPromotion(tempboard, player1Move) && player1Move.promotionType == 0){
-                cout << "Need a promotion type." << endl;
+                std::cout << "Need a promotion type." << endl;
                 continue;
             }
             
@@ -191,27 +183,27 @@ void Game::gameLoop(){
         }
 
         if(status == CHECKMATEBLACK){
-            cout << "White wins!" << endl;
+            std::cout << "White wins!" << endl;
             p1score +=1;
             break;
         }else if(status == WHITERESIGN){
-            cout << "Black wins!" << endl;
+            std::cout << "Black wins!" << endl;
             p2score +=1;
             break;
             
         }else if(status == STALEMATE){
-            cout << "Stalemate" << endl;
+            std::cout << "Stalemate" << endl;
             p1score += 0.5;
             p2score += 0.5;
             break;
         }else if(status == BLACKCHECK){
-            cout << "Black is in check!" << endl;
+            std::cout << "Black is in check!" << endl;
         }
         
 
         board->render();
-        cout << "Black's turn:" << endl;
-        cout << "Enter a game command:" << endl;
+        std::cout << "Black's turn:" << endl;
+        std::cout << "Enter a game command:" << endl;
         //PLAYER2 input loop
 
         while(activePlayer == 2){
@@ -219,13 +211,13 @@ void Game::gameLoop(){
             Move player2Move = player2->makeMove(interpreter, board);
 
             if(player2Move.isResign){
-                cout << "Black resigned!" << endl;
+                std::cout << "Black resigned!" << endl;
                 status = BLACKRESIGN;
                 break;
             }
 
             if(player2Move.startCol < 0){ //invalid move
-                cout << "Invalid move" << endl;
+                std::cout << "Invalid move" << endl;
                 continue; //retry
             }
 
@@ -236,7 +228,7 @@ void Game::gameLoop(){
                 ->isValidMove(*board, player2Move.startRow, player2Move.startCol, player2Move.endRow, player2Move.endCol)){
             
                 //not valid move
-                cout << "Invalid piece move. Please try again." << endl;
+                std::cout << "Invalid piece move. Please try again." << endl;
                 continue;
             }
 
@@ -246,13 +238,13 @@ void Game::gameLoop(){
             tempboard->movePiece(player2Move.startRow, player2Move.startCol, player2Move.endRow, player2Move.endCol);
 
             if(checkCheck(BLACK, tempboard)){
-                cout << "Black put itself in check. Invalid move." << endl;
+                std::cout << "Black put itself in check. Invalid move." << endl;
                 continue;
             }
 
             //check if we have everything for a promotion if relevant
             if(checkPromotion(tempboard, player2Move) && player2Move.promotionType == 0){
-                cout << "Need a promotion type." << endl;
+                std::cout << "Need a promotion type." << endl;
                 continue;
             }
             
@@ -277,20 +269,20 @@ void Game::gameLoop(){
         }
 
         if(status == CHECKMATEWHITE){
-            cout << "Black wins!" << endl;
+            std::cout << "Black wins!" << endl;
             p2score +=1;
             break;
         }else if(status == BLACKRESIGN){
-            cout << "White wins!" << endl;
+            std::cout << "White wins!" << endl;
             p1score +=1;
             break;
         }else if(status == STALEMATE){
-            cout << "Stalemate" << endl;
+            std::cout << "Stalemate" << endl;
             p1score += 0.5;
             p2score += 0.5;
             break;
         }else if(status == WHITECHECK){
-            cout << "White is in check!" << endl;
+            std::cout << "White is in check!" << endl;
         }
 
 
@@ -309,17 +301,17 @@ void Game::setupLoop() {
 
 void Game::runProgram(){
 
-    cout << "Welcome to Chess!" << endl;
+    std::cout << "Welcome to Chess!" << endl;
     
     Command* command;
 
     while(true){
-        cout << "Start a game or enter set up mode:" << endl;
+        std::cout << "Start a game or enter set up mode:" << endl;
         //read command
         command = interpreter->readCommand();
 
         if(!command){
-            cout << "Please try again." << endl;
+            std::cout << "Please try again." << endl;
             continue;
         }
 
@@ -375,7 +367,7 @@ void Game::runProgram(){
             }
 
             default:{
-                cout << "Invalid command in this context. Please try again" << endl;
+                std::cout << "Invalid command in this context. Please try again" << endl;
             }
 
             

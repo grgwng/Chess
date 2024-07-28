@@ -5,6 +5,12 @@
 
 King::King(Colour colour) : Piece{colour} {}
 
+King::King(const King& other) : Piece{other} {}
+
+std::shared_ptr<Piece> King::clone() const {
+    return std::make_shared<King>(*this);
+}
+
 const char King::getType() const { 
     return 'k'; 
 }
@@ -21,10 +27,10 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
             return false; 
         }
 
-        // Simulate the move
+
+        // Simulate the king's intermediate move
         Board tempBoard = board; // Make a copy of the board
         tempBoard.movePiece(startRow, startCol, endRow, endCol);
-        // (cannot move to a position that will put the king in check)
         if (isInCheck(tempBoard, endRow, endCol)) {
             return false;
         }
@@ -48,12 +54,6 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
                         return false;
                     }
 
-                    // Simulate the final position move
-                    tempBoard.movePiece(startRow, startCol + 1, startRow, startCol + 2);
-                    if (isInCheck(tempBoard, startRow, startCol + 2)) {
-                        return false;
-                    }
-
                     return true;
                 }
             }
@@ -68,12 +68,6 @@ bool King::isValidMove(const Board& board, int startRow, int startCol, int endRo
                     Board tempBoard = board; // Make a copy of the board
                     tempBoard.movePiece(startRow, startCol, startRow, startCol - 1);
                     if (isInCheck(tempBoard, startRow, startCol - 1)) {
-                        return false;
-                    }
-
-                    // Simulate the final position move
-                    tempBoard.movePiece(startRow, startCol - 1, startRow, startCol - 2);
-                    if (isInCheck(tempBoard, startRow, startCol - 2)) {
                         return false;
                     }
 

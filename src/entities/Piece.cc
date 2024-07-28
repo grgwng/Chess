@@ -1,6 +1,9 @@
 #include "Piece.h"
+#include <memory>
 
-Piece::Piece(Colour colour) : colour(colour), hasMovedFlag(false) {}
+Piece::Piece(Colour colour) : colour{colour}, hasMovedFlag{false} {}
+
+Piece::Piece(const Piece& other) : colour{other.colour}, hasMovedFlag{other.hasMovedFlag} {}
 
 Colour Piece::getColour() const { return colour;};
 

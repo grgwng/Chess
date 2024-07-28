@@ -3,6 +3,12 @@
 
 Rook::Rook(Colour colour) : Piece{colour} {}
 
+Rook::Rook(const Rook& other) : Piece{other} {}
+
+std::shared_ptr<Piece> Rook::clone() const {
+    return std::make_shared<Rook>(*this);
+}
+
 const char Rook::getType() const { 
     return 'r'; 
 }

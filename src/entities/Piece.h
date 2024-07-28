@@ -1,6 +1,8 @@
 #ifndef PIECE_H
 #define PIECE_H
 
+#include <memory>
+
 #include "../types/types.h"
 
 class Board;
@@ -11,12 +13,15 @@ class Piece {
     bool hasMovedFlag;
 public:
     Piece(Colour colour);
+    Piece(const Piece& other);
     Colour getColour() const;
     virtual const char getType() const = 0;
     virtual bool isValidMove(const Board& board, int startRow, int startCol, int endRow, int endCol) const = 0;
 
     bool hasMoved() const;
     void setHasMoved(bool moved);
+
+    virtual std::shared_ptr<Piece> clone() const = 0;
 
     virtual ~Piece() {}
 };

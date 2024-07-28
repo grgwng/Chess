@@ -40,7 +40,7 @@ Board::Board() {
     }
 }
 
-Board::Board(const Board& other) {
+Board::Board(const Board& other) : gameStatus{other.gameStatus} {
     board.resize(boardSize, vector<std::shared_ptr<Tile>>(boardSize));
 
     for (int row = 0; row < boardSize; ++row) {
@@ -55,8 +55,6 @@ Board::Board(const Board& other) {
     if (other.blackKingTile) {
         blackKingTile = board[other.blackKingTile->getRow()][other.blackKingTile->getCol()];
     }
-
-    gameStatus = other.gameStatus;
 }
 
 void Board::initializeStandardBoard() {
@@ -220,7 +218,6 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
         // if theres a piece on tile you're moving to then it must be an enemy piece and delete it
         if (targetPiece) { // already do the check to make sure its not same colour in isvalidmove
             setTile(endRow, endCol, nullptr); // Capture the opponent's piece
-            // TODO: HANDLE REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
         }
 
         // move the piece and set start tile to empty piece
@@ -246,15 +243,7 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
                 if (enPassantPawn && enPassantPawn->getType() == 'p' && enPassantPawn->getColour() != pawn->getColour() &&
                     dynamic_pointer_cast<Pawn>(enPassantPawn)->isEnPassantEligible()) {
                     setTile(startRow, endCol, nullptr); // capture the en passant pawn
-                    std::cout << "EN PASSANT CAPTURE!\n";
-                    // TODO: HANDLE EN PASSANT REPORTING LOGIC TO GAME AFTER PIECE CAPTURE
                 }
-            }
-
-            // promotion logic
-            if (endRow == 0 || endRow == 7) { // the pawn is ready to be promoted
-                // TODO: HANDLE PROMOTION LOGIC need to call game to get the user input for which piece and then call promotePawn
-
             }
         }
 
@@ -284,26 +273,6 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
         return true;
     }
     return false;
-}
-
-void Board::promotePawn(int row, int col, char newPieceType) {
-    Colour c = board[row][col]->getColour();
-    // pawn promotion 
-    if (newPieceType == 'q') {
-        setTile(row, col, std::make_shared<Queen>(c));
-    }
-    else if (newPieceType == 'r') {
-        setTile(row, col, std::make_shared<Rook>(c));
-    }
-    else if (newPieceType == 'n') {
-        setTile(row, col, std::make_shared<Knight>(c));
-    }
-    else if (newPieceType == 'b') {
-        setTile(row, col, std::make_shared<Bishop>(c));
-    }
-    else {
-        cout << "invalid input";
-    }
 }
 
 void Board::setGameStatus(GameStatus status) {

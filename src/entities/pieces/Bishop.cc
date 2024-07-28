@@ -3,6 +3,12 @@
 
 Bishop::Bishop(Colour colour) : Piece{colour} {}
 
+Bishop::Bishop(const Bishop& other) : Piece{other} {}
+
+std::shared_ptr<Piece> Bishop::clone() const {
+    return std::make_shared<Bishop>(*this);
+}
+
 const char Bishop::getType() const { 
     return 'b'; 
 }
