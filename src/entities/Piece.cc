@@ -28,13 +28,15 @@ std::vector<Move> Piece::getValidMoves(const Board& board, int startRow, int sta
                     continue;
                 }
 
-                char promotionStatus = '0';
-
                 if(getType() == 'p' && (row == 0 || row == 7)) {
-                    promotionStatus = 'q';
+                    for(auto promotionStatus : {'r', 'n', 'b', 'q'}) {
+                        Move newMove{colour, startRow, startCol, row, col, promotionStatus, false};
+                        result.push_back(newMove);
+                    }
+                    continue;
                 }
 
-                Move newMove{colour, startRow, startCol, row, col, promotionStatus, false};
+                Move newMove{colour, startRow, startCol, row, col, '0', false};
                 result.push_back(newMove);
             }
         }

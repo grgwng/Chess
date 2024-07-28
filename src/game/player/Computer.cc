@@ -42,7 +42,13 @@ std::vector<Move> Computer::getCheckMoves(const shared_ptr<Board>& board, Colour
 
     for(auto move : validMoves) {
         shared_ptr<Board> tempboard = make_shared<Board>(*board);
+
         tempboard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
+
+        if(move.promotionType != '0') {
+            tempboard->addPiece(move.endRow, move.endCol, move.promotionType, move.player);
+        }
+
         shared_ptr<Tile> otherKingTile = (colour == WHITE) ? tempboard->getBlackKingTile() : tempboard->getWhiteKingTile();
         auto otherKing = dynamic_pointer_cast<King>(otherKingTile->getPiece());
 
