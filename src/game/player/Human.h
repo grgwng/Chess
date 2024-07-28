@@ -5,10 +5,9 @@
 
 class Human : public Player {
 public:
-    Human();
+    Human(Colour colour);
     virtual Move makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board) override;
     Move convertMoveCommandToMove(MoveCommand* mc);
-
 };
 
 #endif

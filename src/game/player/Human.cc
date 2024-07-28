@@ -1,7 +1,7 @@
 #include "Human.h"
 #include <iostream>
 
-Human::Human(){}
+Human::Human(Colour colour): Player{colour} {}
 
 Move Human::convertMoveCommandToMove(MoveCommand* mc){
     
@@ -26,14 +26,14 @@ Move Human::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_pt
 
             if(!mc->getIsComputer()){
                 return convertMoveCommandToMove(mc);
-            }else{
+            }
+            else{
                 return invalidMove();
             }
             break;
 
         }
         case RESIGN:
-            cout << "resigned" << endl;
             return resignMove(colour);
             break;
         default:

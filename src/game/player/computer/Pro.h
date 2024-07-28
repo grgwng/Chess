@@ -5,6 +5,7 @@
 
 class Pro : public Computer {
 public:
+    Pro(Colour colour);
     Move computeMove(const shared_ptr<Board>& board) override;
 };
 
