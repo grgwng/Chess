@@ -312,7 +312,7 @@ void Game::setupLoop() {
         }
 
         if(command->getType() == DONESETUP){
-            if(board->checkValidBoard()){
+            if(board->processValidBoard()){
                 cout << "Leaving setup mode" << endl;
                 break;
             }else{

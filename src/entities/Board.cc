@@ -165,7 +165,7 @@ bool Board::removePiece(int row, int col) {
     return true;
 }
 
-bool Board::checkValidBoard() {
+bool Board::processValidBoard() {
     bool seenWhiteKing = false;
     bool seenBlackKing = false;
 
