@@ -31,7 +31,7 @@ public:
     std::shared_ptr<Tile> getTile(int row, int col) const;
     void setTile(int row, int col, shared_ptr<Piece> p);
     GameStatus getStatus() const;
-    int getBoardSize();
+    int getBoardSize() const;
 };
 
 #endif

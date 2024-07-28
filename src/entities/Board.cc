@@ -64,9 +64,8 @@ void Board::clearBoard(){
         }
     }
 
-    /*
-    reset black/white king tiles (idk how)
-    */
+    whiteKingTile = nullptr;
+    blackKingTile = nullptr;
 }
 
 void Board::initializeStandardBoard() {
@@ -207,7 +206,7 @@ bool Board::checkValidBoard() {
         }
 
         // Last row
-        if(board[boardSize - 1][col]->getPiece() && board[0][col]->getPiece()->getType() == 'p') {
+        if(board[boardSize - 1][col]->getPiece() && board[boardSize - 1][col]->getPiece()->getType() == 'p') {
             return false;
         }
     } 
@@ -307,6 +306,6 @@ GameStatus Board::getStatus() const {
     return gameStatus;
 }
 
-int Board::getBoardSize() {
+int Board::getBoardSize() const {
     return boardSize;
 }
