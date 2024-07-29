@@ -32,6 +32,11 @@ Move Pro::computeMove(const shared_ptr<Board>& board){
                           checkAndCaptureMoves.begin(), checkAndCaptureMoves.end(),
                           std::back_inserter(safeAndCheckAndCaptureMoves));
 
+    std::vector<Move> safeOrCheckOrCaptureMoves;
+    safeOrCheckOrCaptureMoves.insert(safeOrCheckOrCaptureMoves.end(), checkMoves.begin(), checkMoves.end());
+    safeOrCheckOrCaptureMoves.insert(safeOrCheckOrCaptureMoves.end(), captureMoves.begin(), captureMoves.end());
+    safeOrCheckOrCaptureMoves.insert(safeOrCheckOrCaptureMoves.end(), safeMoves.begin(), safeMoves.end());
+
     if(!safeAndCheckAndCaptureMoves.empty()) {
         moves = safeAndCheckAndCaptureMoves;
     } 
@@ -41,17 +46,8 @@ Move Pro::computeMove(const shared_ptr<Board>& board){
     else if(!safeAndCaptureMoves.empty()) {
         moves = safeAndCaptureMoves;
     }
-    else if(!checkAndCaptureMoves.empty()) {
-        moves = checkAndCaptureMoves;
-    }
-    else if(!checkMoves.empty()) {
-        moves = checkMoves;
-    }
-    else if(!captureMoves.empty()) {
-        moves = captureMoves;
-    }
-    else if(!safeMoves.empty()) {
-        moves = safeMoves;
+    else if(!safeOrCheckOrCaptureMoves.empty()) {
+        moves = safeOrCheckOrCaptureMoves;
     }
     else {
         moves = validMoves;

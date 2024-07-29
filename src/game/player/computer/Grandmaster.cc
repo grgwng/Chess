@@ -1,18 +1,21 @@
 #include "Grandmaster.h"
-#include <limits>
-#include <iostream>
 
 Grandmaster::Grandmaster(Colour colour) : Computer(colour) {}
 
 Move Grandmaster::computeMove(const shared_ptr<Board>& board) {
-    int bestValue = INT_MIN;
+    int bestValue = std::numeric_limits<int>::min();
     Move bestMove = invalidMove();
     std::vector<Move> validMoves = board->getAllValidMoves(colour);
 
-    for (auto move : validMoves) {
+    for (const auto& move : validMoves) {
         shared_ptr<Board> tempBoard = make_shared<Board>(*board);
         tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
-        int boardValue = minimax(tempBoard, MAX_DEPTH - 1, false);
+
+        if(move.promotionType != '0') {
+            tempBoard->addPiece(move.endRow, move.endCol, move.promotionType, move.player);
+        }
+
+        int boardValue = minimax(tempBoard, MAX_DEPTH - 1, false, INT_MIN, INT_MAX);
 
         if (boardValue > bestValue) {
             bestValue = boardValue;
@@ -20,11 +23,10 @@ Move Grandmaster::computeMove(const shared_ptr<Board>& board) {
         }
     }
 
-    std::cout << "Best Move: " << bestMove.startRow << " " << bestMove.startCol << " " << bestMove.endRow << " " << bestMove.endCol << std::endl;
     return bestMove;
 }
 
-int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximizingPlayer) {
+int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximizingPlayer, int alpha, int beta) {
     if (depth == 0) {
         return evaluateBoard(board);
     }
@@ -41,18 +43,35 @@ int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximiz
         for (auto move : validMoves) {
             shared_ptr<Board> tempBoard = make_shared<Board>(*board);
             tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
-            int eval = minimax(tempBoard, depth - 1, false);
+
+            if(move.promotionType != '0') {
+                tempBoard->addPiece(move.endRow, move.endCol, move.promotionType, move.player);
+            }
+
+            int eval = minimax(tempBoard, depth - 1, false, alpha, beta);
             maxEval = max(maxEval, eval);
+            alpha = max(alpha, eval);
+            if (beta <= alpha) {
+                break;
+            }
         }
         return maxEval;
-    } 
-    else {
-        int minEval = INT_MAX; 
+    } else {
+        int minEval = INT_MAX;
         for (auto move : validMoves) {
             shared_ptr<Board> tempBoard = make_shared<Board>(*board);
             tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
-            int eval = minimax(tempBoard, depth - 1, true);
+
+            if(move.promotionType != '0') {
+                tempBoard->addPiece(move.endRow, move.endCol, move.promotionType, move.player);
+            }
+            
+            int eval = minimax(tempBoard, depth - 1, true, alpha, beta);
             minEval = min(minEval, eval);
+            beta = min(beta, eval);
+            if (beta <= alpha) {
+                break;
+            }
         }
         return minEval;
     }

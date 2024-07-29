@@ -33,12 +33,12 @@ bool Game::checkCheckmate(Colour colour) {
 
     // king must be in check now
     // Check if there is any legal move for any piece of same colour that doesnt result in check for the king
-    for (int row = 0; row < 8; ++row) {
-        for (int col = 0; col < 8; ++col) {
+    for (int row = 0; row < board->getBoardSize(); ++row) {
+        for (int col = 0; col < board->getBoardSize(); ++col) {
             std::shared_ptr<Piece> piece = board->getTile(row, col)->getPiece();
             if (piece && piece->getColour() == colour) {
-                for (int endRow = 0; endRow < 8; ++endRow) {
-                    for (int endCol = 0; endCol < 8; ++endCol) {
+                for (int endRow = 0; endRow < board->getBoardSize(); ++endRow) {
+                    for (int endCol = 0; endCol < board->getBoardSize(); ++endCol) {
                         if (piece->isValidMove(*board, row, col, endRow, endCol)) {
                             shared_ptr<Board> tempboard = make_shared<Board>(*board);
                             tempboard->movePiece(row, col, endRow, endCol);
@@ -67,12 +67,12 @@ bool Game::checkStalemate(Colour colour) {
     }
 
     // Check if there are any legal moves available for all pieces of a certain colour
-    for (int row = 0; row < 8; ++row) {
-        for (int col = 0; col < 8; ++col) {
+    for (int row = 0; row < board->getBoardSize(); ++row) {
+        for (int col = 0; col < board->getBoardSize(); ++col) {
             std::shared_ptr<Piece> piece = board->getTile(row, col)->getPiece();
             if (piece && piece->getColour() == colour) {
-                for (int endRow = 0; endRow < 8; ++endRow) {
-                    for (int endCol = 0; endCol < 8; ++endCol) {
+                for (int endRow = 0; endRow < board->getBoardSize(); ++endRow) {
+                    for (int endCol = 0; endCol < board->getBoardSize(); ++endCol) {
                         if (piece->isValidMove(*board, row, col, endRow, endCol)) {
                             std::shared_ptr<Board> tempBoard = std::make_shared<Board>(*board);
                             tempBoard->movePiece(row, col, endRow, endCol);

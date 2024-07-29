@@ -75,8 +75,8 @@ bool King::isInCheck(const Board& board, int kingRow, int kingCol) const {
     Colour opponentColour = (getColour() == Colour::WHITE) ? Colour::BLACK : Colour::WHITE;
 
     // check all enemy pieces if they are attacking the king position
-    for (int row = 0; row < 8; ++row) {
-        for (int col = 0; col < 8; ++col) {
+    for (int row = 0; row < board.getBoardSize(); ++row) {
+        for (int col = 0; col < board.getBoardSize(); ++col) {
             std::shared_ptr<Piece> piece = board.getTile(row, col)->getPiece();
             // Check if the piece is an opponent's piece (cannot be a the enemy king putting the king in check either)
             if (piece && piece->getColour() == opponentColour) {

@@ -23,7 +23,6 @@ bool Bishop::isValidMove(const Board& board, int startRow, int startCol, int end
         return false;
     }
 
-
     // check there are no pieces in the way towards the end position
     int rowDirection = (endRow - startRow) > 0 ? 1 : -1;
     int colDirection = (endCol - startCol) > 0 ? 1 : -1;
