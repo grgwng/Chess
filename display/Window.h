@@ -1,6 +1,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <memory>
 #include <X11/Xlib.h>
 #include <iostream>
 #include <string>
