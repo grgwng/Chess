@@ -9,7 +9,7 @@
 using namespace std;
 
 class Xwindow {
-    shared_ptr<Display> d;
+    Display *d;
     Window w;
     int s;
     GC gc;

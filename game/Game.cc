@@ -97,7 +97,7 @@ void Game::gameLoop(){
         //PLAYER1 input loop
         while(nextPlayer == 1){
             board->render();
-            std::cout << "WHITE'S TURN" << endl;
+            std::cout << "WHITE'S TURN" << endl << endl;
             std::cout << "Enter a game command:" << endl;
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);

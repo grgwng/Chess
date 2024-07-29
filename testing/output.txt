@@ -14,6 +14,7 @@ New game has started!
   abcdefgh
 
 WHITE'S TURN
+
 Enter a game command:
 
 8 rnbqkbnr
@@ -32,9 +33,9 @@ BLACK'S TURN
 Enter a game command:
 
 8 rnbqkbnr
-7 ppppp pp
+7 ppppppp 
 6  _ _ _ _
-5 _ _ _p_ 
+5 _ _ _ _p
 4  _ _ _ _
 3 _ _ _ _P
 2 PPPPPPP_
@@ -43,15 +44,16 @@ Enter a game command:
   abcdefgh
 
 WHITE'S TURN
+
 Enter a game command:
 
 8 rnbqkbnr
-7 ppppp pp
+7 ppppppp 
 6  _ _ _ _
-5 _ _ _p_ 
-4  _ _ _ _
-3 _ _ P _P
-2 PPPP PP_
+5 _ _ _ _p
+4 P_ _ _ _
+3 _ _ _ _P
+2  PPPPPP_
 1 RNBQKBNR
 
   abcdefgh
@@ -61,176 +63,1133 @@ BLACK'S TURN
 Enter a game command:
 
 8 rnbqkbnr
-7 ppppp _p
-6  _ _ _ _
-5 _ _ _pp 
-4  _ _ _ _
-3 _ _ P _P
-2 PPPP PP_
+7 p ppppp 
+6  p _ _ _
+5 _ _ _ _p
+4 P_ _ _ _
+3 _ _ _ _P
+2  PPPPPP_
 1 RNBQKBNR
 
   abcdefgh
 
 WHITE'S TURN
+
 Enter a game command:
 
 8 rnbqkbnr
-7 ppppp _p
+7 p ppppp 
+6  p _ _ _
+5 _ _ _ _p
+4 P_ _ _ _
+3 _ N _ _P
+2  PPPPPP_
+1 R BQKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnbqkbnr
+7 p pppp_ 
+6  p _ _p_
+5 _ _ _ _p
+4 P_ _ _ _
+3 _ N _ _P
+2  PPPPPP_
+1 R BQKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnbqkbnr
+7 p pppp_ 
+6  p _ _p_
+5 _ _ _ _p
+4 P_ _ _ _
+3 _ _ _ _P
+2  PPPPPP_
+1 RNBQKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnbqkbnr
+7 p ppp _ 
+6  p _ _p_
+5 _ _ _p_p
+4 P_ _ _ _
+3 _ _ _ _P
+2  PPPPPP_
+1 RNBQKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnbqkbnr
+7 p ppp _ 
+6  p _ _p_
+5 _ _ _p_p
+4 P_ _ _ _
+3 _ _P_ _P
+2  PP_PPP_
+1 RNBQKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnbqkbnr
+7 p pp_ _ 
+6  p _p_p_
+5 _ _ _p_p
+4 P_ _ _ _
+3 _ _P_ _P
+2  PP_PPP_
+1 RNBQKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnbqkbnr
+7 p pp_ _ 
+6  p _p_p_
+5 _ _ _p_p
+4 P_P_ _ _
+3 _ _P_ _P
+2  P _PPP_
+1 RNBQKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnbqkb r
+7 p pp_ _ 
+6  p _pnp_
+5 _ _ _p_p
+4 P_P_ _ _
+3 _ _P_ _P
+2  P _PPP_
+1 RNBQKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnbqkb r
+7 p pp_ _ 
+6  p _pnp_
+5 _ _ _pBp
+4 P_P_ _ _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnbqkb r
+7 p pp_ _ 
+6  _ _pnp_
+5 _p_ _pBp
+4 P_P_ _ _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnbqkb r
+7 p pp_ _ 
+6  _ _pnp_
+5 _P_ _pBp
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnbqkb r
+7 p pp_ _ 
+6  _ _pnp_
+5 _P_ _ Bp
+4 P_ _ p _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnbqkb r
+7 p pp_ _ 
+6  _ _pnp_
+5 _P_ _ _p
+4 P_ _ B _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnb_kb r
+7 p ppq _ 
+6  _ _pnp_
+5 _P_ _ _p
+4 P_ _ B _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnb_kb r
+7 p Bpq _ 
+6  _ _pnp_
+5 _P_ _ _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnb_k_ r
+7 p Bpq b 
+6  _ _pnp_
+5 _P_ _ _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPP_
+1 RN_QKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnb_k_ r
+7 p Bpq b 
+6  _ _pnp_
+5 _P_ _ _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  PQ_PPP_
+1 RN_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnb_k_ r
+7 p Bp_qb 
+6  _ _pnp_
+5 _P_ _ _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  PQ_PPP_
+1 RN_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnb_k_ r
+7 p _p_qb 
+6  _ _pnp_
+5 _P_ _ _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  PQ_PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnb_k_ r
+7 p _p_qb 
+6  _ _ np_
+5 _P_ p _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  PQ_PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rnQ_k_ r
+7 p _p_qb 
+6  _ _ np_
+5 _P_ p _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rnQ_ _ r
+7 p _pkqb 
+6  _ _ np_
+5 _P_ p _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn _ _ r
+7 p _pkqb 
+6  _ _ np_
+5 _PQ p _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn _k_ r
+7 p _p_qb 
+6  _ _ np_
+5 _PQ p _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn _k_ r
+7 p _p_qb 
+6  _ _ np_
+5 _P_ Q _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn _k_ r
+7 p _pq b 
+6  _ _ np_
+5 _P_ Q _p
+4 P_ _ _ _
+3 _ _P_ _P
+2  P _PPPB
+1 RN_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn _k_ r
+7 p _pq b 
+6  _ _ np_
+5 _P_ Q _p
+4 P_ _ _ _
+3 N _P_ _P
+2  P _PPPB
+1 R _ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn _k_ r
+7 p _pq b 
+6  _ _ n _
+5 _P_ Q pp
+4 P_ _ _ _
+3 N _P_ _P
+2  P _PPPB
+1 R _ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn _k_ r
+7 p _pq b 
+6  _ _ n _
+5 _P_ _ Qp
+4 P_ _ _ _
+3 N _P_ _P
+2  P _PPPB
+1 R _ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn k _ r
+7 p _pq b 
+6  _ _ n _
+5 _P_ _ Qp
+4 P_ _ _ _
+3 N _P_ _P
+2  P _PPPB
+1 R _ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn k _ r
+7 p _pq b 
+6  _ _ n _
+5 _P_ _ Qp
+4 P_ _ _ _
+3 N _P_ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn k _ r
+7 p _pq b 
 6  _ _ _ _
-5 _ _ _ppQ
-4  _ _ _ _
-3 _ _ P _P
-2 PPPP PP_
-1 RNB KBNR
+5 _P_ _ Qp
+4 P_ _n_ _
+3 N _P_ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn k _ r
+7 p _pq b 
+6  _ _ _ _
+5 _P_ _ Qp
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn k r _
+7 p _pq b 
+6  _ _ _ _
+5 _P_ _ Qp
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn k r _
+7 p _pq b 
+6  _ _ _ _
+5 _P_ _ _Q
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn k r b
+7 p _pq _ 
+6  _ _ _ _
+5 _P_ _ _Q
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn k r b
+7 p _pq _ 
+6  _ _ _ Q
+5 _P_ _ _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 rn k r _
+7 p _pq _ 
+6  _ _ _ Q
+5 _P_ b _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 rn k r _
+7 p _pq _ 
+6  _ _ _Q_
+5 _P_ b _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ k r _
+7 p _pq _ 
+6 n_ _ _Q_
+5 _P_ b _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ k r _
+7 p _pq _ 
+6 Q_ _ _ _
+5 _P_ b _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ k r _
+7 p _ q _ 
+6 Q_ _ _ _
+5 _P_pb _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ k r _
+7 p _ q _ 
+6  _ _ _ _
+5 QP_pb _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ _kr _
+7 p _ q _ 
+6  _ _ _ _
+5 QP_pb _ 
+4 P_ _P_ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ _kr _
+7 p _ q _ 
+6  _ _ _ _
+5 QP_Pb _ 
+4 P_ _ _ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ _kr _
+7 p _ _ _ 
+6  _ _ q _
+5 QP_Pb _ 
+4 P_ _ _ _
+3 N _ _ _P
+2  P _PPPB
+1 _R_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ _kr _
+7 p _ _ _ 
+6  _ _ q _
+5 QP_Pb _ 
+4 P_ _ _ _
+3 N _ _ _P
+2  P _PPPB
+1 _ _RKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ _kr _
+7 p _ _ _ 
+6  _ _ _ _
+5 QP_Pb _ 
+4 P_ _ _ q
+3 N _ _ _P
+2  P _PPPB
+1 _ _RKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ _kr _
+7 p _ _ _ 
+6  _ _ _ _
+5 QP_PB _ 
+4 P_ _ _ q
+3 N _ _ _P
+2  P _PPP_
+1 _ _RKBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ _k_ _
+7 p _ _ _ 
+6  _ _ _ _
+5 QP_PB _ 
+4 P_ _ r q
+3 N _ _ _P
+2  P _PPP_
+1 _ _RKBNR
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ _k_ _
+7 p _ _ _ 
+6  _ _ _ _
+5 QP_PB _ 
+4 P_ _ r q
+3 N _ _ _P
+2  P _PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ _ _ _
+7 p _ k _ 
+6  _ _ _ _
+5 QP_PB _ 
+4 P_ _ r q
+3 N _ _ _P
+2  P _PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ _ _ _
+7 p _ k _ 
+6  _ P _ _
+5 QP_ B _ 
+4 P_ _ r q
+3 N _ _ _P
+2  P _PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ _ k _
+7 p _ _ _ 
+6  _ P _ _
+5 QP_ B _ 
+4 P_ _ r q
+3 N _ _ _P
+2  P _PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ _ k _
+7 p _ _ _ 
+6  _ P _ _
+5 QP_ B _ 
+4 P_ _ r q
+3 _ _ _ _P
+2  PN_PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ q k _
+7 p _ _ _ 
+6  _ P _ _
+5 QP_ B _ 
+4 P_ _ r _
+3 _ _ _ _P
+2  PN_PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ q k _
+7 p _ _ _ 
+6  _ P _ _
+5 QP_ _ _ 
+4 P_ _ B _
+3 _ _ _ _P
+2  PN_PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ q _ _
+7 p _ _ k 
+6  _ P _ _
+5 QP_ _ _ 
+4 P_ _ B _
+3 _ _ _ _P
+2  PN_PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ q _ _
+7 p _ _ k 
+6  _ P _ _
+5 QP_ B _ 
+4 P_ _ _ _
+3 _ _ _ _P
+2  PN_PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ q _ _
+7 p _ _ _ 
+6  _ P _k_
+5 QP_ B _ 
+4 P_ _ _ _
+3 _ _ _ _P
+2  PN_PPPR
+1 _ _RKBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_ q _ _
+7 p _ _ _ 
+6  _ P _k_
+5 QP_ B _ 
+4 P_ _ _ _
+3 _ _ _ _P
+2  PNRPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 p _ _ _ 
+6  _ P _k_
+5 QP_ B _ 
+4 P_ _ _ _
+3 _ _ _ _P
+2  PNRPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 Q _ _ _ 
+6  _ P _k_
+5 _P_ B _ 
+4 P_ _ _ _
+3 _ _ _ _P
+2  PNRPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 Q _ _ _ 
+6  _ P _ _
+5 _P_ Bk_ 
+4 P_ _ _ _
+3 _ _ _ _P
+2  PNRPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 Q _ _ _ 
+6  _ P _ _
+5 _P_ Bk_ 
+4 P_ _ _ _
+3 _ _ N _P
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 Q _ _ _ 
+6  _ P _ _
+5 _P_ B k 
+4 P_ _ _ _
+3 _ _ N _P
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 Q _ _ _ 
+6  _ P _ _
+5 _P_ B k 
+4 P_ _ _ P
+3 _ _ N _ 
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 Q _ _ _ 
+6  _ P _ _
+5 _P_ B _k
+4 P_ _ _ P
+3 _ _ N _ 
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 _ _ _Q_ 
+6  _ P _ _
+5 _P_ B _k
+4 P_ _ _ P
+3 _ _ N _ 
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 _ _ _Q_ 
+6  _ P _ k
+5 _P_ B _ 
+4 P_ _ _ P
+3 _ _ N _ 
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 _ _ _ Q 
+6  _ P _ k
+5 _P_ B _ 
+4 P_ _ _ P
+3 _ _ N _ 
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+Black is in check.
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 _ _ _ Q 
+6  _ P _ _
+5 _P_ B _k
+4 P_ _ _ P
+3 _ _ N _ 
+2  P RPPPR
+1 _ _ KBN 
+
+  abcdefgh
+
+WHITE'S TURN
+
+Enter a game command:
+
+8 r_q_ _ _
+7 _ _ _ _ 
+6  _ P _ _
+5 _P_ B Qk
+4 P_ _ _ P
+3 _ _ N _ 
+2  P RPPPR
+1 _ _ KBN 
 
   abcdefgh
 
 Checkmate! White wins!
 
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
-Start a game or enter set-up mode:
-Invalid command in this context. Please try again.
 Start a game or enter set-up mode:
 Invalid command in this context. Please try again.
 Start a game or enter set-up mode:

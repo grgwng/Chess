@@ -29,7 +29,7 @@ void GraphicDisplay::notify() {
                 drawTile(row, col);
 
                 if(curPiece) {
-                    xw.drawString(69 + col * 50, 80 + row * 50, string{pieceChar}, curPiece->getColour() == WHITE ? Xwindow::White : Xwindow::Black, 20);
+                    xw.drawString(68 + col * 50, 81 + row * 50, string{pieceChar}, curPiece->getColour() == WHITE ? Xwindow::White : Xwindow::Black, 18);
                 }
             }
         }
@@ -44,27 +44,27 @@ void GraphicDisplay::notify() {
         switch(status) {
             case WHITECHECK:
                 message = "White is in check.";
-                xOffset = 100;
+                xOffset = 110;
                 break;
             case BLACKCHECK:
                 message = "Black is in check.";
-                xOffset = 100;
+                xOffset = 110;
                 break;
             case CHECKMATEWHITE: 
                 message = "Checkmate! White wins!";
-                xOffset = 135;
+                xOffset = 155;
                 break;
             case CHECKMATEBLACK:
                 message = "Checkmate! Black wins!";
-                xOffset = 135;
+                xOffset = 155;
                 break;
             case WHITEWINS:
                 message = "White wins!";
-                xOffset = 80;
+                xOffset = 75;
                 break;
             case BLACKWINS:
                 message = "Black wins!";
-                xOffset = 80;
+                xOffset = 75;
                 break;
             case STALEMATE:
                 message = "Stalemate!";
@@ -74,7 +74,7 @@ void GraphicDisplay::notify() {
                 break;
         }
 
-        xw.drawString(250 - xOffset, 500, message, Xwindow::Black, 25);
+        xw.drawString(250 - xOffset, 525, message, Xwindow::Black, 24);
     }
     else {
         xw.fillRectangle(0, 460, 500, 200, Xwindow::Grey);
