@@ -21,50 +21,7 @@ bool Game::checkCheck(Colour colour, const shared_ptr<Board>& board) {
     return king->isInCheck(*board, kingTile->getRow(), kingTile->getCol());
 }
 
-bool Game::checkCheckmate(Colour colour) {
-    std::shared_ptr<Tile> kingTile = (colour == Colour::WHITE) ? board->getWhiteKingTile() : board->getBlackKingTile();
-    auto king = std::dynamic_pointer_cast<King>(kingTile->getPiece());
-
-    if (!king->isInCheck(*board, kingTile->getRow(), kingTile->getCol())) {
-        return false;
-    }
-
-    // king must be in check now
-    // Check if there is any legal move for any piece of same colour that doesnt result in check for the king
-    for (int row = 0; row < board->getBoardSize(); ++row) {
-        for (int col = 0; col < board->getBoardSize(); ++col) {
-            std::shared_ptr<Piece> piece = board->getTile(row, col)->getPiece();
-            if (piece && piece->getColour() == colour) {
-                for (int endRow = 0; endRow < board->getBoardSize(); ++endRow) {
-                    for (int endCol = 0; endCol < board->getBoardSize(); ++endCol) {
-                        if (piece->isValidMove(*board, row, col, endRow, endCol)) {
-                            shared_ptr<Board> tempboard = make_shared<Board>(*board);
-                            tempboard->movePiece(row, col, endRow, endCol);
-                            std::shared_ptr<Tile> tempKingTile = (colour == Colour::WHITE) ? tempboard->getWhiteKingTile() : tempboard->getBlackKingTile();
-                            auto tempKing = std::dynamic_pointer_cast<King>(tempKingTile->getPiece());
-                            // Check if the king is still in check after the move
-                            if (!tempKing->isInCheck(*tempboard, tempKingTile->getRow(), tempKingTile->getCol())) {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    return true; // King is in checkmate
-}
-
-
-bool Game::checkStalemate(Colour colour) {
-    std::shared_ptr<Tile> kingTile = (colour == Colour::WHITE) ? board->getWhiteKingTile() : board->getBlackKingTile();
-    auto king = std::dynamic_pointer_cast<King>(kingTile->getPiece());
-    if (king->isInCheck(*board, kingTile->getRow(), kingTile->getCol())) {
-        return false;
-    }
-
-    // Check if there are any legal moves available for all pieces of a certain colour
+bool Game::canMakeLegalMove(Colour colour) {
     for (int row = 0; row < board->getBoardSize(); ++row) {
         for (int col = 0; col < board->getBoardSize(); ++col) {
             std::shared_ptr<Piece> piece = board->getTile(row, col)->getPiece();
@@ -78,13 +35,43 @@ bool Game::checkStalemate(Colour colour) {
                             auto tempKing = std::dynamic_pointer_cast<King>(tempKingTile->getPiece());
                             // Check if the king is still not in check after the move
                             if (!tempKing->isInCheck(*tempBoard, tempKingTile->getRow(), tempKingTile->getCol())) {
-                                return false; // Found a valid move so not stalemate
+                                return true; // Found a legal move
                             }
                         }
                     }
                 }
             }
         }
+    }
+    return false;
+}
+
+bool Game::checkCheckmate(Colour colour) {
+    std::shared_ptr<Tile> kingTile = (colour == Colour::WHITE) ? board->getWhiteKingTile() : board->getBlackKingTile();
+    auto king = std::dynamic_pointer_cast<King>(kingTile->getPiece());
+
+    if (!king->isInCheck(*board, kingTile->getRow(), kingTile->getCol())) {
+        return false;
+    }
+
+    if (canMakeLegalMove(colour)) {
+        return false;
+    }
+
+    return true; // King is in checkmate
+}
+
+
+bool Game::checkStalemate(Colour colour) {
+    std::shared_ptr<Tile> kingTile = (colour == Colour::WHITE) ? board->getWhiteKingTile() : board->getBlackKingTile();
+    auto king = std::dynamic_pointer_cast<King>(kingTile->getPiece());
+    
+    if (king->isInCheck(*board, kingTile->getRow(), kingTile->getCol())) {
+        return false;
+    }
+
+    if (canMakeLegalMove(colour)) {
+        return false;
     }
 
     return true; // No valid moves found

@@ -36,7 +36,7 @@ public:
     void runProgram();
     void gameLoop();
     void setupLoop();
-
+    bool canMakeLegalMove(Colour colour);
     bool checkCheck(Colour colour, const shared_ptr<Board>&); //checks if colour is in check
     bool checkCheckmate(Colour colour); 
     bool checkStalemate(Colour colour);
