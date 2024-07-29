@@ -42,7 +42,7 @@ int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximiz
 
     if (maximizingPlayer) {
         int maxEval = INT_MIN;
-        for (auto move : validMoves) {
+        for (const auto& move : validMoves) {
             shared_ptr<Board> tempBoard = make_shared<Board>(*board);
             tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
 
@@ -60,7 +60,7 @@ int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximiz
         return maxEval;
     } else {
         int minEval = INT_MAX;
-        for (auto move : validMoves) {
+        for (const auto& move : validMoves) {
             shared_ptr<Board> tempBoard = make_shared<Board>(*board);
             tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
 

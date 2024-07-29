@@ -1,4 +1,4 @@
-game computer3 computer1
+game computer3 computer2
 move
 move
 move

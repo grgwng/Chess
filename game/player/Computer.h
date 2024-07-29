@@ -11,6 +11,7 @@ protected:
     std::vector<Move> getCheckMoves(const shared_ptr<Board>& board, Colour colour);
     std::vector<Move> getCaptureMoves(const shared_ptr<Board>& board, Colour colour);
     std::vector<Move> getSafeMoves(const shared_ptr<Board>& board, Colour colour);
+    std::vector<Move> getAvoidingMoves(const shared_ptr<Board>& board, Colour colour);
 public:
     Computer(Colour colour);
     virtual Move computeMove(const shared_ptr<Board>& board) = 0;
