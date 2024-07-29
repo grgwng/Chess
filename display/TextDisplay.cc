@@ -2,12 +2,12 @@
 #include "../types/types.h"
 #include <iostream>
 
-TextDisplay::TextDisplay(Board* s): iWatch{s} {
-    iWatch->attach(this);
+TextDisplay::TextDisplay(std::shared_ptr<Board> s): iWatch{s} {
+    // iWatch->attach(shared_from_this());
 }
 
 TextDisplay::~TextDisplay() {
-    iWatch->detach(this);
+    iWatch->detach(shared_from_this());
 }
 
 void TextDisplay::notify() {
