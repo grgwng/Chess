@@ -4,6 +4,9 @@
 
 Grandmaster::Grandmaster(Colour colour) : Computer(colour) {}
 
+// Grandmaster uses the well-known minimax / alpha-beta pruning algorithm. 
+// References: https://www.chessprogramming.org/Minimax, https://www.chessprogramming.org/Alpha-Beta
+
 Move Grandmaster::computeMove(const shared_ptr<Board>& board) {
     int bestValue = std::numeric_limits<int>::min();
     Move bestMove = invalidMove();
