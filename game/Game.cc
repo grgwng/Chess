@@ -289,15 +289,15 @@ void Game::setupLoop() {
 
         cout << "Enter a set-up command:" << endl;
 
-        shared_ptr<Command*> command = interpreter->readCommand();
+        shared_ptr<Command> command = interpreter->readCommand();
 
-        if(!command || !(*command)){
+        if(!command){
             cout << "Invalid command in this context. Please try again." << endl;
             continue;
         }
 
 
-        if((*command)->getType() == DONESETUP){
+        if(command->getType() == DONESETUP){
             if(board->processValidBoard()){
 
                 if((checkStalemate(WHITE) && nextPlayer == 1) || (checkStalemate(BLACK) && nextPlayer == 2)){ //if the next player is in stalemate
@@ -312,9 +312,9 @@ void Game::setupLoop() {
             }
         }
 
-        switch((*command)->getType()){
+        switch(command->getType()){
             case ADDPIECE:{
-                AddPiece* apc = static_cast<AddPiece*>(*command);
+                shared_ptr<AddPiece> apc = dynamic_pointer_cast<AddPiece>(command);
                 vector<int> pos = apc->getPos();
                 char piece = apc->getPiece();
 
@@ -326,7 +326,7 @@ void Game::setupLoop() {
             }
 
             case REMOVEPIECE:{
-                RemovePiece* rpc = static_cast<RemovePiece*>(*command);
+                shared_ptr<RemovePiece> rpc = dynamic_pointer_cast<RemovePiece>(command);
                 vector<int> pos = rpc->getPos();
                 bool rem_succ = board->removePiece(pos[0], pos[1]);
                 if(rem_succ){
@@ -339,7 +339,7 @@ void Game::setupLoop() {
             }
 
             case SETCOLOUR: {
-                SetColour* scc = static_cast<SetColour*>(*command);
+                shared_ptr<SetColour> scc = dynamic_pointer_cast<SetColour>(command);
 
                 nextPlayer = (scc->getColour() == WHITE ? 1 : 2);
 
@@ -361,21 +361,21 @@ void Game::setupLoop() {
 void Game::runProgram(){
     std::cout << "Welcome to Chess!" << endl;
     
-    shared_ptr<Command*> command;
+    shared_ptr<Command> command;
 
     while(true){
         std::cout << "Start a game or enter set-up mode:" << endl;
         //read command
         command = interpreter->readCommand();
 
-        if(!command || !(*command)){
+        if(!command){
             std::cout << "Invalid command in this context. Please try again." << endl;
             continue;
         }
 
-        switch((*command)->getType()){
+        switch(command->getType()){
             case STARTGAME: {
-                StartGame* sg_command = static_cast<StartGame*>(*command);
+                shared_ptr<StartGame> sg_command = dynamic_pointer_cast<StartGame>(command);
 
                 switch(sg_command->getWhitePlayer()){
                     case HUMAN:

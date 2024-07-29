@@ -6,15 +6,15 @@
 Computer::Computer(Colour colour): Player{colour} {}
 
 Move Computer::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board){
-    shared_ptr<Command*> command = interpreter->readCommand();
+    shared_ptr<Command> command = interpreter->readCommand();
 
-    if(!command || !(*command)){
+    if(!command){
         return invalidMove();
     }
 
-    switch((*command)->getType()){
+    switch(command->getType()){
         case MOVE: {
-            MoveCommand* mc = static_cast<MoveCommand*>(*command);
+            shared_ptr<MoveCommand> mc = dynamic_pointer_cast<MoveCommand>(command);
             if(mc->getIsComputer()){
                 return computeMove(board);
             }else{

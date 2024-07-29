@@ -35,7 +35,7 @@ vector<int> Interpreter::parsePos(string s){
     }
 }
 
-shared_ptr<Command*> Interpreter::readCommand(){
+shared_ptr<Command> Interpreter::readCommand(){
     string input;
     string command;
 
@@ -44,7 +44,7 @@ shared_ptr<Command*> Interpreter::readCommand(){
     istringstream iss(input);
 
     if(!(iss >> command)){
-        return make_shared<Command*>(new Quit{});
+        return make_shared<Quit>();
     }
 
     if(command == "game"){
@@ -54,12 +54,12 @@ shared_ptr<Command*> Interpreter::readCommand(){
         if(playerTypeParseTable.find(whitePlayer) != playerTypeParseTable.end()
             && playerTypeParseTable.find(blackPlayer) != playerTypeParseTable.end()){
                 
-            return make_shared<Command*>(new StartGame{playerTypeParseTable[whitePlayer], playerTypeParseTable[blackPlayer]});
+            return make_shared<StartGame>(playerTypeParseTable[whitePlayer], playerTypeParseTable[blackPlayer]);
         }else{
-            return make_shared<Command*>(nullptr);
+            return nullptr;
         }
     }else if(command == "resign"){
-        return make_shared<Command*>(new Resign{});
+        return make_shared<Resign>();
 
     }else if(command == "move"){
         string start, end;
@@ -72,30 +72,30 @@ shared_ptr<Command*> Interpreter::readCommand(){
             
             //check if invalid
             if(startPos[0] == -1 || endPos[0] == -1){
-                return make_shared<Command*>(nullptr);
+                return nullptr;
             }
             
             if(iss >> promotion){ 
                 //it is a promotion
                 if(pieceTable.find(promotion) != pieceTable.end()){//check if promotion is valid
-                    return make_shared<Command*>(new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, promotion});
+                    return make_shared<MoveCommand>(startPos[0], startPos[1], endPos[0], endPos[1], false, promotion);
                 }else{
-                    return make_shared<Command*>(nullptr);
+                    return nullptr;
                 }
                 
             }else{
                 //it is not a promotion
-                return make_shared<Command*>(new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, 0});
+                return make_shared<MoveCommand>(startPos[0], startPos[1], endPos[0], endPos[1], false, 0);
             }
         }else{
             if(start.length() == 0 && end.length() ==0){
-                return make_shared<Command*>(new MoveCommand(0, 0, 0, 0, true, 0));
+                return make_shared<MoveCommand>(0, 0, 0, 0, true, 0);
             }else{
-                return make_shared<Command*>(nullptr);
+                return nullptr;
             }
         }
     }else if(command == "setup"){
-        return make_shared<Command*>(new Setup{});
+        return make_shared<Setup>();
  
     }else if(command == "+"){ //add piece
         char piece;
@@ -106,9 +106,9 @@ shared_ptr<Command*> Interpreter::readCommand(){
 
         if(pieceTable.find(piece) != pieceTable.end() && pos[0] != -1){
             //valid piece
-            return make_shared<Command*>(new AddPiece{pos[0], pos[1], piece});
+            return make_shared<AddPiece>(pos[0], pos[1], piece);
         }else{
-            return make_shared<Command*>(nullptr);
+            return nullptr;
         }
     }else if(command == "-"){ //remove piece
         string s;
@@ -116,23 +116,23 @@ shared_ptr<Command*> Interpreter::readCommand(){
         vector<int> pos = parsePos(s);
 
         if(pos[0] != -1){
-            return make_shared<Command*>(new RemovePiece{pos[0], pos[1]});
+            return make_shared<RemovePiece>(pos[0], pos[1]);
         }else{
-            return make_shared<Command*>(nullptr);
+            return nullptr;
         }
     }else if(command == "="){ //set colour
         string colour;
         iss >> colour;
 
         if(colourParseTable.find(colour) != colourParseTable.end()){
-            return make_shared<Command*>(new SetColour{colourParseTable[colour]});
+            return make_shared<SetColour>(colourParseTable[colour]);
         }else{
-            return make_shared<Command*>(nullptr);
+            return nullptr;
         }
     }else if(command == "done"){
-        return make_shared<Command*>(new DoneSetup{});
+        return make_shared<DoneSetup>();
 
     }else{
-        return make_shared<Command*>(nullptr);
+        return nullptr;
     }
 }
