@@ -33,7 +33,7 @@ Xwindow::Xwindow(int width, int height) {
 
     XColor xcolour;
     Colormap cmap;
-    char color_vals[10][10] = {"white", "black", "grey", "burlywood", "sienna4"};
+    char color_vals[10][10] = {"white", "black", "grey49", "burlywood", "sienna4"};
 
     cmap = DefaultColormap(d.get(), DefaultScreen(d.get()));
     for (int i = 0; i < 5; ++i) {

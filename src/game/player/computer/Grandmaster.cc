@@ -5,14 +5,14 @@
 Grandmaster::Grandmaster(Colour colour) : Computer(colour) {}
 
 Move Grandmaster::computeMove(const shared_ptr<Board>& board) {
-    int bestValue = std::numeric_limits<int>::min();
+    int bestValue = INT_MIN;
     Move bestMove = invalidMove();
     std::vector<Move> validMoves = board->getAllValidMoves(colour);
 
-    for (const auto& move : validMoves) {
+    for (auto move : validMoves) {
         shared_ptr<Board> tempBoard = make_shared<Board>(*board);
         tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
-        int boardValue = minimax(tempBoard, MAX_DEPTH - 1, false, std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+        int boardValue = minimax(tempBoard, MAX_DEPTH - 1, false);
 
         if (boardValue > bestValue) {
             bestValue = boardValue;
@@ -24,7 +24,7 @@ Move Grandmaster::computeMove(const shared_ptr<Board>& board) {
     return bestMove;
 }
 
-int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximizingPlayer, int alpha, int beta) {
+int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximizingPlayer) {
     if (depth == 0) {
         return evaluateBoard(board);
     }
@@ -37,29 +37,22 @@ int Grandmaster::minimax(const shared_ptr<Board>& board, int depth, bool maximiz
     }
 
     if (maximizingPlayer) {
-        int maxEval = std::numeric_limits<int>::min();
-        for (const auto& move : validMoves) {
+        int maxEval = INT_MIN;
+        for (auto move : validMoves) {
             shared_ptr<Board> tempBoard = make_shared<Board>(*board);
             tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
-            int eval = minimax(tempBoard, depth - 1, false, alpha, beta);
-            maxEval = std::max(maxEval, eval);
-            alpha = std::max(alpha, eval);
-            if (beta <= alpha) {
-                break;
-            }
+            int eval = minimax(tempBoard, depth - 1, false);
+            maxEval = max(maxEval, eval);
         }
         return maxEval;
-    } else {
-        int minEval = std::numeric_limits<int>::max();  // Correcting the initialization
-        for (const auto& move : validMoves) {
+    } 
+    else {
+        int minEval = INT_MAX; 
+        for (auto move : validMoves) {
             shared_ptr<Board> tempBoard = make_shared<Board>(*board);
             tempBoard->movePiece(move.startRow, move.startCol, move.endRow, move.endCol);
-            int eval = minimax(tempBoard, depth - 1, true, alpha, beta);
-            minEval = std::min(minEval, eval);
-            beta = std::min(beta, eval);
-            if (beta <= alpha) {
-                break;
-            }
+            int eval = minimax(tempBoard, depth - 1, true);
+            minEval = min(minEval, eval);
         }
         return minEval;
     }
@@ -74,12 +67,12 @@ int Grandmaster::evaluateBoard(const shared_ptr<Board>& board) {
             if (piece) {
                 int pieceValue = 0;
                 switch (piece->getType()) {
-                    case 'p': pieceValue = 10; break;
-                    case 'n': pieceValue = 30; break;
-                    case 'b': pieceValue = 30; break;
-                    case 'r': pieceValue = 50; break;
-                    case 'q': pieceValue = 90; break;
-                    case 'k': pieceValue = 900; break;
+                    case 'p': pieceValue = 1; break;
+                    case 'n': pieceValue = 3; break;
+                    case 'b': pieceValue = 3; break;
+                    case 'r': pieceValue = 5; break;
+                    case 'q': pieceValue = 9; break;
+                    case 'k': pieceValue = 100; break;
                     default: break;
                 }
                 score += (piece->getColour() == colour) ? pieceValue : -pieceValue;

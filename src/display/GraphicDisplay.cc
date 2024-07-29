@@ -77,11 +77,13 @@ void GraphicDisplay::notify() {
         xw.drawString(250 - xOffset, 500, message, Xwindow::Black, 25);
     }
     else {
-        xw.fillRectangle(0, 460, 500, 200, Xwindow::White);
+        xw.fillRectangle(0, 460, 500, 200, Xwindow::Grey);
     }
 }
 
 void GraphicDisplay::drawBoard() {
+    xw.fillRectangle(0, 0, 500, 600, Xwindow::Grey);
+
     xw.fillRectangle(40, 40, 420, 420, Xwindow::Black);
     
     for (int row = 0; row < iWatch->getBoardSize(); row++) {
