@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <string>
+#include <memory>
 
 class Interpreter{
     unordered_map<string, PlayerType> playerTypeParseTable;

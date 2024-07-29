@@ -2,6 +2,7 @@
 #define COMPUTER_H
 
 #include "Player.h"
+#include <algorithm>
 #include <random>
 
 class Computer : public Player {

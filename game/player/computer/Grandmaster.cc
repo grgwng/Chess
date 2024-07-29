@@ -1,3 +1,5 @@
+#include <climits>
+
 #include "Grandmaster.h"
 
 Grandmaster::Grandmaster(Colour colour) : Computer(colour) {}
