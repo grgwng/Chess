@@ -1,17 +1,17 @@
 #include "GraphicDisplay.h"
 #include "../types/types.h"
 
-GraphicDisplay::GraphicDisplay(shared_ptr<Board> b): 
+GraphicDisplay::GraphicDisplay(Board* b): 
     iWatch{b}, 
     xw{500, 600},
     buffer{std::vector<std::vector<char>>(b->getBoardSize(), std::vector<char>(b->getBoardSize(), ' '))} 
 {
-    // iWatch->attach(shared_from_this());
+    iWatch->attach(this);
     drawBoard();
 }
 
 GraphicDisplay::~GraphicDisplay() {
-    iWatch->detach(shared_from_this());
+    iWatch->detach(this);
 }
 
 void GraphicDisplay::notify() {

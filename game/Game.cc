@@ -10,11 +10,6 @@ using namespace std;
 
 Game::Game(): board{std::make_shared<Board>()}, interpreter{std::make_unique<Interpreter>()}{
     board->initializeStandardBoard();
-    textDisplay = make_shared<TextDisplay>(board);
-    graphicDisplay = make_shared<GraphicDisplay>(board);
-
-    board->attach(textDisplay);
-    board->attach(graphicDisplay);
 }
 
 Game::~Game() {}

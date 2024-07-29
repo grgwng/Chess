@@ -30,8 +30,8 @@ class Game {
 
     int nextPlayer = 1;
 
-    std::shared_ptr<TextDisplay> textDisplay;
-    std::shared_ptr<GraphicDisplay> graphicDisplay;
+    std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(board.get());
+    std::shared_ptr<GraphicDisplay> graphicDisplay = make_shared<GraphicDisplay>(board.get());
 public:
     Game();
 
