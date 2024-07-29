@@ -1,5 +1,6 @@
 #ifndef TEXTDISPLAY_H
 #define TEXTDISPLAY_H
+
 #include "Observer.h"
 #include "../entities/Board.h"
 

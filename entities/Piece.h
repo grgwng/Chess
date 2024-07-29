@@ -1,8 +1,8 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-
 #include <vector>
+#include <memory>
 #include "../types/types.h"
 #include "../game/Move.h"
 

@@ -1,9 +1,12 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "../display/Subject.h"
+#include <memory>
 #include <vector>
 #include <iostream>
+
+#include "../display/Subject.h"
+
 class Tile;
 class Piece;
 using namespace std;

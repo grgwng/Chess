@@ -1,10 +1,11 @@
 #ifndef GRAPHICDISPLAY_H
 #define GRAPHICDISPLAY_H
 
+#include <vector>
+
 #include "Observer.h"
 #include "../entities/Board.h"
 #include "Window.h"
-#include <vector>
 
 using namespace std;
 

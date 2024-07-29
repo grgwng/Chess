@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <memory>
+
 #include "../../types/types.h"
 #include "../../interpreter/Interpreter.h"
 #include "../Move.h"

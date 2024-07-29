@@ -1,8 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "../entities/Board.h"
+#include <memory>
 #include <vector>
+
+#include "../entities/Board.h"
 #include "../interpreter/Interpreter.h"
 #include "player/Player.h"
 #include "Move.h"

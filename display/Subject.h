@@ -2,6 +2,8 @@
 #define SUBJECT_H
 
 #include <vector>
+#include <memory>
+
 #include "../entities/Tile.h"
 class Observer;
 
