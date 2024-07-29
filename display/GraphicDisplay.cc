@@ -37,6 +37,8 @@ void GraphicDisplay::notify() {
 
     GameStatus status = iWatch->getStatus();
 
+    xw.fillRectangle(0, 460, 500, 200, Xwindow::Grey);
+
     if(status != NOSTATUS) {
         string message;
         int xOffset = 0;
@@ -75,9 +77,6 @@ void GraphicDisplay::notify() {
         }
 
         xw.drawString(250 - xOffset, 525, message, Xwindow::Black, 24);
-    }
-    else {
-        xw.fillRectangle(0, 460, 500, 200, Xwindow::Grey);
     }
 }
 
