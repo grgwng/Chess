@@ -121,8 +121,8 @@ void Game::gameLoop(){
         //PLAYER1 input loop
         while(nextPlayer == 1){
             board->render();
-            cout << "WHITE'S TURN" << endl;
-            cout << "Enter a game command:" << endl;
+            std::cout << "WHITE'S TURN" << endl;
+            std::cout << "Enter a game command:" << endl;
             //call makeMove for player1 (returns a Move class)
             Move player1Move = player1->makeMove(interpreter, board);
 
@@ -134,8 +134,13 @@ void Game::gameLoop(){
             }
             
             if(player1Move.startCol < 0){ //invalid move
-                cout << "Invalid command in this context. Please try again." << endl;
-                continue; //retry
+                if(player1Move.promotionType == 'q'){ //quit move
+                    return;
+                }else{
+                    std::cout << "Invalid command in this context. Please try again." << endl;
+                    continue; //retry
+
+                }
             }
 
             //check if the move is a valid move
@@ -217,8 +222,12 @@ void Game::gameLoop(){
             }
 
             if(player2Move.startCol < 0){ //invalid move
-                std::cout << "Invalid command in this context. Please try again." << endl;
-                continue; //retry
+                if(player2Move.promotionType == 'q'){ //quit move
+                    return;
+                }else{
+                    std::cout << "Invalid command in this context. Please try again." << endl;
+                    continue; //retry
+                }
             }
 
             //check if the move is a valid move
@@ -364,6 +373,10 @@ void Game::setupLoop() {
                 cout << "The next player is now Player " << nextPlayer << endl;
                 break;
 
+            }
+
+            case QUIT: {
+                return;
             }
 
 

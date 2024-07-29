@@ -27,6 +27,9 @@ Move Computer::makeMove(const unique_ptr<Interpreter>& interpreter, const shared
         case RESIGN:
             return resignMove(colour);
             break;
+
+        case QUIT:
+            return quitMove();
         default:
             return invalidMove();
     }

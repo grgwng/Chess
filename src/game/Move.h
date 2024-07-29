@@ -29,4 +29,6 @@ Move invalidMove();
 
 Move resignMove(Colour c);
 
+Move quitMove();
+
 #endif

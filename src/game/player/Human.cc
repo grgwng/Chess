@@ -37,6 +37,8 @@ Move Human::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_pt
         case RESIGN:
             return resignMove(colour);
             break;
+        case QUIT:
+            return quitMove();
         default:
             return invalidMove();
     }
