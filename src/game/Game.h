@@ -23,8 +23,6 @@ class Game {
     std::shared_ptr<Player> player1;
     std::shared_ptr<Player> player2;
 
-    vector<Move> moveHistory;
-
     double p1score = 0;
     double p2score = 0;
 
