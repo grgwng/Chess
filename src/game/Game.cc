@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "../interpreter/commands.h"
+#include "../interpreter/Commands.h"
 #include "player/Human.h"
 #include "player/computer/Noob.h"
 #include "player/computer/Intermediate.h"
@@ -12,9 +12,7 @@ Game::Game(): board{std::make_shared<Board>()}, interpreter{std::make_unique<Int
     board->initializeStandardBoard();
 }
 
-Game::~Game(){
-
-}
+Game::~Game() {}
 
 bool Game::checkCheck(Colour colour, const shared_ptr<Board>& board) {
     // Colour opponentColour = (colour == Colour::WHITE) ? Colour::BLACK : Colour::WHITE;
@@ -100,15 +98,6 @@ bool Game::checkPromotion(const shared_ptr<Board>& board, Move move) {
     }
     return false;
 }
-
-bool Game::checkDraw() {
-    return true;
-}
-
-void Game::resign() {
-
-}
-
 
 void Game::gameLoop(){ 
     std::cout << "New game has started!" << endl;
@@ -374,7 +363,6 @@ void Game::setupLoop() {
             case QUIT: {
                 return;
             }
-
 
             default:
                 cout << "Invalid command in this context. Please try again" << endl;

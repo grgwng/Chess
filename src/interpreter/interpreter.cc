@@ -1,12 +1,10 @@
-#include "interpreter.h"
+#include "Interpreter.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
 
-
 Interpreter::Interpreter(): pieceTable{{'p', 'P', 'r', 'R', 'n', 'N', 'b', 'B', 'q', 'Q', 'k', 'K'}}{
     //set up playerTypeParseTable
-
     playerTypeParseTable["human"] = HUMAN;
     playerTypeParseTable["computer1"] = COMPUTER1;
     playerTypeParseTable["computer2"] = COMPUTER2;
@@ -14,12 +12,8 @@ Interpreter::Interpreter(): pieceTable{{'p', 'P', 'r', 'R', 'n', 'N', 'b', 'B', 
     playerTypeParseTable["computer4"] = COMPUTER4;
 
     //set up colourParseTable
-
     colourParseTable["white"] = WHITE;
     colourParseTable["black"] = BLACK;
-
-
-
 }
 
 Interpreter::~Interpreter(){}
@@ -64,8 +58,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
         }else{
             return make_shared<Command*>(nullptr);
         }
-
-        
     }else if(command == "resign"){
         return make_shared<Command*>(new Resign{});
 
@@ -96,16 +88,12 @@ shared_ptr<Command*> Interpreter::readCommand(){
                 return make_shared<Command*>(new MoveCommand{startPos[0], startPos[1], endPos[0], endPos[1], false, 0});
             }
         }else{
-
             if(start.length() == 0 && end.length() ==0){
                 return make_shared<Command*>(new MoveCommand(0, 0, 0, 0, true, 0));
             }else{
                 return make_shared<Command*>(nullptr);
             }
-
         }
-
-
     }else if(command == "setup"){
         return make_shared<Command*>(new Setup{});
  
@@ -122,8 +110,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
         }else{
             return make_shared<Command*>(nullptr);
         }
-
-
     }else if(command == "-"){ //remove piece
         string s;
         iss >> s;
@@ -134,7 +120,6 @@ shared_ptr<Command*> Interpreter::readCommand(){
         }else{
             return make_shared<Command*>(nullptr);
         }
-
     }else if(command == "="){ //set colour
         string colour;
         iss >> colour;
@@ -144,12 +129,10 @@ shared_ptr<Command*> Interpreter::readCommand(){
         }else{
             return make_shared<Command*>(nullptr);
         }
-
     }else if(command == "done"){
         return make_shared<Command*>(new DoneSetup{});
 
     }else{
         return make_shared<Command*>(nullptr);
     }
-
 }

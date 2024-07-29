@@ -14,5 +14,4 @@ public:
     void notify() override;
 };
 
-
 #endif

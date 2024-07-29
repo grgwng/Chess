@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include "../../types/types.h"
-#include "../../interpreter/interpreter.h"
+#include "../../interpreter/Interpreter.h"
 #include "../Move.h"
 #include "../../entities/Board.h"
 

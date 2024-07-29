@@ -1,5 +1,5 @@
 
-#include "commands.h"
+#include "Commands.h"
 
 Command::Command(CommandType t): type{t}{}
 Command::~Command(){}
@@ -19,9 +19,8 @@ PlayerType StartGame::getBlackPlayer(){
 
 Resign::Resign(): Command(RESIGN) {}
 
-
 MoveCommand::MoveCommand(int startRow, int startCol, int endRow, int endCol, bool isComputer, char convertToPiece): Command(MOVE),
-    startRow{startRow}, startCol{startCol}, endRow{endRow}, endCol{endCol}, isComputer{isComputer}, convertToPiece{convertToPiece} {}
+    startRow{startRow}, startCol{startCol}, endRow{endRow}, endCol{endCol}, convertToPiece{convertToPiece}, isComputer{isComputer} {}
 
 vector<int> MoveCommand::getStartPos(){
     return {startRow, startCol};
@@ -65,14 +64,6 @@ Colour SetColour::getColour(){
     return colour;
 }
 
-DoneSetup::DoneSetup(): Command(DONESETUP){
+DoneSetup::DoneSetup(): Command(DONESETUP) {}
 
-}
-
-Quit::Quit(): Command(QUIT){
-    
-}
-
-
-
-
+Quit::Quit(): Command(QUIT) {}

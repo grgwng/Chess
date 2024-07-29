@@ -1,3 +1,3 @@
 #include "Player.h"
 
-Player::Player(Colour colour): colour{colour} {};
+Player::Player(Colour colour): colour{colour} {}

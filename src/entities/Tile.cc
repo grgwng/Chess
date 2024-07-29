@@ -35,4 +35,3 @@ int Tile::getCol() const {
 bool Tile::isEmpty() {
     return p == nullptr;
 }
-

@@ -1,11 +1,10 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include "commands.h"
+#include "Commands.h"
 #include <unordered_map>
 #include <unordered_set>
 #include <string>
-
 
 class Interpreter{
     unordered_map<string, PlayerType> playerTypeParseTable;
@@ -14,12 +13,10 @@ class Interpreter{
 
     vector<int> parsePos(string);
 
-    public:
-        Interpreter();
-        ~Interpreter();
-        std::shared_ptr<Command*> readCommand();
-
-
+public:
+    Interpreter();
+    ~Interpreter();
+    std::shared_ptr<Command*> readCommand();
 };
 
 #endif

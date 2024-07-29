@@ -3,7 +3,7 @@
 
 #include "../entities/Board.h"
 #include <vector>
-#include "../interpreter/interpreter.h"
+#include "../interpreter/Interpreter.h"
 #include "player/Player.h"
 #include "Move.h"
 #include "../entities/Board.h"
@@ -41,10 +41,6 @@ public:
     bool checkCheckmate(Colour colour); 
     bool checkStalemate(Colour colour);
     bool checkPromotion(const shared_ptr<Board>& board, Move move);
-
-    bool checkDraw();
-
-    void resign();
 
     ~Game();
 };

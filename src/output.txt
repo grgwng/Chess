@@ -14,15 +14,14 @@ New game has started!
   abcdefgh
 
 WHITE'S TURN
-
 Enter a game command:
 
 8 rnbqkbnr
 7 pppppppp
 6  _ _ _ _
 5 _ _ _ _ 
-4 P_ _ _ _
-3 _ _ _ _ 
+4  _ _ _ _
+3 P _ _ _ 
 2  PPPPPPP
 1 RNBQKBNR
 
@@ -32,28 +31,27 @@ BLACK'S TURN
 
 Enter a game command:
 
-8 rnbqkbnr
-7 p pppppp
-6  _ _ _ _
-5 _p_ _ _ 
-4 P_ _ _ _
-3 _ _ _ _ 
+8 r_bqkbnr
+7 pppppppp
+6  _n_ _ _
+5 _ _ _ _ 
+4  _ _ _ _
+3 P _ _ _ 
 2  PPPPPPP
 1 RNBQKBNR
 
   abcdefgh
 
 WHITE'S TURN
-
 Enter a game command:
 
-8 rnbqkbnr
-7 p pppppp
-6  _ _ _ _
-5 _P_ _ _ 
+8 r_bqkbnr
+7 pppppppp
+6  _n_ _ _
+5 _ _ _ _ 
 4  _ _ _ _
-3 _ _ _ _ 
-2  PPPPPPP
+3 P _ P _ 
+2  PPP PPP
 1 RNBQKBNR
 
   abcdefgh
@@ -62,29 +60,28 @@ BLACK'S TURN
 
 Enter a game command:
 
-8 rnbqkbnr
-7 p pp_ppp
-6  _ _ _ _
-5 _P_ p _ 
+8 r_bqkbnr
+7 ppp pppp
+6  _np _ _
+5 _ _ _ _ 
 4  _ _ _ _
-3 _ _ _ _ 
-2  PPPPPPP
+3 P _ P _ 
+2  PPP PPP
 1 RNBQKBNR
 
   abcdefgh
 
 WHITE'S TURN
-
 Enter a game command:
 
-8 rnbqkbnr
-7 p pp_ppp
-6  _ _ _ _
-5 _P_ p _ 
+8 r_bqkbnr
+7 ppp pppp
+6  _np _ _
+5 _ _ _ _ 
 4  _ _ _ _
-3 _P_ _ _ 
-2  _PPPPPP
-1 RNBQKBNR
+3 P _ P _ 
+2  PPPQPPP
+1 RNB KBNR
 
   abcdefgh
 
@@ -92,29 +89,28 @@ BLACK'S TURN
 
 Enter a game command:
 
-8 rnbqkb r
-7 p ppnppp
-6  _ _ _ _
-5 _P_ p _ 
-4  _ _ _ _
-3 _P_ _ _ 
-2  _PPPPPP
-1 RNBQKBNR
+8 r_bqkbnr
+7 ppp pppp
+6  _ p _ _
+5 _ _ _ _ 
+4  _ n _ _
+3 P _ P _ 
+2  PPPQPPP
+1 RNB KBNR
 
   abcdefgh
 
 WHITE'S TURN
-
 Enter a game command:
 
-8 rnbqkb r
-7 p ppnppp
-6  _ _ _ _
-5 _P_ p _ 
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 RNBQKBNR
+8 r_bqkbnr
+7 ppp pppp
+6  _ p _ _
+5 _ _ _ _ 
+4  _ P _ _
+3 P _ _ _ 
+2  PPPQPPP
+1 RNB KBNR
 
   abcdefgh
 
@@ -122,299 +118,28 @@ BLACK'S TURN
 
 Enter a game command:
 
-8 rn qkb r
-7 p ppnppp
-6 b_ _ _ _
-5 _P_ p _ 
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 RNBQKBNR
+8 r_bqkbnr
+7 ppp ppp 
+6  _ p _ _
+5 _ _ _ _p
+4  _ P _ _
+3 P _ _ _ 
+2  PPPQPPP
+1 RNB KBNR
 
   abcdefgh
 
 WHITE'S TURN
-
 Enter a game command:
 
-8 rn qkb r
-7 p ppnppp
-6 P_ _ _ _
-5 _ _ p _ 
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 RNBQKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p ppnpp 
-6 P_ _ _ _
-5 _ _ p _p
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 RNBQKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p ppnpp 
-6 P_ _ _ _
-5 R _ p _p
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 _NBQKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p ppn p 
-6 P_ _ _ _
-5 R _ pp_p
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 _NBQKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p ppn p 
-6 P_ _ _ _
-5 _ _ Rp_p
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 _NBQKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p ppn _ 
-6 P_ _ _ _
-5 _ _ Rppp
-4  P _ _ _
-3 _ _ _ _ 
-2  _PPPPPP
-1 _NBQKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p ppn _ 
-6 P_ _ _ _
-5 _ _ _ppp
-4  P _ _ _
-3 _ _ R _ 
-2  _PPPPPP
-1 _NBQKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p p n _ 
-6 P_ _ _ _
-5 _ _p_ppp
-4  P _ _ _
-3 _ _ R _ 
-2  _PPPPPP
-1 _NBQKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p p n _ 
-6 P_ _ _ _
-5 _ _p_ppp
-4  P _ _ _
-3 _ _ R _ 
-2  BPPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 rn qkb r
-7 p p n _ 
-6 P_ _ _ _
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  BPPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 rn qkb B
-7 p p n _ 
-6 P_ _ _ _
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 rn q b B
-7 p pkn _ 
-6 P_ _ _ _
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 rn q b _
-7 p pkn _ 
-6 P_ _ B _
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 rn q _ _
-7 p pkn _ 
-6 P_ _ B b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 rn q _ _
-7 p pkB _ 
-6 P_ _ _ b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 r_ q _ _
-7 p pkB _ 
-6 n_ _ _ b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 r_ B _ _
-7 p pk_ _ 
-6 n_ _ _ b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-BLACK'S TURN
-
-Enter a game command:
-
-8 r_ B _ _
-7 p p _ _ 
-6 n_ k _ b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
-
-  abcdefgh
-
-WHITE'S TURN
-
-Enter a game command:
-
-8 r_ _ _ _
-7 p p B _ 
-6 n_ k _ b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
+8 r_bqkbnr
+7 ppp ppp 
+6  _ p _ _
+5 _Q_ _ _p
+4  _ P _ _
+3 P _ _ _ 
+2  PPP PPP
+1 RNB KBNR
 
   abcdefgh
 
@@ -424,29 +149,57 @@ BLACK'S TURN
 
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 n_k_ _ b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ R _ 
-2  _PPPPPP
-1 _N_QKBNR
+8 r_bqkbnr
+7 pp_ ppp 
+6  _pp _ _
+5 _Q_ _ _p
+4  _ P _ _
+3 P _ _ _ 
+2  PPP PPP
+1 RNB KBNR
 
   abcdefgh
 
 WHITE'S TURN
+Enter a game command:
+
+8 r_bqkbnr
+7 pp_ ppp 
+6  _pp _ _
+5 _Q_ _ _p
+4  _ P _ _
+3 P _P_ _ 
+2  PP_ PPP
+1 RNB KBNR
+
+  abcdefgh
+
+BLACK'S TURN
 
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 n_k_R_ b
-5 _ _p_pp 
-4  P _ _p_
-3 _ _ _ _ 
-2  _PPPPPP
-1 _N_QKBNR
+8 r_bqkbnr
+7 pp_ pp_ 
+6  _pp _p_
+5 _Q_ _ _p
+4  _ P _ _
+3 P _P_ _ 
+2  PP_ PPP
+1 RNB KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+Enter a game command:
+
+8 r_bqkbnr
+7 pp_ pp_ 
+6  _Qp _p_
+5 _ _ _ _p
+4  _ P _ _
+3 P _P_ _ 
+2  PP_ PPP
+1 RNB KBNR
 
   abcdefgh
 
@@ -456,29 +209,28 @@ BLACK'S TURN
 
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 n_ _R_ b
-5 _k_p_pp 
-4  P _ _p_
-3 _ _ _ _ 
-2  _PPPPPP
-1 _N_QKBNR
+8 r_ qkbnr
+7 pp_bpp_ 
+6  _Qp _p_
+5 _ _ _ _p
+4  _ P _ _
+3 P _P_ _ 
+2  PP_ PPP
+1 RNB KBNR
 
   abcdefgh
 
 WHITE'S TURN
-
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 n_ _ _ R
-5 _k_p_pp 
-4  P _ _p_
-3 _ _ _ _ 
-2  _PPPPPP
-1 _N_QKBNR
+8 r_ qkbnr
+7 pQ_bpp_ 
+6  _ p _p_
+5 _ _ _ _p
+4  _ P _ _
+3 P _P_ _ 
+2  PP_ PPP
+1 RNB KBNR
 
   abcdefgh
 
@@ -486,66 +238,219 @@ BLACK'S TURN
 
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 n_ _ _ R
-5 _k_p_p_ 
-4  P _ pp_
-3 _ _ _ _ 
-2  _PPPPPP
-1 _N_QKBNR
+8 r_ qkb r
+7 pQ_bpp_ 
+6  _ p np_
+5 _ _ _ _p
+4  _ P _ _
+3 P _P_ _ 
+2  PP_ PPP
+1 RNB KBNR
 
   abcdefgh
 
 WHITE'S TURN
-
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 n_ _ _ R
-5 _k_p_p_ 
-4  P _Ppp_
-3 _ _ _ _ 
-2  _PP PPP
-1 _N_QKBNR
+8 r_ qkb r
+7 pQ_bpp_ 
+6  _ p np_
+5 _ _ _ _p
+4  _ P _ _
+3 P PP_ _ 
+2  P _ PPP
+1 RNB KBNR
 
   abcdefgh
-
-Black is in check.
 
 BLACK'S TURN
 
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 n_ _ _ R
-5 _ _p_p_ 
-4 kP _Ppp_
-3 _ _ _ _ 
-2  _PP PPP
-1 _N_QKBNR
+8 r_ qkb r
+7 pQ_b_p_ 
+6  _ ppnp_
+5 _ _ _ _p
+4  _ P _ _
+3 P PP_ _ 
+2  P _ PPP
+1 RNB KBNR
 
   abcdefgh
 
 WHITE'S TURN
+Enter a game command:
+
+8 r_ qkb r
+7 Q _b_p_ 
+6  _ ppnp_
+5 _ _ _ _p
+4  _ P _ _
+3 P PP_ _ 
+2  P _ PPP
+1 RNB KBNR
+
+  abcdefgh
+
+BLACK'S TURN
 
 Enter a game command:
 
-8 r_ _ _ _
-7 p p B _ 
-6 R_ _ _ _
-5 _ _p_p_ 
-4 kP _Ppp_
-3 _ _ _ _ 
-2  _PP PPP
-1 _N_QKBNR
+8 r_ qkb r
+7 Q _ _p_ 
+6  _ ppnp_
+5 _b_ _ _p
+4  _ P _ _
+3 P PP_ _ 
+2  P _ PPP
+1 RNB KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+Enter a game command:
+
+8 r_ qkb r
+7 Q _ _p_ 
+6  _ ppnp_
+5 _b_ _ _p
+4  _ P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RNB KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 r_ qkb r
+7 Q _ _p_n
+6  _ pp_p_
+5 _b_ _ _p
+4  _ P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RNB KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+Enter a game command:
+
+8 Q_ qkb r
+7 _ _ _p_n
+6  _ pp_p_
+5 _b_ _ _p
+4  _ P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RNB KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 Q_ qkb r
+7 _ _ _p_ 
+6  _ ppnp_
+5 _b_ _ _p
+4  _ P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RNB KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+Enter a game command:
+
+8 Q_ qkb r
+7 _ _ _p_ 
+6  _ ppnp_
+5 _b_ _ Bp
+4  _ P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RN_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 Q_ qkb r
+7 _ _ _p_ 
+6  _ _pnp_
+5 _b_p_ Bp
+4  _ P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RN_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+Enter a game command:
+
+8 Q_ qkb r
+7 _ _ _p_ 
+6  _ _pBp_
+5 _b_p_ _p
+4  _ P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RN_ KBNR
+
+  abcdefgh
+
+BLACK'S TURN
+
+Enter a game command:
+
+8 Q_ qk_ r
+7 _ _ _p_ 
+6  _ _pBp_
+5 _b_p_ _p
+4  b P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RN_ KBNR
+
+  abcdefgh
+
+WHITE'S TURN
+Enter a game command:
+
+8  _ Qk_ r
+7 _ _ _p_ 
+6  _ _pBp_
+5 _b_p_ _p
+4  b P _ _
+3 P PP_ _P
+2  P _ PP_
+1 RN_ KBNR
 
   abcdefgh
 
 Checkmate! White wins!
 
+Start a game or enter set-up mode:
+Invalid command in this context. Please try again.
+Start a game or enter set-up mode:
+Invalid command in this context. Please try again.
+Start a game or enter set-up mode:
+Invalid command in this context. Please try again.
+Start a game or enter set-up mode:
+Invalid command in this context. Please try again.
+Start a game or enter set-up mode:
+Invalid command in this context. Please try again.
+Start a game or enter set-up mode:
+Invalid command in this context. Please try again.
 Start a game or enter set-up mode:
 Invalid command in this context. Please try again.
 Start a game or enter set-up mode:

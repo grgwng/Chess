@@ -4,7 +4,6 @@
 Human::Human(Colour colour): Player{colour} {}
 
 Move Human::convertMoveCommandToMove(MoveCommand* mc){
-    
     vector<int> startPos = mc->getStartPos();
     vector<int> endPos = mc->getEndPos();
     char promotionPiece = mc->getConvertToPiece();
@@ -13,13 +12,11 @@ Move Human::convertMoveCommandToMove(MoveCommand* mc){
 }
 
 Move Human::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board){
-
     shared_ptr<Command*> command = interpreter->readCommand();
 
     if(!command || !(*command)){
         return invalidMove();
     }
-
 
     switch((*command)->getType()){
         case MOVE:{
@@ -39,6 +36,7 @@ Move Human::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_pt
             break;
         case QUIT:
             return quitMove();
+            break;
         default:
             return invalidMove();
     }

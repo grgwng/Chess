@@ -6,7 +6,6 @@
 Computer::Computer(Colour colour): Player{colour} {}
 
 Move Computer::makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board){
-
     shared_ptr<Command*> command = interpreter->readCommand();
 
     if(!command || !(*command)){
@@ -26,6 +25,7 @@ Move Computer::makeMove(const unique_ptr<Interpreter>& interpreter, const shared
         }
         case QUIT:
             return quitMove();
+            break;
         default:
             return invalidMove();
     }
