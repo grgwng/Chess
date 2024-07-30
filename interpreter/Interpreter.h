@@ -13,7 +13,6 @@ class Interpreter{
     unordered_set<char> pieceTable;
 
     vector<int> parsePos(string);
-
 public:
     Interpreter();
     ~Interpreter();

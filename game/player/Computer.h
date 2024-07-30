@@ -12,10 +12,10 @@ protected:
     std::vector<Move> getCaptureMoves(const shared_ptr<Board>& board, Colour colour);
     std::vector<Move> getSafeMoves(const shared_ptr<Board>& board, Colour colour);
     std::vector<Move> getAvoidingMoves(const shared_ptr<Board>& board, Colour colour);
+    virtual Move computeMove(const shared_ptr<Board>& board) = 0;
 public:
     Computer(Colour colour);
-    virtual Move computeMove(const shared_ptr<Board>& board) = 0;
-    Move makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board);
+    Move makeMove(const unique_ptr<Interpreter>& interpreter, const shared_ptr<Board>& board) override;
 };
 
 #endif

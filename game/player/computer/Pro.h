@@ -4,9 +4,10 @@
 #include "../Computer.h"
 
 class Pro : public Computer {
+protected:
+    Move computeMove(const shared_ptr<Board>& board) override;
 public:
     Pro(Colour colour);
-    Move computeMove(const shared_ptr<Board>& board) override;
 };
 
 #endif

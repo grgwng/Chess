@@ -25,17 +25,13 @@ class Game {
     std::shared_ptr<Player> player1;
     std::shared_ptr<Player> player2;
 
-    double p1score = 0;
-    double p2score = 0;
-
-    int nextPlayer = 1;
-
     std::shared_ptr<TextDisplay> textDisplay = make_shared<TextDisplay>(board.get());
     std::shared_ptr<GraphicDisplay> graphicDisplay = make_shared<GraphicDisplay>(board.get());
-public:
-    Game();
 
-    void runProgram();
+    double p1score = 0;
+    double p2score = 0;
+    int nextPlayer = 1;
+
     void gameLoop();
     void setupLoop();
     bool canMakeLegalMove(Colour colour);
@@ -43,8 +39,11 @@ public:
     bool checkCheckmate(Colour colour); 
     bool checkStalemate(Colour colour);
     bool checkPromotion(const shared_ptr<Board>& board, Move move);
-
+public:
+    Game();
     ~Game();
+
+    void runProgram();
 };
 
 #endif
