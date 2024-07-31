@@ -9,8 +9,8 @@
 #include "../../entities/Board.h"
 
 class Player {
-    protected:
-        Colour colour;
+protected:
+    Colour colour;
 public:
     Player(Colour colour);
     virtual ~Player() {};
