@@ -37,6 +37,11 @@ Move Pro::computeMove(const shared_ptr<Board>& board){
     std::set_intersection(checkMoves.begin(), checkMoves.end(),
                           captureMoves.begin(), captureMoves.end(),
                           std::back_inserter(checkAndCaptureMoves));
+    
+    std::vector<Move> avoidingAndSafeMoves;
+    std::set_intersection(avoidingMoves.begin(), avoidingMoves.end(),
+                          safeMoves.begin(), safeMoves.end(),
+                          std::back_inserter(avoidingAndCaptureMoves));
 
     std::vector<Move> safeAndCheckAndCaptureMoves;
     std::set_intersection(safeMoves.begin(), safeMoves.end(),
@@ -61,6 +66,9 @@ Move Pro::computeMove(const shared_ptr<Board>& board){
     }
     else if(!avoidingAndCaptureMoves.empty()) {
         moves = avoidingAndCaptureMoves;
+    }
+    else if(!avoidingAndSafeMoves.empty()) {
+        moves = avoidingAndSafeMoves;
     }
     else if(!avoidingMoves.empty()) {
         moves = avoidingMoves;
