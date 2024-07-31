@@ -1,0 +1,56 @@
+game human human
+move e2 e4 //pawn double move
+move d7 d6 //pawn single move
+move e4 e5 //pawn single move
+move e6 e4 //invalid pawn move
+move d6 e5 //capture
+move f1 a6 //bishop move
+move a6 a5 //invalid bishop move
+move d1 h4 //invalid player move
+move d8 d3 //queen straight move
+move g1 h3 //knight move
+move d3 a6 //queen diagonal move and capture
+move h3 f4 //knight move 2
+move b8 c6 
+move e1 f1 //king cannnot move in check
+move e1 g1 //king cannot castle across check
+move h2 h3
+move a6 a3
+move e1 g1 //king-side castle
+move c8 h3
+move g2 h3
+move e8 c8 //queen-side castle
+move f1 e1 //rook side move
+move d8 d6 //rook down move
+move e1 d1 //invalid piece move
+move e1 d3 //invalid rook move
+move h3 h4
+move e5 e4
+move h4 h5
+move c8 d8
+move d2 d4
+move e4 d3 //en passant
+move f4 e6 //check
+move d6 d5 //invalid piece move (in check)
+move d6 e6 //removing check
+move g1 g2 // king vertical move
+move g7 g5
+move e1 f1
+move e6 e2
+move h5 g6 //failed en passant
+move h5 h6
+move d3 d2
+move f2 f3 //cannot put itself in check
+move d1 e2
+move d2 d1 //did not provide promotion type
+move d2 d1 l //invalid command
+move d2 d1
+move d2 d1 q //promotion
+move c1 g5
+move g2 h1 //king diagonal move
+move d3 d4
+move a3 h3 //check
+move h1 g1 //escape check
+move d4 g4 //black checkmates white, black wins
+ctrl d //score white: 0 black 1
+
