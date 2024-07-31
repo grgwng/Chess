@@ -41,12 +41,14 @@ move h5 g6 //failed en passant
 move h5 h6
 move d3 d2
 move f2 f3 //cannot put itself in check
+move h6 h7 //pawn cannot capture straight
 move d1 e2
 move d2 d1 //did not provide promotion type
 move d2 d1 l //invalid command
 move d2 d1
 move d2 d1 q //promotion
 move c1 g5
+move d1 d3
 move g2 h1 //king diagonal move
 move d3 d4
 move e2 a6
