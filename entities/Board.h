@@ -17,10 +17,11 @@ class Board : public Subject {
     std::shared_ptr<Tile> whiteKingTile;
     std::shared_ptr<Tile> blackKingTile;
     GameStatus gameStatus;
+    void resetEnPassantEligibility();
+    
 public:
     Board();
     Board(const Board& other); // Copy constructor
-
     void initializeStandardBoard();
     bool movePiece(int startRow, int startCol, int endRow, int endCol);
     void addPiece(int row, int col, char piece, Colour colour);
@@ -29,7 +30,6 @@ public:
     void clearBoard();
     void render();
     std::vector<Move> getAllValidMoves(Colour colour);
-    void resetEnPassantEligibility();
     std::shared_ptr<Tile> getTile(int row, int col) const;
     std::shared_ptr<Tile> getWhiteKingTile() const;
     std::shared_ptr<Tile> getBlackKingTile() const;
