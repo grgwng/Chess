@@ -29,7 +29,7 @@ public:
     void clearBoard();
     void render();
     std::vector<Move> getAllValidMoves(Colour colour);
-    
+    void resetEnPassantEligibility();
     std::shared_ptr<Tile> getTile(int row, int col) const;
     std::shared_ptr<Tile> getWhiteKingTile() const;
     std::shared_ptr<Tile> getBlackKingTile() const;

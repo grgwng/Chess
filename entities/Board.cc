@@ -229,6 +229,17 @@ std::shared_ptr<Tile> Board::getBlackKingTile() const {
     return blackKingTile; 
 }
 
+void Board::resetEnPassantEligibility() {
+    for (int row = 0; row < boardSize; ++row) {
+        for (int col = 0; col < boardSize; ++col) {
+            auto piece = board[row][col]->getPiece();
+            if (piece && piece->getType() == 'p') {
+                dynamic_pointer_cast<Pawn>(piece)->setEnPassantEligible(false);
+            }
+        }
+    }
+}
+
 bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
     auto piece = board[startRow][startCol]->getPiece();
     if (piece && piece->isValidMove(*this, startRow, startCol, endRow, endCol)) {
@@ -243,13 +254,13 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
         setTile(startRow, startCol, nullptr);
         piece->setHasMoved(true);
 
-        // Check for en passant capture
+        // Pawn logic
+        bool enPassantSet = false;
         if (auto pawn = dynamic_pointer_cast<Pawn>(piece)) {
 
-            // turn en passant flag on if it's the first time moving the pawn
-            pawn->setEnPassantEligible(false);
             if (abs(startRow - endRow) == 2) { // will only be true after a pawn moves twice, otherwise always false
                 pawn->setEnPassantEligible(true);
+                enPassantSet = true;
             }
 
             // En Passant capture logic
@@ -263,6 +274,10 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
                     setTile(startRow, endCol, nullptr); // capture the en passant pawn
                 }
             }
+        }
+
+        if (!enPassantSet) {
+            resetEnPassantEligibility();
         }
 
         // King logic 
