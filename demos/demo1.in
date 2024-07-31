@@ -49,6 +49,7 @@ move d2 d1 q //promotion
 move c1 g5
 move g2 h1 //king diagonal move
 move d3 d4
+move e2 a6
 move a3 h3 //check
 move h1 g1 //escape check
 move d4 g4 //black checkmates white, black wins
