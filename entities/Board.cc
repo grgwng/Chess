@@ -229,11 +229,11 @@ std::shared_ptr<Tile> Board::getBlackKingTile() const {
     return blackKingTile; 
 }
 
-void Board::resetEnPassantEligibility() {
+void Board::resetEnPassantEligibility(Colour colour) {
     for (int row = 0; row < boardSize; ++row) {
         for (int col = 0; col < boardSize; ++col) {
             auto piece = board[row][col]->getPiece();
-            if (piece && piece->getType() == 'p') {
+            if (piece && piece->getType() == 'p' && piece->getColour() == colour) {
                 dynamic_pointer_cast<Pawn>(piece)->setEnPassantEligible(false);
             }
         }
@@ -243,30 +243,21 @@ void Board::resetEnPassantEligibility() {
 bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
     auto piece = board[startRow][startCol]->getPiece();
     if (piece && piece->isValidMove(*this, startRow, startCol, endRow, endCol)) {
-        std::shared_ptr<Piece> targetPiece = board[endRow][endCol]->getPiece();
-        // if theres a piece on tile you're moving to then it must be an enemy piece and delete it
-        if (targetPiece) { // already do the check to make sure its not same colour in isvalidmove
-            setTile(endRow, endCol, nullptr); // Capture the opponent's piece
-        }
-
-        // move the piece and set start tile to empty piece
         setTile(endRow, endCol, piece);
         setTile(startRow, startCol, nullptr);
         piece->setHasMoved(true);
 
         // Pawn logic
-        bool enPassantSet = false;
         if (auto pawn = dynamic_pointer_cast<Pawn>(piece)) {
 
-            if (abs(startRow - endRow) == 2) { // will only be true after a pawn moves twice, otherwise always false
+            if (abs(startRow - endRow) == 2) {
                 pawn->setEnPassantEligible(true);
-                enPassantSet = true;
             }
 
             // En Passant capture logic
             int direction = (pawn->getColour() == Colour::WHITE) ? -1 : 1;
             // If moving diagonally and target square is empty
-            if (abs(startCol - endCol) == 1 && endRow == startRow + direction && !targetPiece) {
+            if (abs(startCol - endCol) == 1 && endRow == startRow + direction && !board[endRow][endCol]->isEmpty()) {
                 // The en passant captured pawn is directly beside the end position
                 std::shared_ptr<Piece> enPassantPawn = board[startRow][endCol]->getPiece();
                 if (enPassantPawn && enPassantPawn->getType() == 'p' && enPassantPawn->getColour() != pawn->getColour() &&
@@ -276,8 +267,10 @@ bool Board::movePiece(int startRow, int startCol, int endRow, int endCol) {
             }
         }
 
-        if (!enPassantSet) {
-            resetEnPassantEligibility();
+        if (piece->getColour() == Colour::WHITE) {
+            resetEnPassantEligibility(Colour::BLACK);
+        } else {
+            resetEnPassantEligibility(Colour::WHITE);
         }
 
         // King logic 

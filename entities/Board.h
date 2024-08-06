@@ -17,7 +17,7 @@ class Board : public Subject {
     std::shared_ptr<Tile> whiteKingTile;
     std::shared_ptr<Tile> blackKingTile;
     GameStatus gameStatus;
-    void resetEnPassantEligibility();
+    void resetEnPassantEligibility(Colour colour);
     
 public:
     Board();
