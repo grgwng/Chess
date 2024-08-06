@@ -1,0 +1,27 @@
+setup
++ K a1 //adding piece
+- a1  //removing piece
++ K a11 //invalid placement
++ k z2 //invalid placement
+- a1 //removing nothing
++ K a1 
++ k h8
++ K c3
+done //invalid: two kings
+- c3
++ R a8
++ q a8 //replace
+done //invalid: white king in check
+- a8
++ P b8 
+done //invalid: white pawn at the end
+- b8
++ p f1
+done //invalid: black pawn at the end
+- f1
++ q b8
+= black //change next player to black
+done
+game human human
+move b8 b3 //stalemate
+ctrlD // 0.5 0.5 scores
